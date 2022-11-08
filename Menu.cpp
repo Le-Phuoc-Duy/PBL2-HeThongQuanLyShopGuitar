@@ -3,9 +3,10 @@
 #include "QuanLyNV.h"
 #include "QuanLyKH.h"
 #include "QuanLyHD.h"
-#include <fstream>
+#include <sstream>
 #include <conio.h>
-string PASS;
+/// @abc
+string PASS = "admin";
 int& Lua_chon_hop_le(){
     static int luachon;
     while(1)
@@ -445,13 +446,6 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
     } while (luachon1);
 }
 // Ham dang nhap
-void setPass(){
-    ifstream filein;
-    filein.open("Password.txt");
-    filein.ignore();
-    getline(filein,PASS);
-    filein.close();
-}
 string getPass(string prompt)
 {
     cout << prompt;
@@ -475,7 +469,6 @@ string getPass(string prompt)
     }
     return pass;
 }
-
 //
 int main()
 {
