@@ -5,6 +5,7 @@
 #include "QuanLyHD.h"
 #include <fstream>
 #include <conio.h>
+/// @abc
 string PASS;
 int& Lua_chon_hop_le(){
     static int luachon;
