@@ -136,12 +136,18 @@ void QuanLyNV::Writef()
 }
 void QuanLyNV::Find()
 {
-    cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
-    int n = FindIndex(maNV);
-    if (n == -1){
-        cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
-        return;
-    }else{
+    cout << "\n\t\t\t\t\t\t---------------------------------";
+    cout << "\n\t\t\t\t\t\t|\t1. Tim theo ma\t\t|";
+    cout << "\n\t\t\t\t\t\t|\t2. Tim theo ten\t\t|";
+    cout << "\n\t\t\t\t\t\t---------------------------------";
+    int luachon = Lua_chon();
+    if (luachon == 1){
+        cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
+        int n = FindIndex(maNV);
+        if (n == -1){
+            cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
+            return;
+        }else{
             cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
             cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) 
             << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |";
@@ -149,6 +155,22 @@ void QuanLyNV::Find()
             cout << *databaseNV[n];
             cout << "\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
         }
+    }else if (luachon == 2)
+    {
+        string tenNV;
+        cin.ignore();
+        cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenNV);
+        HamChuanHoa(tenNV);
+        cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
+        cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) 
+        << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |";
+        cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
+        for (int i = 0; i < this->lengthNV; i++)
+        {
+            if (databaseNV[i]->getTenNV() == tenNV) cout << *databaseNV[i];      
+        }
+        cout << "\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
+    } else return;
 }
 int QuanLyNV::FindIndex(const int& index){
     for (int i = 0; i < this->lengthNV; i++)
