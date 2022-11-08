@@ -5,6 +5,7 @@
 #include <conio.h>
 string PASS = "admin";
 /////////////abc
+////asd
 void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
 {
     int luachon1 = 1;
