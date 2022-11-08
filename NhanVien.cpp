@@ -107,8 +107,8 @@ double NhanVien::getLuong()
 }
 string NhanVien::getChucVu()
 {
-    if (chuc_vu == 0) return "Ban hang";
-    else return "Quan kho";
+    if (chuc_vu == 0) return "Quan Ly";
+    else return "Nhan vien";
 }
 
 ostream& operator<<(ostream& out, NhanVien& nv)
@@ -148,8 +148,8 @@ istream& operator>>(istream& in, NhanVien& nv)
     cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
     do{
         cout << "\t\t\t\t\t\tChuc vu: ";
-        cout << "\n\t\t\t\t\t\t 0. Nhan vien ban hang "; 
-        cout << "\n\t\t\t\t\t\t 1. Nhan vien quan kho "; 
+        cout << "\n\t\t\t\t\t\t 0. Quan Ly "; 
+        cout << "\n\t\t\t\t\t\t 1. Nhan vien "; 
         cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   in >> nv.chuc_vu;
     }while(nv.chuc_vu != 0 && nv.chuc_vu != 1);
     nv.setLuong();
