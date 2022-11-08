@@ -54,13 +54,17 @@ void ChiTietHoaDon::Input(QuanLyHang& hh){
     cout << "\t\t\t\t\t\tNhap so luong: "; cin >> so_luong;
     while ((hh.databaseK[n]->getSoLuong()) < so_luong)
     {
-        int luachon;
+        char luachon;
         cout << "\t\t\t\t\t\tSo luong hang hoa khong du. Kho chi con " << hh.databaseK[n]->getSoLuong() << " mon" << endl;
         cout << "\t\t\t\t\t\tBan muon thay doi so luong khong?" << endl;
         cout << "\t\t\t\t\t\t1. Co              0. Khong" << endl;
-        cout << "\t\t\t\t\t\tNhap lua  chon: "; cin >> luachon;
-        if (luachon != 1){
+        cout << "\t\t\t\t\t\tNhap lua  chon: ";     cin >> luachon;
+        if (luachon == '0'){
             so_luong = 0;   return;
+        }
+        else if(luachon != '1')
+        {
+            cout << "\t\t\t\t\t\tLua chon khong hop le." << endl;
         }
         else {
             cout << "\t\t\t\t\t\tNhap so luong: ";  cin >> this->so_luong;

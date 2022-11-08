@@ -1,13 +1,34 @@
+//chinh ma KH
 #include "QuanLyHang.h"
 #include "QuanLyNV.h"
 #include "QuanLyKH.h"
 #include "QuanLyHD.h"
+#include <sstream>
 #include <conio.h>
 string PASS = "admin";
-//////test2
-void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
+int& Lua_chon_hop_le(){
+    static int luachon;
+    while(1)
+    {
+        try{
+            string x;
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
+            // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen tu 0 -> 9 khong
+            if (x.length() != 1) throw "";
+            if (x[0] < 48 || x[0] > 57) throw int(1);
+            // Neu ket qua dung, thi tra ve lua chon
+            luachon = (int)(x[0] - '0');
+            break;
+        }
+        catch(...) {
+            cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;
+        }
+    }
+    return luachon;
+}
+void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
 {
-    int luachon1 = 1;
+    int luachon1;
     do
     {
         system("cls");
@@ -17,8 +38,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
         cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi phan loai hang\t\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t======================END========================";
-        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-        cin >> luachon1;
+        luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
         {
@@ -26,7 +46,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
             break;
         case 1:
         {
-            int luachon2 = 1;
+            int luachon2;
             do
             {
                 system("cls");
@@ -42,8 +62,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
                 cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach hang hoa\t\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-                cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-                cin >> luachon2;
+                luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
                 {
@@ -67,7 +86,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
                 }
                 case 3:
                 {
-                    ql_hang.Remove();
+                    ql_hang.Remove(ql_hd);
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
@@ -110,7 +129,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
                 }
                 default:
                 {
-                    cout << "Lua chon khong hop le!" << endl;
+                    cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
@@ -121,7 +140,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
         }
         case 2:
         {
-            int luachon2 = 1;
+            int luachon2;
             do
             {
                 system("cls");
@@ -135,8 +154,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
                 cout << "\n\t\t\t\t\t\t|\t6. Xuat file danh sach phan loai\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-                cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-                cin >> luachon2;
+                luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
                 {
@@ -188,7 +206,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
                 }
                 default:
                 {
-                    cout << "Lua chon khong hop le!" << endl;
+                    cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
@@ -200,8 +218,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
         default:
         {
             cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         }
@@ -210,7 +227,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
 
 void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
 {
-    int luachon1 = 1;
+    int luachon1;
     do
     {
         system("cls");
@@ -226,8 +243,7 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach nhan vien\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-        cin >> luachon1;
+        luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
         {
@@ -238,65 +254,56 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         case 1:
         {
             ql_nv.Readf();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 2:
         {
             ql_nv.Insert();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 3:
         {
             ql_nv.Remove(ql_hd);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 4:
         {
             ql_nv.Find();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 5:
         {
             ql_nv.Update();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 6:
         {
             ql_nv.Sort();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 7:
         {
             system("cls");
             ql_nv.Show();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 8:
         {
             ql_nv.Writef();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         default:
         {
-            cout << "Lua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         }
@@ -305,7 +312,7 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
 
 void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
 {
-    int luachon1 = 1;
+    int luachon1;
     do
     {
         system("cls");
@@ -316,12 +323,12 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         cout << "\n\t\t\t\t\t\t|\t3. Xoa mot khach hang\t\t\t|";
         cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin khach hang\t\t|";
         cout << "\n\t\t\t\t\t\t|\t5. Thay doi thong tin khach hang\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach khach hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach khach hang\t|";
+        cout << "\n\t\t\t\t\t\t|\t6. Sap xep khach hang theo ten\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t7. In ra danh sach khach hang\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach khach hang\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-        cin >> luachon1;
+        luachon1 = Lua_chon_hop_le();;
 
         switch (luachon1)
         {
@@ -332,58 +339,57 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         case 1:
         {
             ql_kh.Readf();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 2:
         {
             ql_kh.Insert();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 3:
         {
             ql_kh.Remove(ql_hd);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 4:
         {
             ql_kh.Find();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 5:
         {
             ql_kh.Update(ql_hd);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 6:
         {
             system("cls");
-            ql_kh.Show();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            ql_kh.Sort();
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 7:
         {
+            system("cls");
+            ql_kh.Show();
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        case 8:
+        {
             ql_kh.Writef();
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         default:
         {
-            cout << "Lua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         }
@@ -392,7 +398,7 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
 
 void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyHang &ql_hh)
 {
-    int luachon1 = 1;
+    int luachon1;
     do
     {
         system("cls");
@@ -403,8 +409,7 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         cout << "\n\t\t\t\t\t\t|\t3. In ra danh sach hoa don\t\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-        cin >> luachon1;
+        luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
         {
@@ -415,29 +420,25 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         case 1:
         {
             ql_hd.Insert(ql_nv, ql_kh, ql_hh);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 2:
         {
             ql_hd.Find(ql_hh);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 3:
         {
             ql_hd.Show(ql_hh);
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         default:
         {
             cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";
-            system("pause");
+            cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         }
@@ -486,20 +487,20 @@ int main()
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t***********************END***********************";
         cout << "\n\t\t\t\t\t\t\tNhap lua chon: ";
-        cin >> luachon1;
+        luachon1 = Lua_chon_hop_le();
         if (luachon1 == 1)
         {
             string input;
             int check = 1;
-            input = getPass("\t\t\t\t\t\t\tNhap mk: ");
+            input = getPass("\t\t\t\t\t\tNhap mat khau: ");
             while (input != PASS)
             {
-                cout << "\n\t\t\t\t\t\t\tSai mk. Nhap lai!" << endl;
-                cout << "\n\t\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
+                cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
+                cout << "\n\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
                 char x;
                 cin >> x;
                 if (x == 'c')
-                    input = getPass("\t\t\t\t\t\t\tNhap mk: ");
+                    input = getPass("\t\t\t\t\t\tNhap mat khau: ");
                 else
                 {
                     check = 0;
@@ -509,7 +510,7 @@ int main()
             if (check == 1)
             {
                 // Menu dang nhap
-                int luachon2 = 1;
+                int luachon2;
                 do
                 {
                     system("cls");
@@ -522,8 +523,7 @@ int main()
                     cout << "\n\t\t\t\t\t\t|\t5. Doi mat khau admin\t\t\t|";
                     cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                     cout << "\n\t\t\t\t\t\t***********************END***********************";
-                    cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-                    cin >> luachon2;
+                    luachon2 = Lua_chon_hop_le();
 
                     switch (luachon2)
                     {
@@ -538,7 +538,7 @@ int main()
                     }
                     case 2:
                     {
-                        Thao_tac_hang_hoa(ql_hang);
+                        Thao_tac_hang_hoa(ql_hang, ql_hd);
                         break;
                     }
                     case 3:
@@ -576,7 +576,7 @@ int main()
         }
         else if (luachon1 == 2)
         {
-            int luachon2 = 1;
+            int luachon2;
             do
             {
                 system("cls");
@@ -586,8 +586,7 @@ int main()
                 cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi hoa don\t\t\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t***********************END***********************";
-                cout << "\n\t\t\t\t\t\tNhap lua chon: ";
-                cin >> luachon2;
+                luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
                 {
@@ -608,12 +607,15 @@ int main()
                 default:
                 {
                     cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
-                    cout << "\t\t\t\t\t\t";
-                    system("pause");
+                    cout << "\t\t\t\t\t\t";     system("pause");
                     break;
                 }
                 }
             } while (luachon2 != 0);
+        }
+        else if (luachon1 != 0){
+            cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         system("pause");
         }
     } while (luachon1 != 0);
 }

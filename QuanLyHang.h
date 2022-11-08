@@ -1,6 +1,9 @@
 #include "QuanLy.h"
 #include "List.h"
 #include "Kho.h"
+#include "HoaDon.h"
+#pragma once
+class QuanLyHD;
 class QuanLyHang : public QuanLy{
     private:
         List <Kho*> databaseK;
@@ -20,7 +23,7 @@ class QuanLyHang : public QuanLy{
         void Show();
         void Insert();
         void Update();
-        void Remove();
+        void Remove(QuanLyHD&);
         void Writef();
         void Find();
         void Sort();
@@ -41,5 +44,7 @@ class QuanLyHang : public QuanLy{
         int FindIndexTenPL(const string&);
         void UpdatePL();
         
-        friend class ChiTietHoaDon;
+        friend void Input(QuanLyHang&);
+        friend void ChiTietHoaDon::Input(QuanLyHang& hh);
+        friend void ChiTietHoaDon::Output( QuanLyHang& hh);
 };

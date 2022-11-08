@@ -21,8 +21,6 @@ public:
         void Show();
         void Update();
         void Remove(QuanLyHD&);
-        // virtual void Update() = 0;
-        // virtual void Delete() = 0;
         void Writef();
         void Find();
         void Sort();

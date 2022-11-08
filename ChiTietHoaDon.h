@@ -22,5 +22,4 @@ class ChiTietHoaDon
 
         void Input(QuanLyHang&);
         void Output(QuanLyHang&);
-        friend class HoaDon;
 };

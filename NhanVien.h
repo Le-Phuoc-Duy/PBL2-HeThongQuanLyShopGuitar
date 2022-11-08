@@ -7,6 +7,7 @@ class QuanLyNV;
 class NhanVien
 {
     private:
+        int static count_id;
         int maNV;
         string ho_dem_NV;
         string tenNV;
@@ -17,10 +18,10 @@ class NhanVien
         double luong;
         int chuc_vu;
     public:
-    NhanVien();
-    NhanVien(int, string, string, int, Date,string, string, int, double);
+    NhanVien(int = -1, string = "", string = "", int = 0, Date = Date(0, 0, 0),string = "", string = "", int = 0, double = 0);
     ~NhanVien();
     //Ham Setter
+    void setCountID(int);
     void setMaNV(int);
     void setTenNV(string);
     void setHoDemNV(string);
@@ -31,6 +32,7 @@ class NhanVien
     void setLuong();
     void setChucVu(int);
     //Ham Getter
+    int getCountID();
     int getMaNV();
     string getTenNV();
     string getHoDemNV();
@@ -43,5 +45,5 @@ class NhanVien
     string getChucVu();
     // Ham da nang hoa
     friend ostream& operator<<(ostream&, NhanVien&);
-    void Input(QuanLyNV&, int);
+    friend istream& operator>>(istream&, NhanVien&);
 };

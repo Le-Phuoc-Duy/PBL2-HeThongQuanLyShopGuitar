@@ -16,5 +16,8 @@ public:
     // virtual void Writef() = 0;
 
     void HamChuanHoa(string&);
+    string& KiemTraSDT();
+    int& Lua_chon();
+    int Nhap_ma();
 };
 

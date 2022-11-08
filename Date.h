@@ -23,13 +23,14 @@ class Date{
     // Ham constructor
 
     Date();
-    Date(int, int, int, int, int);
+    Date(int, int, int, int = 0, int = 0);
+    // Date(int, int, int);
 
     // Ham destructor
     ~Date();
     // Ham da nang hoa
     friend ostream& operator<<(ostream&, const Date&);
     friend istream& operator>>(istream&, Date&);
-
+    void Output();
     friend bool HamThoiGian(const Date&);
 };

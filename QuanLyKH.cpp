@@ -54,25 +54,19 @@ void QuanLyKH::Insert()
 {
     KhachHang *khachhang = new KhachHang;
     cin >> *khachhang;
-    // kiem tra ma va ten khach hang co trung khong
-    if (FindIndexSDT(khachhang->sdt) != -1)
+    // kiem tra so dien thoai khach hang co trung khong
+    if (FindIndexSDT(khachhang->getSDT()) != -1)
     {
-        cout << "\t\t\t\t\t\tSo dien thoai da ton tai" << endl;
+        cout << "\n\t\t\t\t\t\tSo dien thoai da ton tai" << endl;
         return;
     }
-    else if (FindIndex(khachhang->maKH) != -1)
-    {
-        cout << "\t\t\t\t\t\tMa khach hang " << khachhang->maKH << " da ton tai" << endl;
-        return;
-    }
-
     string ten = khachhang->getTenKH();
     HamChuanHoa(ten);
     khachhang->setTenKH(ten);
 
     databaseKH.push_back(khachhang);
     this->lengthKH++;
-    cout << "\t\t\t\t\t\tThem hang hoa thanh cong!" << endl;
+    cout << "\t\t\t\t\t\tThem khach hang thanh cong!" << endl;
 }
 
 void QuanLyKH::Readf()
@@ -86,32 +80,42 @@ void QuanLyKH::Readf()
         return;
     }
     int maKH, so_diem;
-    string tenKH, sdt;
+    string tenKH, hodem, sdt;
     char x;
     while (filein.eof() != true)
     {
         filein >> maKH;
-        filein >> x;
         filein.ignore();
-        getline(filein, tenKH, x);
+        getline(filein, hodem, ',');
+        getline(filein, tenKH, ',');
         filein.ignore();
-        getline(filein, sdt, x);
+        getline(filein, sdt, ',');
         filein.ignore();
         filein >> so_diem;
         filein.ignore();
+        // kiem tra so dien thoai co hop le khong (chi co chuoi cac so)
+        for (int i = 0; i < sdt.length(); i++){
+            if (sdt[i] < 48 || sdt[i] > 57) sdt = "0";
+            break;
+        }
+            // kiem tra sdt co du 10 so khong
+        if (sdt.length() != 10){
+            cout << "\n\t\t\t\t\t\tSo dien thoai cua khach hang " << maKH << " khong hop le";
+            continue;
+        }
         // Kiem tra ma hang hoa va ten hang hoa co trung khong
         if (FindIndex(maKH) != -1)
         {
             cout << "\t\t\t\t\t\tMa khach hang " << maKH << " da ton tai" << endl;
-            return;
+            continue;
         }
         else if (FindIndexSDT(sdt) != -1)
         {
             cout << "\t\t\t\t\t\tSo dien thoai " << sdt << " da ton tai" << endl;
-            return;
+            continue;
         } 
-        HamChuanHoa(tenKH);
-        KhachHang *khachhang = new KhachHang(maKH, tenKH, sdt, so_diem);
+        HamChuanHoa(tenKH); HamChuanHoa(hodem);
+        KhachHang *khachhang = new KhachHang(maKH, hodem, tenKH, sdt, so_diem);
         databaseKH.push_back(khachhang);
         (this->lengthKH)++;
     }
@@ -122,47 +126,22 @@ void QuanLyKH::Readf()
 void QuanLyKH::Show()
 {
     cout << "\n\t\t\t\t\t\t\t\tDANH SACH KHACH HANG";
-    cout << "\n\t\t\t\t\t\t-------------------------------------------------" << endl;
-    cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(10) << " SDT|" << setw(5)
+    cout << "\n\t\t\t\t\t\t--------------------------------------------------" << endl;
+    cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(11) << " SDT|" << setw(5)
          << "So Diem|" << endl;
-    cout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
+    cout << "\t\t\t\t\t\t--------------------------------------------------" << endl;
 
     for (int i = 0; i < this->getLengthKH(); i++)
     {
         cout << *databaseKH[i];
     }
-    cout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
+    cout << "\t\t\t\t\t\t--------------------------------------------------" << endl;
 }
-
-// void QuanLyKH::Remove()
-// {
-//     int maKH;
-//     cout << "\t\t\t\t\t\tNhap SDT khach hang: "; cin >> maKH;
-//     // cin.ignore(); getline(cin, sdt);
-//     if (FindIndex(maKH) == -1)
-//     {
-//         cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
-//         return;
-//     }
-//     // if (ql_hd.FindIndex(sdt) != -1){
-//     //     cout << "\t\t\t\t\t\tKhach hang da duoc dang ki boi hoa don. Khong the xoa!" << endl;
-//     //     return;
-//     // }
-//     else
-//     {
-//         databaseKH.erase(FindIndex(maKH));
-//         this->lengthKH--;
-//         cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
-//     }
-// }
 
 void QuanLyKH::Find()
 {
 
-    string sdt;
-    cout << "\t\t\t\t\t\tNhap so dien thoai: ";
-    cin.ignore();
-    getline(cin, sdt);
+    string sdt = KiemTraSDT();
     int n = FindIndexSDT(sdt);
     if (n == -1)
     {
@@ -171,10 +150,9 @@ void QuanLyKH::Find()
     }
     else
     {
-            cout << "\n\t\t\t\t\t\t\t\tDANH SACH KHACH HANG";
             cout << "\n\t\t\t\t\t\t-------------------------------------------------" << endl;
             cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(10) << " SDT|" << setw(5)
-                << "So Diem|" << endl;
+            << "So Diem|" << endl;
             cout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
                 cout << *databaseKH[n];
             cout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
@@ -183,101 +161,22 @@ void QuanLyKH::Find()
 void QuanLyKH::Writef()
 {
     ofstream fileout;
-    fileout.open("XuatKH.txt");
-    fileout << "\n\t\t\t\t\t\t\t\tDANH SACH KHACH HANG";
-    fileout << "\n\t\t\t\t\t\t-------------------------------------------------" << endl;
-    fileout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(10) << " SDT|" << setw(5)
-         << "So Diem|" << endl;
-    fileout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
-
+    fileout.open("KhachHang.txt");
     for (int i = 0; i < this->getLengthKH(); i++)
     {
-        fileout << *databaseKH[i];
+        if (i != 0) fileout << endl;
+        fileout << databaseKH[i]->getMaKH() << ", " <<  databaseKH[i]->getHoDemKH() << ", "<<  databaseKH[i]->getTenKH() 
+        << ", " << databaseKH[i]->getSDT() << ", " <<  databaseKH[i]->getSoDiem();
     }
-    fileout << "\t\t\t\t\t\t-------------------------------------------------" << endl;
     cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
     fileout.close();
 }
-// void QuanLyKH::Update(){
-//     system("cls");
-//     cout << "\n\t\t\t\t\t\t---------------------------------";
-//     cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ma\t\t|";
-//     cout << "\n\t\t\t\t\t\t|\t2. Cap nhat ten\t\t|";
-//     cout << "\n\t\t\t\t\t\t|\t3. Cap nhat SDT\t\t|";
-//     cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t|";
-//     cout << "\n\t\t\t\t\t\t---------------------------------" << endl;
-//     int luachon; 
-//     cout << "\t\t\t\t\t\tNhap lua chon: ";
-//     cin >> luachon;
-//     if (luachon == 0){
-//         return;
-//     }else{
-//         int kh; cout << "\t\t\t\t\t\tNhap ma so khach hang can cap nhat: ";
-//         cin >> kh;
-//         if (FindIndex(kh) == -1){
-//             cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
-//             return;
-//         }
-//         switch (luachon){
-//             case 1:
-//             {
-//                 int maKH;
-//                 cout << "\t\t\t\t\t\tNhap ma khach hang: "; cin >> maKH;
-//                 while (FindIndex(maKH) != -1){
-//                     cout << "\t\t\t\t\t\tMa khach hang da ton tai. Nhap lai!";
-//                     cout << "\t\t\t\t\t\tNhap ma khach hang: "; cin >> maKH;
-//                 }
-//                 databaseKH[FindIndex(kh)]->setMaKH(maKH);
-//                 break;
-//             }
-//             case 2:
-//             {
-//                 string tenKH;
-//                 cout << "\t\t\t\t\t\tNhap ten khach hang: ";
-//                 cin.ignore(); getline(cin, tenKH);
-//                 // HamChuanHoa(tenKH);
-//                 while (FindIndexTen(tenKH) != -1){
-//                     cout << "\t\t\t\t\t\tTen khach hang da ton tai. Nhap lai!";
-//                     cout << "\n\t\t\t\t\t\tNhap ten khach hang: ";
-//                     cin.ignore(); getline(cin, tenKH);
-//                     // HamChuanHoa(tenKH);
-//                 }
-//                 databaseKH[FindIndex(kh)]->setTenKH(tenKH);
-//                 break;
-//             }
-//             case 3:
-//             {
-//                 string sdt;
-//                 cout << "\t\t\t\t\t\tNhap so dien thoai khach hang: ";
-//                 cin.ignore(); getline(cin, sdt);
-//                 while (FindIndexTen(sdt) != -1){
-//                     cout << "\t\t\t\t\t\tTen khach hang da ton tai. Nhap lai!";
-//                     cout << "\n\t\t\t\t\t\tNhap ten khach hang: ";
-//                     cin.ignore(); getline(cin, sdt);
-//                 }
-//                 databaseKH[FindIndex(kh)]->setSDT(sdt);
-//                 // int n;
-//                 // do{
-//                 //     n = hd.FindIndex(sdt);
-//                 //     hd.databaseHD[n]->setSDT(sdt);
-//                 // }while (n != -1);
-//                 break;
-//             }
-//             default:
-//             {
-//                 cout << "\t\t\t\t\t\tLua chon khong hop le!";
-//                 cout << "\n\t\t\t\t\t\t"; system("pause");
-//                 break;
-//             } 
-//         }
-//         cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
-//     }
-// }
 
 void QuanLyKH::Remove(QuanLyHD& ql_hd)
 {
     int ma;
-    cout << "\t\t\t\t\t\tNhap ma khach hang: "; cin >> ma;
+    Show();
+    cout << "\t\t\t\t\t\tMa khach hang can xoa: "; ma = Nhap_ma();
     if (FindIndex(ma) == -1)
     {
         cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
@@ -303,45 +202,45 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
     cout << "\n\t\t\t\t\t\t|\t2. Cap nhat SDT\t\t|";
     cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t|";
     cout << "\n\t\t\t\t\t\t---------------------------------" << endl;
-    int luachon; 
-    cout << "\t\t\t\t\t\tNhap lua chon: ";
-    cin >> luachon;
+    int luachon = Lua_chon(); 
     if (luachon == 0){
         return;
     }else{
         int ma; 
-        cout << "\t\t\t\t\t\tNhap ma so khach hang can cap nhat: ";  cin >> ma;
-        if (FindIndex(ma) == -1){
+        Show();
+        cout << "\n\t\t\t\t\t\tMa so khach hang can cap nhat: ";        ma = Nhap_ma();
+        int n = FindIndex(ma);
+        if (n != -1){
             cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
             return;
         }
         switch (luachon){
             case 1:
             {
-                string ten;
-                cout << "\t\t\t\t\t\tNhap ten khach hang: ";
-                cin.ignore(); getline(cin, ten);
-                HamChuanHoa(ten);
-                databaseKH[FindIndex(ma)]->setTenKH(ten);
+                string ten, hodem;
+                cin.ignore();
+                cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(cin, hodem);
+                cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(cin, ten);
+                HamChuanHoa(ten);   HamChuanHoa(hodem);
+                databaseKH[n]->setTenKH(ten);
+                databaseKH[n]->setHoDemKH(hodem);
                 break;
             }
             case 2:
             {
-                string sdt;
-                cout << "\t\t\t\t\t\tNhap so dien thoai khach hang: ";
-                cin.ignore(); getline(cin, sdt);
+                string sdt = KiemTraSDT();
                 while (FindIndexSDT(sdt) != -1){
                     cout << "\t\t\t\t\t\tSDT da ton tai. Nhap lai!";
-                    cout << "\n\t\t\t\t\t\tNhap SDT: ";
-                    cin.ignore(); getline(cin, sdt);
+                    sdt = KiemTraSDT();
                 }
+                // bien SDT luu SDT cu
                 string SDT = databaseKH[FindIndex(ma)]->getSDT();
-                databaseKH[FindIndex(ma)]->setSDT(sdt);
-
-                int n = ql_hd.FindIndex(SDT);
-                while (n != -1){
+                databaseKH[n]->setSDT(sdt);
+                // cap nhat so dien thoai moi trong danh sach hoa don
+                int m = ql_hd.FindIndex(SDT);
+                while (m != -1){
                     ql_hd.databaseHD[n]->setSDT(sdt);
-                    n = ql_hd.FindIndex(SDT);
+                    m = ql_hd.FindIndex(SDT);
                 }
                 break;
             }
@@ -353,5 +252,58 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
             } 
         }
         cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
+    }
+}
+bool increase(string x, string y)
+{
+    return (x < y) ? true : false;
+}
+bool descrease(string x, string y)
+{
+    return (x > y) ? true : false;
+}
+
+void QuanLyKH::selectionsortTen(bool (*cmp)(string,string)){
+    for(int i = 0; i < this->lengthKH - 1; i++){
+        for (int j = i + 1; j < this->lengthKH; j++){
+            if ((*cmp)(databaseKH[i]->getTenKH(), databaseKH[j]->getTenKH())){
+                swap(databaseKH[i], databaseKH[j]);
+            }
+            if (databaseKH[i]->getTenKH() == databaseKH[j]->getTenKH()){
+                if ((*cmp)(databaseKH[i]->getHoDemKH(), databaseKH[j]->getHoDemKH())){
+                swap(databaseKH[i], databaseKH[j]);
+            }
+            }
+        }
+    }
+}
+void QuanLyKH::Sort()
+{
+    system("cls");
+    cout << "\n\t\t\t\t\t\t------------------------------------------";
+    cout << "\n\t\t\t\t\t\t|1. Sap xep ten khach hang theo chieu giam|";
+    cout << "\n\t\t\t\t\t\t|2. Sap xep ten khach hang theo chieu tang|";
+    cout << "\n\t\t\t\t\t\t------------------------------------------";
+    cout << "\n\t\t\t\t\t\tNhap lua chon:\t";
+    int luachon = Lua_chon();
+    switch(luachon){
+        case 1:
+        {
+            selectionsortTen(descrease);
+            Show();
+            break;
+        }
+        case 2:
+        {
+            selectionsortTen(increase);
+            Show();
+            break;
+        }
+        default:
+        {
+            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            break;
+
+        }
     }
 }

@@ -3,6 +3,7 @@
 using namespace std;
 class PhanLoai{
     private:
+        int static count_id;
         int maPL;
         string tenPL;
     public:
@@ -13,11 +14,9 @@ class PhanLoai{
         void setTenPL(string);
         void setMaPL(int);
     // Ham constructor
-        PhanLoai();
-        PhanLoai(int, string);
+        PhanLoai(int = -1, string = "");
     // Ham desstructor
         ~PhanLoai();
         friend istream& operator>>(istream&, PhanLoai&);
         friend ostream& operator<<(ostream&, const PhanLoai&);
-        friend class QuanLyHang;
 };

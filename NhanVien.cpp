@@ -2,11 +2,15 @@
 #include <iomanip>
 #include "NhanVien.h"
 
+int NhanVien::count_id = 0;
 //Ham dung
-NhanVien::NhanVien(){}
 NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date ngay_sinh, string sdt, string dia_chi, int chuc_vu, double luong)
 {
-    this->maNV = maNV;
+    if (maNV != -1){
+        this->maNV = maNV;
+        if (count_id < maNV) count_id = maNV;
+    }
+    else this->maNV = ++count_id;
     this->gioi_tinh = gioi_tinh;
     this->ho_dem_NV = hodem;
     this->tenNV = tenNV;
@@ -18,6 +22,10 @@ NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date nga
 }
 NhanVien::~NhanVien(){}
 // Ham Setter
+void NhanVien::setCountID(int count)
+{
+    this->count_id = count;
+}
 void NhanVien::setMaNV(int maNV)
 {
     this->maNV = maNV;
@@ -56,6 +64,10 @@ void NhanVien::setChucVu(int chuc_vu)
     this->chuc_vu = chuc_vu;
 }
 //Ham Getter
+int NhanVien::getCountID()
+{
+    return count_id;
+}
 int NhanVien::getMaNV()
 {
     return maNV;
@@ -102,33 +114,44 @@ string NhanVien::getChucVu()
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
-    <<  "|"<< setw(2) << nv.ngay_sinh.getNgay() << "/" <<nv.ngay_sinh.getThang() << "/" <<nv.ngay_sinh.getNam()<< "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
+    <<  "|" << setw(2) << nv.ngay_sinh << "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
     <<setw(9) << (size_t)nv.luong << "|" << endl;
     return out;
 }
-void NhanVien::Input(QuanLyNV& ql_nv, int maNV)
+istream& operator>>(istream& in, NhanVien& nv)
 {
-    this->maNV = maNV;
     cin.ignore();
-    cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";  getline(cin, ho_dem_NV);
-    cout << "\t\t\t\t\t\tNhap ten nhan vien: ";  getline(cin, tenNV);
+    cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";  getline(in, nv.ho_dem_NV);
+    cout << "\t\t\t\t\t\tNhap ten nhan vien: ";  getline(in, nv.tenNV);
     do{
         cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
-        cout << "\t\t\t\t\t\tNhap gioi tinh : "; cin >> gioi_tinh;
-    }while(gioi_tinh != 0 && gioi_tinh != 1);
-    cout << "\t\t\t\t\t\tNhap ngay sinh: ";
-    int dd, mm, yy;
-    char a,b;
-    cin >> dd >> a >> mm >> b >> yy;
-    Date ngay_sinh(dd,mm,yy,0,0);
-    this->ngay_sinh = ngay_sinh;
-    cout << "\t\t\t\t\t\tNhap so dien thoai: ";     cin.ignore(); cin >> sdt;
-    cout << "\t\t\t\t\t\tNhap dia chi: ";    cin.ignore(); getline(cin, dia_chi);
+        cout << "\t\t\t\t\t\tNhap gioi tinh : "; in >> nv.gioi_tinh;
+    }while(nv.gioi_tinh != 0 && nv.gioi_tinh != 1);
+    cout << "\t\t\t\t\t\tNhap ngay sinh: ";     in >> nv.ngay_sinh;
+    while(1)
+    {
+        try
+        {
+            cin.ignore();
+            cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; in >> nv.sdt;
+            if (nv.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong ton tai";
+            for (int i = 0; i < nv.sdt.length(); i++){
+                if (nv.sdt[i] < 48 || nv.sdt[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            }
+            break;
+        }
+        catch(const char* e)
+        {
+            cout << e;
+        }
+    }
+    cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
     do{
         cout << "\t\t\t\t\t\tChuc vu: ";
         cout << "\n\t\t\t\t\t\t 0. Nhan vien ban hang "; 
         cout << "\n\t\t\t\t\t\t 1. Nhan vien quan kho "; 
-        cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   cin >> chuc_vu;
-    }while(chuc_vu != 0 && chuc_vu != 1);
-    setLuong();
+        cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   in >> nv.chuc_vu;
+    }while(nv.chuc_vu != 0 && nv.chuc_vu != 1);
+    nv.setLuong();
+    return in;
 }

@@ -1,26 +1,26 @@
 #include "Date.h"
 #pragma once
 #include "PhanLoai.h"
-#include <ctime>
+class QuanLyHang;
 class Kho
 {
 private:
+    int static count_id;
     int maHH;
     string tenHH;
     PhanLoai phan_loai;
     double gia_von;
     double gia_ban;
     int so_luong;
-    Date ngay_nhap; 
 public:
     // Ham getter
         int getMaHH();
         string getTenHH();
-        int getPhanLoai();
+        int getmaPL();
+        string getTenPL();
         double getGiaVon();
         double getGiaBan();
         int getSoLuong();
-        Date getNgayNhap();
     // Ham setter
         void setMaHH(int);
         void setTenHH(string);
@@ -28,13 +28,12 @@ public:
         void setGiaBan(double);
         void setSoLuong(int);
         void setNgayNhap(Date);
-        void setMaPLl(int);
+        void setMaPL(int);
+        void setTenPL(string);
     // Ham constructor
-        Kho();
-        Kho(int, string, double, double, int, Date, int);
+        Kho(int = -1, string = "", double = 0, double = 0, int = 0, int = 0);
     // Ham destructor
         ~Kho();
-        friend istream& operator>>(istream&, Kho&);
         friend ostream& operator<<(ostream&, Kho&);
-        friend class QuanLyHang;
+        void Input(QuanLyHang&, string, int);
 };

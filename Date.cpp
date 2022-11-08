@@ -59,15 +59,34 @@ Date::Date(int ngay, int thang, int nam, int gio, int phut){
     this->gio = gio;
     this->phut = phut;
 }
+// Date::Date(int ngay, int thang, int nam){
+//     this->ngay = ngay;
+//     this->thang = thang;
+//     this->nam = nam;
+//     this->gio = 0;
+//     this->phut = 0;
+// }
 // Ham destructor
 Date::~Date(){}
+void Date::Output(){
+    cout << this->gio << "h" << this->phut << " ";
+    if (this->ngay < 10){
+        cout << "0";
+    }
+    cout << this->ngay << "/";
 
+    if (this->thang < 10){
+        cout << "0";
+    }
+    cout << this->thang << "/";
+    cout << this->nam;
+}
 ostream& operator<<(ostream& out , const Date& date)
 {
-    out << date.gio << "h" << date.phut << " ";
-    if (date.ngay < 10){
-        out << "0";
-    }
+    // out << date.gio << "h" << date.phut << " ";
+    // if (date.ngay < 10){
+    //     out << "0";
+    // }
     out << date.ngay << "/";
 
     if (date.thang < 10){
@@ -80,10 +99,10 @@ ostream& operator<<(ostream& out , const Date& date)
 
 istream& operator>>(istream& in, Date& date)
 {
-    char a, b, c;
-    in >> date.gio >> a >> date.phut >> date.ngay >> b >> date.thang >> c >> date.nam;
+    char a, b;
+    in >> date.ngay >> a >> date.thang >> b >> date.nam;
     if (HamThoiGian(date) == false){
-        date.ngay = date.thang = 1;  date.nam = 2000; date.gio = 0; date.phut = 0;
+        date.ngay = date.thang = 1;  date.nam = 2000;
     }
     return in;
 }
@@ -91,7 +110,7 @@ istream& operator>>(istream& in, Date& date)
 bool HamThoiGian(const Date& date)
 {
     bool check = true;
-    if (date.ngay < 0 || date.thang < 0 || date.thang > 12 || date.nam < 1900 || date.gio < 0 || date.gio > 23 || date.phut < 0 || date.phut > 59) 
+    if (date.ngay < 0 || date.thang < 0 || date.thang > 12 || date.nam < 1900 ) 
         return false;
 
     if (date.thang == 4 || date.thang == 6 || date.thang == 9 || date.thang == 11)

@@ -22,6 +22,8 @@ class QuanLyKH : public QuanLy{
         void Writef();
         void Remove(QuanLyHD&);
         void Update(QuanLyHD&);
+        void Sort();
+        void selectionsortTen(bool (*cmp)(string, string));
         int FindIndex(const int&);
         int FindIndexSDT(const string &);
         int FindIndexTen(const string&);

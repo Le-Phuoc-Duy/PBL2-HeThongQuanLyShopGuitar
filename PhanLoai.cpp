@@ -1,6 +1,8 @@
 #include <iostream>
 #include "PhanLoai.h"
 #include <iomanip>
+
+int PhanLoai::count_id = 0;
 // Ham getter
 string PhanLoai::getTenPL(){
     return this->tenPL;
@@ -16,9 +18,12 @@ void PhanLoai::setMaPL(int  maPL){
     this-> maPL =  maPL;
 }
 // Ham constructor
-PhanLoai::PhanLoai(){}
 PhanLoai::PhanLoai(int  maPL, string tenPL){
-    this-> maPL =  maPL;
+    if (maPL != -1){
+        this->maPL = maPL;
+        if (count_id < maPL) count_id = maPL;
+    }
+    else this->maPL = ++count_id;
     this->tenPL = tenPL;
 }
 // Ham destructor
@@ -26,7 +31,6 @@ PhanLoai::~PhanLoai(){}
 
 istream& operator>>(istream& in, PhanLoai& pl)
 {
-    cout << "\t\t\t\t\t\tNhap ma phan loai: ";   in >> pl.maPL;
     in.ignore();
     cout << "\t\t\t\t\t\tNhap ten phan loai: ";  getline(in, pl.tenPL);
     return in;

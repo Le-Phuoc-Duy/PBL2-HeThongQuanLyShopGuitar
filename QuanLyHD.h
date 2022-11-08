@@ -2,7 +2,7 @@
 #include "QuanLy.h"
 #include "List.h"
 #include "HoaDon.h"
-#include <ctime>
+#include "QuanLyHang.h"
 class QuanLyHD : public QuanLy{
     private:
         List <HoaDon*> databaseHD;
@@ -21,12 +21,12 @@ class QuanLyHD : public QuanLy{
         int FindIndexHH(const int&);
         void Remove();
         void Show(QuanLyHang&);
+        void ShowGeneral();
         void Find(QuanLyHang&);
 
         friend class ChiTietHoaDon;
         friend void QuanLyKH::Remove(QuanLyHD&);
         friend void QuanLyKH::Update(QuanLyHD&);
         friend void QuanLyNV::Remove(QuanLyHD&);
-        // void UpdateHH(QuanLyHang&);
-        // void RemoveHH(QuanLyHang&);
+        friend void QuanLyHang::Remove(QuanLyHD&);
 };
