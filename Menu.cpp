@@ -4,7 +4,7 @@
 #include "QuanLyHD.h"
 #include <conio.h>
 string PASS = "admin";
-/////////////abc
+/// okkk
 void Thao_tac_hang_hoa(QuanLyHang &ql_hang)
 {
     int luachon1 = 1;
