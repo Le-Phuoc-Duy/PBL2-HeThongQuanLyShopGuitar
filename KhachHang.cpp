@@ -56,8 +56,9 @@ istream& operator>>(istream& in, KhachHang& khachhang){
         try
         {
             cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; in >> khachhang.sdt;
-            if (khachhang.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong ton tai";
-            for (int i = 0; i < khachhang.sdt.length(); i++){
+            if (khachhang.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            if (khachhang.sdt[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            for (int i = 1; i < khachhang.sdt.length(); i++){
                 if (khachhang.sdt[i] < 48 || khachhang.sdt[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
             }
             break;

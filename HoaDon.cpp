@@ -119,8 +119,12 @@ void HoaDon::Output(QuanLyHang& hh)
     cout << "\n\t\t\t\t\t\t1. Ma hoa don: " << maHD ;
     cout << "\n\t\t\t\t\t\t1. Ma nhan vien nhap: " << maNV ;
     cout << "\n\t\t\t\t\t\t2. SDT khach hang: " << sdt;
+<<<<<<< HEAD
     cout << "\n\t\t\t\t\t\t3. Ngay lap: ";
     ngay_lap.Output(); 
+=======
+    cout << "\n\t\t\t\t\t\t3. Ngay lap: "; ngay_lap.Output(); cout << endl;
+>>>>>>> b8fb047b24c6b57653d560c208ba7db8e6d1dd28
     cout << endl;
     cout << "\t\t\t\t\t\t--------------------------------------------" << endl;
     cout << "\t\t\t\t\t" << setw(28) << "|      Ten hang hoa|" << setw(9) << "So luong|" << setw(15) << "Don gia|" << endl;
