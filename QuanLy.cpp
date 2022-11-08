@@ -102,7 +102,8 @@ string& QuanLy::KiemTraSDT()
             cin.ignore();
             cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; cin >> x;
             if (x.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
-            for (int i = 0; i < x.length(); i++){
+            if (x[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            for (int i = 1; i < x.length(); i++){
                 if (x[i] < 48 || x[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
             }
             break;

@@ -134,8 +134,9 @@ istream& operator>>(istream& in, NhanVien& nv)
         {
             cin.ignore();
             cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; in >> nv.sdt;
-            if (nv.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong ton tai";
-            for (int i = 0; i < nv.sdt.length(); i++){
+            if (nv.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            if (nv.sdt[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            for (int i = 1; i < nv.sdt.length(); i++){
                 if (nv.sdt[i] < 48 || nv.sdt[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
             }
             break;

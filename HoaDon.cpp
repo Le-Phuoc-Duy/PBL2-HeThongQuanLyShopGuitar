@@ -80,7 +80,7 @@ int HoaDon::getMaNV()
 void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV, string sdt){
     this->sdt = sdt; this->maNV = maNV;
     Date ngay_lap;
-    setNgayLap(this->ngay_lap);
+    setNgayLap(ngay_lap);
     cout << "\t\t\t\t\t\tNhap so luong loai hang: "; cin >> this->lengthCTHD;
     for (int i = 0; i < this->lengthCTHD; i++){
         hh.Show();
@@ -119,8 +119,7 @@ void HoaDon::Output(QuanLyHang& hh)
     cout << "\n\t\t\t\t\t\t1. Ma hoa don: " << maHD ;
     cout << "\n\t\t\t\t\t\t1. Ma nhan vien nhap: " << maNV ;
     cout << "\n\t\t\t\t\t\t2. SDT khach hang: " << sdt;
-    cout << "\n\t\t\t\t\t\t3. Ngay lap: " << ngay_lap; 
-    // ngay_lap.Output(); 
+    cout << "\n\t\t\t\t\t\t3. Ngay lap: "; ngay_lap.Output(); cout << endl;
     cout << endl;
     cout << "\t\t\t\t\t\t--------------------------------------------" << endl;
     cout << "\t\t\t\t\t" << setw(28) << "|      Ten hang hoa|" << setw(9) << "So luong|" << setw(15) << "Don gia|" << endl;

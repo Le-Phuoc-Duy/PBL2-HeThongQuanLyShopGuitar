@@ -83,10 +83,6 @@ void Date::Output(){
 }
 ostream& operator<<(ostream& out , const Date& date)
 {
-    // out << date.gio << "h" << date.phut << " ";
-    // if (date.ngay < 10){
-    //     out << "0";
-    // }
     out << date.ngay << "/";
 
     if (date.thang < 10){
