@@ -445,10 +445,17 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
     } while (luachon1);
 }
 // Ham dang nhap
+void savePass(){
+    //Luu pass vao file password
+    ofstream ofs("Password.txt", std::ofstream::out);
+    ofs.close();
+    ofstream fileout("Password.txt", std::ofstream::out);
+    fileout << PASS;
+    //
+}
 void setPass(){
     ifstream filein;
     filein.open("Password.txt");
-    filein.ignore();
     getline(filein,PASS);
     filein.close();
 }
@@ -501,6 +508,7 @@ int main()
             string input;
             int check = 1;
             input = getPass("\t\t\t\t\t\tNhap mat khau: ");
+            setPass();
             while (input != PASS)
             {
                 cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
@@ -566,6 +574,7 @@ int main()
                         cout << "\n\t\t\t\t\t\tNhap mat khau moi: ";
                         cin.ignore();
                         getline(cin, PASS);
+                        savePass();
                         cout << "\n\t\t\t\t\t\tDoi mat khau thanh cong!" << endl;
                         break;
                     }
