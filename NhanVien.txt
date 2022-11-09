@@ -1,6 +1,6 @@
 69, Tran Van, Duc, Nam, 1/01/2000, 0654846486, 92 Nguyen Lam, Quan ly, 7000000, Da Xoa
-2, Nguyen Van, Bo, Nam, 2/02/2001, 0654846486, K23/3 Tran Phu, Quan ly, 7000000, Lam Viec
-117, Le Phuoc, Duy, Nam, 20/02/2003, 0833234321, 23 Ngo Van So, Nhan vien, 5500000, Lam Viec
-12, Nguyen Thi Tra, My, Nu, 19/11/2003, 0853171684, 34/1 Au Co, Quan ly, 7000000, Lam Viec
-116, Nguyen Van, N, Nam, 12/12/2002, 0123456789, 21 Ly Thai To, Quan ly, 7000000, Lam Viec
-119, Nguyen Thi Tra, My, Nam, 22/10/1999, 0853171684, K24/1 Dong Ke, Quan ly, 7000000, Lam Viec
+2, Nguyen Van, Bo, Nam, 2/02/2001, 0654846486, K23/3 Tran Phu, Quan ly, 7000000, Ton tai
+117, Le Phuoc, Duy, Nam, 20/02/2003, 0833234321, 23 Ngo Van So, Nhan vien, 5500000, Ton tai
+12, Nguyen Thi Tra, My, Nu, 19/11/2003, 0853171684, 34/1 Au Co, Quan ly, 7000000, Ton tai
+116, Nguyen Van, N, Nam, 12/12/2002, 0123456789, 21 Ly Thai To, Quan ly, 7000000, Ton tai
+119, Nguyen Thi Tra, My, Nam, 22/10/1999, 0853171684, K24/1 Dong Ke, Quan ly, 7000000, Ton tai

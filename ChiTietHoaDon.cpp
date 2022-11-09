@@ -48,7 +48,7 @@ void ChiTietHoaDon::Input(QuanLyHang& hh){
     do {    
     cout << "\n\t\t\t\t\t\tNhap ma hang hoa: "; cin >> maHH;
     n = hh.FindIndex(maHH);
-    if (n == -1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai. Nhap lai!" << endl;
+    if (n == -1 || hh.databaseK[n]->getCheckDeleteSo() == 1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai hoac da bi xoa. Nhap lai!" << endl;
     }while(n == -1);
 
     cout << "\t\t\t\t\t\tNhap so luong: "; cin >> so_luong;

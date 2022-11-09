@@ -12,6 +12,7 @@ private:
     double gia_von;
     double gia_ban;
     int so_luong;
+    int check_delete;
 public:
     // Ham getter
         int getMaHH();
@@ -21,6 +22,8 @@ public:
         double getGiaVon();
         double getGiaBan();
         int getSoLuong();
+        int getCheckDeleteSo();
+        string getCheckDelete();
     // Ham setter
         void setMaHH(int);
         void setTenHH(string);
@@ -30,8 +33,9 @@ public:
         void setNgayNhap(Date);
         void setMaPL(int);
         void setTenPL(string);
+        void setCheckDelete(int);
     // Ham constructor
-        Kho(int = -1, string = "", double = 0, double = 0, int = 0, int = 0);
+        Kho(int = -1, string = "", double = 0, double = 0, int = 0, int = 0, int = 0);
     // Ham destructor
         ~Kho();
         friend ostream& operator<<(ostream&, Kho&);

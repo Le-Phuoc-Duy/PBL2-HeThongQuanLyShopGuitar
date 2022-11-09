@@ -117,12 +117,13 @@ string NhanVien::getChucVu()
 }
 string NhanVien::getCheckDelete()
 {
-    if (check_delete == 0) return "Lam Viec";
+    if (check_delete == 0) return "Ton Tai";
     else return "Da Xoa";
 }
 int NhanVien::getCheckDeleteSo(){
     return check_delete;
 }
+/// Da nang hoa toan tu
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\n\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 

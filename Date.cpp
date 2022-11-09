@@ -99,7 +99,7 @@ istream& operator>>(istream& in, Date& date)
 bool HamThoiGian(const Date& date)
 {
     bool check = true;
-    if (date.ngay < 0 || date.thang < 0 || date.thang > 12 || date.nam < 1900 ) 
+    if (date.thang > 12 || date.nam < 1900 ) 
         return false;
 
     if (date.thang == 4 || date.thang == 6 || date.thang == 9 || date.thang == 11)

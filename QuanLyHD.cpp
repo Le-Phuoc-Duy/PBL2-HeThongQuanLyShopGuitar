@@ -13,16 +13,18 @@ void QuanLyHD::setLengthHD(int lengthHD){
 
 void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
     string sdt;
-    nv.Show();
+    nv.Show(0);
     cout << "\t\t\t\t\t\tMa nhap vien nhap: ";
     int maNV = Nhap_ma();
-    while (nv.FindIndex(maNV) == -1){
-        cout << "\t\t\t\t\t\tMa nhan vien chua ton tai!" << endl;
+    int n = nv.FindIndex(maNV);
+    while (n == -1 || nv.databaseNV[n]->getCheckDeleteSo() == 1){
+        cout << "\t\t\t\t\t\tMa nhan vien chua ton tai hoac da xoa!" << endl;
         cout << "\t\t\t\t\t\tNhap lai ma nhap vien! ";    maNV = Nhap_ma();
     }
-    cout << "\t\t\t\t\t\tSDT khach hang: "; sdt = KiemTraSDT();
-    while (kh.FindIndexSDT(sdt) == -1){
-        cout << "\t\t\t\t\t\tSDT chua ton tai!" << endl; 
+    cout << "\t\t\t\t\t\tSDT khach hang: " << endl; sdt = KiemTraSDT();
+    int m = kh.FindIndexSDT(sdt);
+    if (m == -1 || kh.databaseKH[n]->getCheckDeleteSo() == 1){
+        cout << "\t\t\t\t\t\tSDT chua ton tai hoac da xoa!" << endl; 
         return;
     }
     HoaDon *hd = new HoaDon;

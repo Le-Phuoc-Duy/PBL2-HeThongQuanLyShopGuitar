@@ -83,7 +83,7 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV, string 
     setNgayLap(ngay_lap);
     cout << "\t\t\t\t\t\tNhap so luong loai hang: "; cin >> this->lengthCTHD;
     for (int i = 0; i < this->lengthCTHD; i++){
-        hh.Show();
+        hh.Show(0);
         cout << "\n\t\t\t\t\t\tNhap thong tin chi tiet loai " << i + 1;       
         ChiTietHoaDon *p = new ChiTietHoaDon;
         p->Input(hh);

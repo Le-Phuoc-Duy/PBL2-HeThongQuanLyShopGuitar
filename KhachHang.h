@@ -11,6 +11,7 @@ class KhachHang{
         string tenKH;
         string sdt;
         int so_diem;
+        int check_delete;
     public:
     // Ham getter
         int getMaKH();
@@ -18,14 +19,17 @@ class KhachHang{
         string getTenKH();
         string getSDT();
         int getSoDiem();
+        int getCheckDeleteSo();
+        string getCheckDelete();
     // Ham setter
         void setMaKH(int);
         void setHoDemKH(string);
         void setTenKH(string);
         void setSDT(string);
         void setSoDiem(int);
+        void setCheckDelete(int);
     // Ham constructor & destructor
-        KhachHang(int = -1, string = "", string = "", string = "", int = 0);
+        KhachHang(int = -1, string = "", string = "", string = "", int = 0, int = 0);
         ~KhachHang();
         friend istream& operator>>(istream&, KhachHang&);
         friend ostream& operator<<(ostream&, KhachHang&);

@@ -28,14 +28,19 @@ void QuanLyHang::setLengthK(int lengthK)
 
 void QuanLyHang::Insert()
 {
-    Show();
-    ShowPL();
+    Show(0);
+    ShowPL(0);
     // kiem tra ma va ten hang hoa co trung khong
     string tenHH;
     cin.ignore();
     cout << "\t\t\t\t\t\tNhap ten hang hoa moi: ";  getline(cin, tenHH);
     HamChuanHoa(tenHH);
-    if (FindIndexTen(tenHH) != -1)
+    int n = FindIndexTen(tenHH);
+    if (n != -1 && databaseK[n]->getCheckDeleteSo() == 1){
+        cout << "\t\t\t\t\t\tHang hoa da bi xoa. Hay cap nhat lai trang thai!" << endl;
+        return;
+    }
+    if (n != -1)
     {
         cout << "\t\t\t\t\t\tHang hoa " << tenHH << " da ton tai" << endl;
         return;
@@ -92,6 +97,7 @@ void QuanLyHang::Readf()
         int maHH, so_luong, maPL;
         string tenHH;
         double gia_von, gia_ban;
+        string check_delete_chuoi;  int check_delete;
     while (filein.eof() !=true)
     {
         filein >> maHH;
@@ -106,18 +112,28 @@ void QuanLyHang::Readf()
         filein >> maPL;
         filein.ignore();
         HamChuanHoa(tenHH);
+        getline(filein, check_delete_chuoi);
+        HamChuanHoa(check_delete_chuoi);
+        // kiem tra bien check co hop le khong
+        if (check_delete_chuoi == "Da Xoa") check_delete = 1;
+        else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
+        else{
+            cout << "\n\t\t\t\t\t\tTrang thai hang hoa " << maHH << " khong hop le!" << endl;    
+            continue;
+        }
         // Kiem tra ten hang hoa co trung khong 
-        if (FindIndex(maHH) != -1 && FindIndexTen(tenHH) != -1)
+        int n = FindIndex(maHH), m = FindIndexTen(tenHH);
+        if (n != -1 && m != -1)
         {
             cout << "\t\t\t\t\t\tMa hang hoa " << maHH << " va ten hang hoa " << tenHH << " da ton tai"<< endl;
             continue;
         }
-        else if (FindIndex(maHH) != -1)
+        else if (n != -1)
         {
             cout << "\t\t\t\t\t\tMa hang hoa " << maHH << " da ton tai" << endl;
             continue;
         }
-        else if (FindIndexTen(tenHH) != -1)
+        else if (m != -1)
         {
             cout << "\t\t\t\t\t\tTen hang hoa " << tenHH << " da ton tai" << endl;
             continue;
@@ -180,7 +196,7 @@ int QuanLyHang::FindIndexTen(const string &index)
 }
 
 
-void QuanLyHang::Remove(QuanLyHD& ql_hd)
+void QuanLyHang::Remove()
 {
     cout << "\n\t\t\t\t\t\t---------------------------------";
     cout << "\n\t\t\t\t\t\t|\t1. Xoa theo ma\t\t|";
@@ -190,26 +206,19 @@ void QuanLyHang::Remove(QuanLyHD& ql_hd)
 
     if (luachon == 1){
         int maHH;
-        Show();
+        Show(0);
         cout << "\t\t\t\t\t\tMa can xoa: ";   maHH = Nhap_ma();
         int n = FindIndex(maHH);
         if (n == -1){
             cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
             return;
         }
-        if (ql_hd.FindIndexHD(maHH) != -1){
-        cout << "\t\t\t\t\t\tHang hoa da duoc dang ki boi hoa don. Khong the xoa!" << endl;
-        return;
-        }
-        else{
-            databaseK.erase(n);
-            this->lengthK--;
-            cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
-        }
+        this->databaseK[n]->setCheckDelete(1);
+        cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
     } 
     if (luachon == 2){
         string tenHH;
-        Show();
+        Show(0);
         cin.ignore(); 
         cout << "\t\t\t\t\t\tNhap ten hang hoa: ";  getline(cin,tenHH);
         int n = FindIndexTen(tenHH);
@@ -218,17 +227,12 @@ void QuanLyHang::Remove(QuanLyHD& ql_hd)
             cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;
             return;
         }
-        // tim ma so cua hang hoa tren, neu ma duoc dang ki thi khong xoa duoc
-        int maHH = databaseK[n]->getMaHH(); 
-        if (ql_hd.FindIndexHH(maHH) != -1){
-        cout << "\t\t\t\t\t\tHang hoa da duoc dang ki boi hoa don. Khong the xoa!" << endl;
+        this->databaseK[n]->setCheckDelete(1);
+        cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
+    }
+    else {
+        cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;
         return;
-        }
-        else{
-            databaseK.erase(FindIndexTen(tenHH));
-            lengthK--;
-            cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
-        }
     }
 }
 void QuanLyHang::Find(){
@@ -244,12 +248,12 @@ void QuanLyHang::Find(){
             cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
             return;
         }else{
-                cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
+                cout << "\n\t\t\t---------------------------------------------------------------------------------------------------------" << endl;
                 cout << "\t\t\t" << setw(10) << "| Ma Hang|" << setw(20) <<  "Ten Hang|" << setw(15) << "Gia Von|" << setw(15) 
-                << "Gia Ban|" << setw(9) << "So luong|" << setw(10) << "Phan loai|";
-                cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
-                cout << *databaseK[n];
-                cout << "\t\t\t-----------------------------------------------------------------------------------------------" << endl;
+                << "Gia Ban|" << setw(9) << "So luong|" << setw(10) << "Phan loai|" << setw(11) << "Trang thai|";
+                cout << "\n\t\t\t---------------------------------------------------------------------------------------------------------";
+                cout << *databaseK[n] << setw(10) << databaseK[n]->getCheckDelete() << "|";
+                cout << "\n\t\t\t----------------------------------------------------------------------------------------------------------" << endl;
         }
     }else if (luachon == 2)
     {
@@ -258,27 +262,29 @@ void QuanLyHang::Find(){
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenHH);
         HamChuanHoa(tenHH);
         int n = FindIndexTen(tenHH);
-        if ( n == -1){
+        if (n == -1){
             cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;
             return;
         }else{
-            cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
+            cout << "\n\t\t\t---------------------------------------------------------------------------------------------------------" << endl;
             cout << "\t\t\t" << setw(10) << "| Ma Hang|" << setw(20) <<  "Ten Hang|" << setw(15) << "Gia Von|" << setw(15) 
-            << "Gia Ban|" << setw(9) << "So luong|" << setw(10) << "Phan loai|";
-            cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
-            cout << *databaseK[n];
-            cout << "\t\t\t-----------------------------------------------------------------------------------------------" << endl;
+            << "Gia Ban|" << setw(9) << "So luong|" << setw(10) << "Phan loai|" << setw(11) << "Trang thai|";
+            cout << "\n\t\t\t---------------------------------------------------------------------------------------------------------";
+            if (databaseK[n]->getTenHH() == tenHH) cout << *databaseK[n] << setw(10) << databaseK[n]->getCheckDelete() << "|";    
+            cout << "\n\t\t\t----------------------------------------------------------------------------------------------------------" << endl;
         }
     } else return;
 }
 void QuanLyHang::Update(){
     system("cls");
+    Show(0);
     cout << "\n\t\t\t\t\t\t-----------------------------------------";
     cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ten\t\t\t|";
     cout << "\n\t\t\t\t\t\t|\t2. Cap nhat phan loai\t\t|";
     cout << "\n\t\t\t\t\t\t|\t3. Cap nhat gia von\t\t|";
     cout << "\n\t\t\t\t\t\t|\t4. Cap nhat gia ban\t\t|";
     cout << "\n\t\t\t\t\t\t|\t5. Cap nhat so luong\t\t|";
+    cout << "\n\t\t\t\t\t\t|\t6. Khoi phuc trang thai\t\t|";
     cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t|";
     cout << "\n\t\t\t\t\t\t-----------------------------------------" << endl;
     int luachon = Lua_chon(); 
@@ -286,7 +292,7 @@ void QuanLyHang::Update(){
     if (luachon == 0){
         return;
     }else{
-        Show();
+        if (luachon == 6) Show(1);
         int hh; cout << "\t\t\t\t\t\tMa so hang hoa can cap nhat: ";
         hh = Nhap_ma();
         int n = FindIndex(hh);
@@ -307,7 +313,7 @@ void QuanLyHang::Update(){
             case 2:
             {
                 int maPL;
-                ShowPL();
+                ShowPL(0);
                 cout << "\t\t\t\t\t\tNhap ma phan loai moi: ";
                 cin >> maPL;
                 if (FindIndexPL(maPL) == -1 ){
@@ -367,6 +373,11 @@ void QuanLyHang::Update(){
                 databaseK[n]->setSoLuong(soluong);
                 break;
             }
+            case 6:
+            {
+                databaseK[n]->setCheckDelete(0);
+                break;
+            }
             default:
             {
                 cout << "\t\t\t\t\t\tLua chon khong hop le!";
@@ -377,19 +388,18 @@ void QuanLyHang::Update(){
         cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
     }
 }
-void QuanLyHang::Show()
+void QuanLyHang::Show(int trang_thai)
 {   
     cout << "\n\t\t\t\t\t\t\tDANH SACH CAC MAT HANG";
     cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
     cout << "\t\t\t" << setw(10) << "| Ma Hang|" << setw(20) <<  "Ten Hang|" << setw(15) << "Gia Von|" << setw(15) 
     << "Gia Ban|" << setw(10) << "So luong|" << setw(10) << "Phan loai|";
-    cout << "\n\t\t\t----------------------------------------------------------------------------------------------" << endl;
-
-    for (int i = 0; i < this->getLengthK(); i++)
+    cout << "\n\t\t\t----------------------------------------------------------------------------------------------";
+    for (int i = 0; i < this->lengthK; i++)
     {
-        cout << *databaseK[i];
+        if (databaseK[i]->getCheckDeleteSo() == trang_thai) cout << *databaseK[i];
     }
-    cout << "\t\t\t-----------------------------------------------------------------------------------------------" << endl;
+    cout << "\n\t\t\t-----------------------------------------------------------------------------------------------" << endl;
 }
 
 void QuanLyHang::Writef(){
@@ -399,7 +409,8 @@ void QuanLyHang::Writef(){
     {
         if (i != 0) fileout << endl;
         fileout << databaseK[i]->getMaHH() << ", " <<  databaseK[i]->getTenHH() << ", " << setprecision(10) <<  databaseK[i]->getGiaVon() 
-        << ", " << databaseK[i]->getGiaBan() << ", " << databaseK[i]->getSoLuong() << ", "<< databaseK[i]->getmaPL();
+        << ", " << databaseK[i]->getGiaBan() << ", " << databaseK[i]->getSoLuong() << ", "<< databaseK[i]->getmaPL()<< ", " 
+        << databaseK[i]->getCheckDelete();
     }
     cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
     fileout.close();
@@ -449,25 +460,25 @@ void QuanLyHang::Sort(){
         case 1:
         {
             selectionsortGiaBan(down);
-            Show();
+            Show(0);
             break;
         }
         case 2:
         {
             selectionsortGiaBan(up);
-            Show();
+            Show(0);
             break;
         }
         case 3:
         {
             selectionsortGiaVon(down);
-            Show();
+            Show(0);
             break;
         }
         case 4:
         {
             selectionsortGiaVon(up);
-            Show();
+            Show(0);
             break;
         }
         default:
@@ -515,11 +526,20 @@ void QuanLyHang::ReadfPL(){
     {
         int maPL;
         string tenPL;
-
+        string check_delete_chuoi;      int check_delete;
         filein >> maPL;
         filein.ignore();
-        getline(filein, tenPL);
+        getline(filein, tenPL, ',');
         HamChuanHoa(tenPL);
+        getline(filein, check_delete_chuoi);
+        HamChuanHoa(check_delete_chuoi);
+        // kiem tra bien check co hop le khong
+        if (check_delete_chuoi == "Da Xoa") check_delete = 1;
+        else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
+        else{
+            cout << "\n\t\t\t\t\t\tTrang thai phan loai " << maPL << " khong hop le!" << endl;    
+            continue;
+        }
         if (FindIndexPL(maPL) != -1 && FindIndexTenPL(tenPL) != -1)
         {
             cout << "\t\t\t\t\t\tMa phan loai " << maPL << " va ten phan loai " << tenPL << " da ton tai" << endl;
@@ -545,11 +565,15 @@ void QuanLyHang::ReadfPL(){
 }
 
 void QuanLyHang::InsertPL(){
-    ShowPL();
+    ShowPL(0);
     PhanLoai *pl = new PhanLoai;
     cin >> *pl;
-
-    if (FindIndexTenPL(pl->getTenPL()) != -1)
+    int n = FindIndexTenPL(pl->getTenPL());
+    if (n != -1 && databaseK[n]->getCheckDeleteSo() == 1){
+        cout << "\t\t\t\t\t\tPhan loai da bi xoa. Hay cap nhat lai trang thai!" << endl;
+        return;
+    }
+    if (n != -1)
     {
         cout << "\t\t\t\t\t\tTen phan loai " << pl->getTenPL() << " da ton tai" << endl;
         delete pl;
@@ -563,19 +587,14 @@ void QuanLyHang::InsertPL(){
 }
 void QuanLyHang::RemovePL(){
     int maPL;
-    ShowPL();
+    ShowPL(0);
     cout << "\t\t\t\t\t\tMa phan loai: ";   maPL = Nhap_ma();
-    if (FindIndexPL(maPL) == -1){
+    int n = FindIndexPL(maPL);
+    if (n == -1){
         cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
         return;
     } else{
-        if (FindIndexDM(maPL) != -1)
-        {
-            cout << "\t\t\t\t\t\tPhan loai da duoc dang ki boi hang hoa. Khong the xoa!" << endl;
-            return;
-        }
-        databasePL.erase(FindIndexPL(maPL));
-        this->lengthPL--;
+        this->databasePL[n]->setCheckDelete(1);
         cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
     }
 }
@@ -586,22 +605,22 @@ void QuanLyHang::WritefPL(){
     for (int i = 0; i < this->getLengthPL(); i++)
     {
         if (i != 0) fileout << endl;
-        fileout << databasePL[i]->getMaPL() << ", " << databasePL[i]->getTenPL();
+        fileout << databasePL[i]->getMaPL() << ", " << databasePL[i]->getTenPL() << ", " << databasePL[i]->getCheckDelete();
     }
     cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
     fileout.close();
 }
 
-void QuanLyHang::ShowPL(){
+void QuanLyHang::ShowPL(int trang_thai){
     cout << "\n\t\t\t\t\t\t\t      DANH SACH CAC PHAN LOAI";
     cout << "\n\t\t\t\t\t\t\t -----------------------------";
     cout << "\n\t\t\t\t\t\t\t" << setw(15) << "|Ma Phan Loai|" << setw(15) <<  "Ten Phan Loai|";
-    cout << "\n\t\t\t\t\t\t\t -----------------------------" << endl;
-    for (int i = 0; i < this->getLengthPL(); i++)
+    cout << "\n\t\t\t\t\t\t\t -----------------------------";
+    for (int i = 0; i < this->lengthPL; i++)
     {
-        cout << *databasePL[i];
+        if (databasePL[i]->getCheckDeleteSo() == trang_thai) cout << *databasePL[i];
     }
-    cout << "\t\t\t\t\t\t\t -----------------------------" << endl;
+    cout << "\n\t\t\t\t\t\t\t -----------------------------" << endl;
 }
 void QuanLyHang::FindPL(){
     cout << "\n\t\t\t\t\t\t---------------------------------";
@@ -618,11 +637,11 @@ void QuanLyHang::FindPL(){
             cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
             return;
         }else{
-            cout << "\n\t\t\t\t\t\t\t -----------------------------";
-            cout << "\n\t\t\t\t\t\t\t" << setw(15) << "|Ma Phan Loai|" << setw(15) <<  "Ten Phan Loai|";
-            cout << "\n\t\t\t\t\t\t\t -----------------------------" << endl;
-            cout << *databasePL[n];
-            cout << "\t\t\t\t\t\t\t -----------------------------" << endl;
+            cout << "\n\t\t\t\t\t\t\t ----------------------------------------";
+            cout << "\n\t\t\t\t\t\t\t" << setw(15) << "|Ma Phan Loai|" << setw(15) <<  "Ten Phan Loai|" << setw(11) << "Trang thai|";
+            cout << "\n\t\t\t\t\t\t\t ----------------------------------------";
+            cout << *databasePL[n] << setw(10) << databasePL[n]->getCheckDelete() << "|";
+            cout << "\n\t\t\t\t\t\t\t ----------------------------------------" << endl;
         }
     } else if (luachon ==  2)
     {
@@ -635,11 +654,11 @@ void QuanLyHang::FindPL(){
             cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;
             return;
         }else{
-            cout << "\n\t\t\t\t\t\t\t -----------------------------";
-            cout << "\n\t\t\t\t\t\t\t" << setw(15) << "|Ma Phan Loai|" << setw(15) <<  "Ten Phan Loai|";
-            cout << "\n\t\t\t\t\t\t\t -----------------------------" << endl;
-            cout << *databasePL[n];
-            cout << "\t\t\t\t\t\t\t -----------------------------" << endl;
+            cout << "\n\t\t\t\t\t\t\t ---------------------------------------";
+            cout << "\n\t\t\t\t\t\t\t" << setw(15) << "|Ma Phan Loai|" << setw(15) <<  "Ten Phan Loai|" << setw(11) << "Trang thai|";
+            cout << "\n\t\t\t\t\t\t\t ---------------------------------------";
+            cout << *databasePL[n] << setw(10) << databasePL[n]->getCheckDelete() << "|";
+            cout << "\n\t\t\t\t\t\t\t ---------------------------------------" << endl;
         }
     }else{
         cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl; 
@@ -668,22 +687,45 @@ int QuanLyHang::FindIndexTenPL(const string &index)
 }
 void QuanLyHang::UpdatePL(){
     int maPL; 
-    ShowPL();
+    ShowPL(0);
+    cout << "\n\t\t\t\t\t\t-----------------------------------------";
+    cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ten\t\t\t|";
+    cout << "\n\t\t\t\t\t\t|\t2. Khoi phuc trang thai\t\t|";
+    cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t|";
+    cout << "\n\t\t\t\t\t\t-----------------------------------------" << endl;
+    int luachon = Lua_chon();
+    if (luachon == 0) return;
+    if (luachon == 2) ShowPL(1);
     cout << "\t\t\t\t\t\tMa so phan loai can cap nhat: ";   maPL = Nhap_ma();
-    if (FindIndexPL(maPL) == -1){
+    int n = FindIndexPL(maPL);
+    if (n == -1){
         cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
         return;
     }
-    string tenPL;
-    cout << "\t\t\t\t\t\tNhap ten phan loai moi: ";
-    cin.ignore(); getline(cin, tenPL);
-    HamChuanHoa(tenPL);
-    while (FindIndexTen(tenPL) != -1){
+    switch (luachon)
+    {
+    case 1:
+    {
+        string tenPL;
+        cout << "\t\t\t\t\t\tNhap ten phan loai moi: ";
+        cin.ignore(); getline(cin, tenPL);
+        HamChuanHoa(tenPL);
+        if (FindIndexTen(tenPL) != -1){
         cout << "\t\t\t\t\t\tTen phan loai da ton tai. Nhap lai!";
         cout << "\n\t\t\t\t\t\tNhap ten hang hoa: ";
         cin.ignore(); getline(cin, tenPL);
         HamChuanHoa(tenPL);
+        }
+        databasePL[FindIndexPL(maPL)]->setTenPL(tenPL);
+        break;
     }
-    databasePL[FindIndexPL(maPL)]->setTenPL(tenPL);
+    case 2:
+    {
+        databasePL[n]->setCheckDelete(0);
+        break;
+    }
+    default:
+        break;
+    }
     cout << "\nCap nhat thanh cong!" << endl;
 }

@@ -18,7 +18,7 @@ public:
 
         void Readf();
         void Insert();
-        void Show();
+        void Show(int);
         void Update();
         void Remove();
         void Writef();

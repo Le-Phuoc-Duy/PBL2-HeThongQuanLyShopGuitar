@@ -20,10 +20,10 @@ class QuanLyHang : public QuanLy{
         void setLengthPL(int);
 
         void Readf();
-        void Show();
+        void Show(int);
         void Insert();
         void Update();
-        void Remove(QuanLyHD&);
+        void Remove();
         void Writef();
         void Find();
         void Sort();
@@ -35,7 +35,7 @@ class QuanLyHang : public QuanLy{
         int FindIndexTenDM(const string&);
 
         void ReadfPL();
-        void ShowPL();
+        void ShowPL(int);
         void InsertPL();
         void RemovePL();
         void WritefPL();

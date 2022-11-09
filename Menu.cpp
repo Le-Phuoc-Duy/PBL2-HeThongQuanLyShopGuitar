@@ -84,7 +84,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 3:
                 {
-                    ql_hang.Remove(ql_hd);
+                    ql_hang.Remove();
                     cout << "\t\t\t\t\t\t";         system("pause");
                     break;
                 }
@@ -109,7 +109,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 case 7:
                 {
                     system("cls");
-                    ql_hang.Show();
+                    ql_hang.Show(0);
                     cout << "\t\t\t\t\t\t";         system("pause");
                     break;
                 }
@@ -179,7 +179,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 5:
                 {
-                    ql_hang.ShowPL();
+                    ql_hang.ShowPL(0);
                     cout << "\t\t\t\t\t\t";         system("pause");
                     break;
                 }
@@ -274,7 +274,7 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         case 7:
         {
             system("cls");
-            ql_nv.Show();
+            ql_nv.Show(0);
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
@@ -334,7 +334,7 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         }
         case 3:
         {
-            ql_kh.Remove(ql_hd);
+            ql_kh.Remove();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
@@ -360,7 +360,7 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         case 7:
         {
             system("cls");
-            ql_kh.Show();
+            ql_kh.Show(0);
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }

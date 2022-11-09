@@ -2,7 +2,7 @@
 
 int KhachHang::count_id = 0;
 // Ham constructor & destructor
-KhachHang::KhachHang(int maKH, string hodem, string tenKH, string sdt, int so_diem){
+KhachHang::KhachHang(int maKH, string hodem, string tenKH, string sdt, int so_diem, int check_delete){
     if (maKH != -1){
         this->maKH = maKH;
         if (count_id < maKH) count_id = maKH;
@@ -12,6 +12,7 @@ KhachHang::KhachHang(int maKH, string hodem, string tenKH, string sdt, int so_di
     this->sdt = sdt;
     this->tenKH = tenKH;
     this->so_diem = so_diem;
+    this->check_delete = check_delete;
 }
 KhachHang::~KhachHang(){}
 // Ham getter
@@ -30,6 +31,14 @@ string KhachHang::getSDT(){
 int KhachHang::getSoDiem(){
     return this->so_diem;
 }
+string KhachHang::getCheckDelete()
+{
+    if (check_delete == 0) return "Ton tai";
+    else return "Da Xoa";
+}
+int KhachHang::getCheckDeleteSo(){
+    return check_delete;
+}
 // Ham setter
 void KhachHang::setMaKH(int maKH){
     this->maKH = maKH;
@@ -45,6 +54,10 @@ void KhachHang::setSDT(string sdt){
 }
 void KhachHang::setSoDiem(int so_diem){
     this->so_diem = so_diem;
+}
+void KhachHang::setCheckDelete(int check)
+{
+    this->check_delete = check;
 }
 
 istream& operator>>(istream& in, KhachHang& khachhang){
@@ -74,7 +87,7 @@ istream& operator>>(istream& in, KhachHang& khachhang){
 
 ostream& operator<<(ostream& out, KhachHang& khachhang)
 {
-    out << "\t\t\t\t\t\t" << "|" << setw(14) << khachhang.maKH << "|" << setw(1) << khachhang.hodem + " " << setw(5) << khachhang.tenKH 
-    << "|" << setw(5) << khachhang.sdt << "|" << setw(7) << khachhang.so_diem << "|" << endl;
+    out << "\n\t\t\t\t\t\t" << "|" << setw(14) << khachhang.maKH << "|" << setw(1) << khachhang.hodem + " " << setw(5) << khachhang.tenKH 
+    << "|" << setw(5) << khachhang.sdt << "|" << setw(7) << khachhang.so_diem << "|";
     return out;
 }

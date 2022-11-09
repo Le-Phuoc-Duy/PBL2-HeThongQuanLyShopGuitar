@@ -17,16 +17,16 @@ class QuanLyKH : public QuanLy{
 
         void Readf();
         void Insert();
-        void Show();
+        void Show(int);
         void Find();
         void Writef();
-        void Remove(QuanLyHD&);
+        void Remove();
         void Update(QuanLyHD&);
         void Sort();
         void selectionsortTen(bool (*cmp)(string, string));
         int FindIndex(const int&);
         int FindIndexSDT(const string &);
         int FindIndexTen(const string&);
-
+        friend class QuanLyHD;
         friend class HoaDon;
 };
