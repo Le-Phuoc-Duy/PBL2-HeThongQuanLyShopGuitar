@@ -20,7 +20,7 @@ public:
         void Insert();
         void Show();
         void Update();
-        void Remove(QuanLyHD&);
+        void Remove();
         void Writef();
         void Find();
         void Sort();

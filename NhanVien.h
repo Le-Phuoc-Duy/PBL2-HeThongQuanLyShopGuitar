@@ -17,8 +17,9 @@ class NhanVien
         string dia_chi;
         double luong;
         int chuc_vu;
+        int check_delete;
     public:
-    NhanVien(int = -1, string = "", string = "", int = 0, Date = Date(0, 0, 0),string = "", string = "", int = 0, double = 0);
+    NhanVien(int = -1, string = "", string = "", int = 0, Date = Date(0, 0, 0),string = "", string = "", int = 0, double = 0, int = 0);
     ~NhanVien();
     //Ham Setter
     void setCountID(int);
@@ -31,6 +32,7 @@ class NhanVien
     void setDiaChi(string);
     void setLuong();
     void setChucVu(int);
+    void setCheckDelete(int);
     //Ham Getter
     int getCountID();
     int getMaNV();
@@ -43,6 +45,8 @@ class NhanVien
     string getDiaChi();
     double getLuong();
     string getChucVu();
+    string getCheckDelete();
+    int getCheckDeleteSo();
     // Ham da nang hoa
     friend ostream& operator<<(ostream&, NhanVien&);
     friend istream& operator>>(istream&, NhanVien&);

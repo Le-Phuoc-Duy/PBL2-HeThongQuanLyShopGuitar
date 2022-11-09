@@ -27,6 +27,5 @@ class QuanLyHD : public QuanLy{
         friend class ChiTietHoaDon;
         friend void QuanLyKH::Remove(QuanLyHD&);
         friend void QuanLyKH::Update(QuanLyHD&);
-        friend void QuanLyNV::Remove(QuanLyHD&);
         friend void QuanLyHang::Remove(QuanLyHD&);
 };

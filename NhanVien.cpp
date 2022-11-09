@@ -4,7 +4,7 @@
 
 int NhanVien::count_id = 0;
 //Ham dung
-NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date ngay_sinh, string sdt, string dia_chi, int chuc_vu, double luong)
+NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date ngay_sinh, string sdt, string dia_chi, int chuc_vu, double luong, int check_delete)
 {
     if (maNV != -1){
         this->maNV = maNV;
@@ -19,6 +19,7 @@ NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date nga
     this->dia_chi = dia_chi;
     this->chuc_vu = chuc_vu;
     this->luong = luong;
+    this->check_delete = check_delete;
 }
 NhanVien::~NhanVien(){}
 // Ham Setter
@@ -62,6 +63,10 @@ void NhanVien::setLuong()
 void NhanVien::setChucVu(int chuc_vu)
 {
     this->chuc_vu = chuc_vu;
+}
+void NhanVien::setCheckDelete(int check)
+{
+    this->check_delete = check;
 }
 //Ham Getter
 int NhanVien::getCountID()
@@ -107,15 +112,22 @@ double NhanVien::getLuong()
 }
 string NhanVien::getChucVu()
 {
-    if (chuc_vu == 0) return "Quan Ly";
+    if (chuc_vu == 0) return "Quan ly";
     else return "Nhan vien";
 }
-
+string NhanVien::getCheckDelete()
+{
+    if (check_delete == 0) return "Lam Viec";
+    else return "Da Xoa";
+}
+int NhanVien::getCheckDeleteSo(){
+    return check_delete;
+}
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
-    out << "\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
+    out << "\n\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
     <<  "|" << setw(2) << nv.ngay_sinh << "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
-    <<setw(9) << (size_t)nv.luong << "|" << endl;
+    <<setw(9) << (size_t)nv.luong << "|";
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
