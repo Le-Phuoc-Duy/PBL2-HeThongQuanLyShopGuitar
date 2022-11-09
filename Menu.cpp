@@ -52,14 +52,13 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 system("cls");
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
                 cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY MAT HANG\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t1. Doc file danh sach hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t2. Them hang hoa\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t3. Xoa mot mat hang\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t5. Thay doi thong tin hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t6. Sap xep cac hang hoa\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t7. In ra danh sach hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach hang hoa\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t1. Them hang hoa\t\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t2. Xoa mot mat hang\t\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin hang hoa\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t4. Thay doi thong tin hang hoa\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t5. Sap xep cac hang hoa\t\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach hang hoa\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach hang hoa\t\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
                 luachon2 = Lua_chon_hop_le();
@@ -72,47 +71,40 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    ql_hang.Readf();
+                    ql_hang.Insert();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 2:
                 {
-                    ql_hang.Insert();
+                    ql_hang.Remove(ql_hd);
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 3:
                 {
-                    ql_hang.Remove(ql_hd);
+                    ql_hang.Find();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 4:
                 {
-                    ql_hang.Find();
+                    ql_hang.Update();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 5:
                 {
-                    ql_hang.Update();
-                    cout << "\t\t\t\t\t\t";
-                    system("pause");
-                    break;
-                }
-                case 6:
-                {
                     ql_hang.Sort();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
-                case 7:
+                case 6:
                 {
                     system("cls");
                     ql_hang.Show();
@@ -120,7 +112,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                     system("pause");
                     break;
                 }
-                case 8:
+                case 7:
                 {
                     ql_hang.Writef();
                     cout << "\t\t\t\t\t\t";
@@ -146,12 +138,11 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 system("cls");
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
                 cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY PHAN LOAI\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t1. Doc file danh sach phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t2. Them phan loai\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t3. Xoa mot phan loai\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t5. In ra danh sach phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t6. Xuat file danh sach phan loai\t|";
+                cout << "\n\t\t\t\t\t\t|\t1. Them phan loai\t\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t2. Xoa mot phan loai\t\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin phan loai\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t4. In ra danh sach phan loai\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t5. Xuat file danh sach phan loai\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
                 luachon2 = Lua_chon_hop_le();
@@ -164,40 +155,33 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    ql_hang.ReadfPL();
+                    ql_hang.InsertPL();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 2:
                 {
-                    ql_hang.InsertPL();
+                    ql_hang.RemovePL();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 3:
                 {
-                    ql_hang.RemovePL();
+                    ql_hang.FindPL();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
                 case 4:
                 {
-                    ql_hang.FindPL();
-                    cout << "\t\t\t\t\t\t";
-                    system("pause");
-                    break;
-                }
-                case 5:
-                {
                     ql_hang.ShowPL();
                     cout << "\t\t\t\t\t\t";
                     system("pause");
                     break;
                 }
-                case 6:
+                case 5:
                 {
                     ql_hang.WritefPL();
                     cout << "\t\t\t\t\t\t";
@@ -233,14 +217,13 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         system("cls");
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
         cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY NHAN VIEN\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Doc file danh sach nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Them nhan vien\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Xoa mot nhan vien\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t5. Cap nhat thong tin nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. Sap xep nhan vien theo ten\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t7. In ra danh sach nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach nhan vien\t|";
+        cout << "\n\t\t\t\t\t\t|\t1. Them nhan vien\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t2. Xoa mot nhan vien\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin nhan vien\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t4. Cap nhat thong tin nhan vien\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t5. Sap xep nhan vien theo ten\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach nhan vien\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach nhan vien\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
         luachon1 = Lua_chon_hop_le();
@@ -253,48 +236,42 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         }
         case 1:
         {
-            ql_nv.Readf();
+            ql_nv.Insert();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 2:
         {
-            ql_nv.Insert();
+            ql_nv.Remove(ql_hd);
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 3:
         {
-            ql_nv.Remove(ql_hd);
+            ql_nv.Find();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 4:
         {
-            ql_nv.Find();
+            ql_nv.Update();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 5:
         {
-            ql_nv.Update();
-            cout << "\t\t\t\t\t\t";         system("pause");
-            break;
-        }
-        case 6:
-        {
             ql_nv.Sort();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
-        case 7:
+        case 6:
         {
             system("cls");
             ql_nv.Show();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
-        case 8:
+        case 7:
         {
             ql_nv.Writef();
             cout << "\t\t\t\t\t\t";         system("pause");
@@ -318,14 +295,13 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         system("cls");
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
         cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY KHACH HANG\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Doc file danh sach khach hang\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Them khach hang\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Xoa mot khach hang\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin khach hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t5. Thay doi thong tin khach hang\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. Sap xep khach hang theo ten\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t7. In ra danh sach khach hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t8. Xuat file danh sach khach hang\t|";
+        cout << "\n\t\t\t\t\t\t|\t1. Them khach hang\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t2. Xoa mot khach hang\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin khach hang\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t4. Thay doi thong tin khach hang\t|";
+        cout << "\n\t\t\t\t\t\t|\t5. Sap xep khach hang theo ten\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach khach hang\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach khach hang\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
         luachon1 = Lua_chon_hop_le();;
@@ -338,49 +314,43 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         }
         case 1:
         {
-            ql_kh.Readf();
+            ql_kh.Insert();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 2:
         {
-            ql_kh.Insert();
+            ql_kh.Remove(ql_hd);
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 3:
         {
-            ql_kh.Remove(ql_hd);
+            ql_kh.Find();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
         case 4:
         {
-            ql_kh.Find();
-            cout << "\t\t\t\t\t\t";         system("pause");
-            break;
-        }
-        case 5:
-        {
             ql_kh.Update(ql_hd);
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
-        case 6:
+        case 5:
         {
             system("cls");
             ql_kh.Sort();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
-        case 7:
+        case 6:
         {
             system("cls");
             ql_kh.Show();
             cout << "\t\t\t\t\t\t";         system("pause");
             break;
         }
-        case 8:
+        case 7:
         {
             ql_kh.Writef();
             cout << "\t\t\t\t\t\t";         system("pause");
@@ -490,6 +460,11 @@ int main()
     QuanLyNV ql_nv;
     QuanLyKH ql_kh;
     QuanLyHD ql_hd;
+    // doc cac file du lieu .txt
+    ql_nv.Readf();
+    ql_kh.Readf();
+    ql_hang.ReadfPL();
+    ql_hang.Readf();
     // Menu dang nhap
     int luachon1;
     do
