@@ -490,7 +490,6 @@ int main()
         cout << "\n\t\t\t\t\t\t|\t2. Dang nhap bang nhan vien\t\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t***********************END***********************";
-        cout << "\n\t\t\t\t\t\t\tNhap lua chon: ";
         luachon1 = Lua_chon_hop_le();
         if (luachon1 == 1)
         {

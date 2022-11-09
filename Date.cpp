@@ -74,6 +74,48 @@ void Date::Output(){
     cout << this->thang << "/";
     cout << this->nam;
 }
+void Date::Input()
+{
+    while(1){
+        try{
+            string x;
+            fflush(stdin); getline(cin, x);
+            int n = x.length();
+            this->ngay = this->thang = this->nam = 0;
+            int count = 0, count_pow = 1; int i = n - 1;
+            for(int j = n - 1; j >= 0; --j){
+                if (x[j] == '/') count++;
+            }
+            if (count != 2) throw "";
+            while (x[i] != '/' && i >= 0){
+                if (x[i] < 48 || x[i] > 57) throw "";
+                else this->nam += (int)(x[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            i--;
+            count_pow = 1;
+            while (x[i] != '/' && i >= 0){
+                if (x[i] < 48 || x[i] > 57) throw "";
+                else this->thang += (int)(x[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            i--; count_pow = 1;
+            while (i >= 0){
+                if (x[i] < 48 || x[i] > 57) throw "";
+                else this->ngay += (int)(x[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            break;
+        }
+        catch(...) {
+            cout << "\t\t\t\t\t\tNgay thang phai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
+        }
+    }
+    HamThoiGian(*this);
+}
 ostream& operator<<(ostream& out , const Date& date)
 {
     out << date.ngay << "/";

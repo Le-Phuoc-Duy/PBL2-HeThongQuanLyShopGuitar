@@ -140,13 +140,12 @@ istream& operator>>(istream& in, NhanVien& nv)
         cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
         cout << "\t\t\t\t\t\tNhap gioi tinh : "; in >> nv.gioi_tinh;
     }while(nv.gioi_tinh != 0 && nv.gioi_tinh != 1);
-    cout << "\t\t\t\t\t\tNhap ngay sinh: ";     in >> nv.ngay_sinh;
+    cout << "\t\t\t\t\t\tNhap ngay sinh: ";     nv.ngay_sinh.Input();
     while(1)
     {
         try
-        {
-            cin.ignore();
-            cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; in >> nv.sdt;
+        {   fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap so dien thoai: "; in >> nv.sdt;
             if (nv.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
             if (nv.sdt[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
             for (int i = 1; i < nv.sdt.length(); i++){
