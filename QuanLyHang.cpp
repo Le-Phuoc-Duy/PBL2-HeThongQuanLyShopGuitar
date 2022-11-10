@@ -352,24 +352,21 @@ void QuanLyHang::Update(){
             case 3:
             {
                 double giavon;
-                cout << "\t\t\t\t\t\tNhap gia von moi: ";
-                cin >> giavon;
+                cout << "\t\t\t\t\t\tNhap gia von moi: "; giavon = In_double();
                 databaseK[n]->setGiaVon(giavon);
                 break;
             }
             case 4:
             {
                 double giaban;
-                cout << "\t\t\t\t\t\tNhap gia ban moi: ";
-                cin >> giaban;
+                cout << "\t\t\t\t\t\tNhap gia ban moi: "; giaban = In_double();
                 databaseK[n]->setGiaBan(giaban);
                 break;
             }
             case 5:
             {
                 int soluong;
-                cout << "\t\t\t\t\t\tNhap so luong moi: ";
-                cin >> soluong;
+                cout << "\t\t\t\t\t\tNhap so luong moi: "; soluong = In_double();
                 databaseK[n]->setSoLuong(soluong);
                 break;
             }

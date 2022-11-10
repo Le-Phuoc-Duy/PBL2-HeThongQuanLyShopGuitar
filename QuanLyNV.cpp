@@ -30,6 +30,7 @@ void QuanLyNV::Readf()
         string ho_dem_NV;
         string tenNV;
         int gioi_tinh;
+        string ngay_sinh_chuoi;
         Date ngay_sinh;
         string sdt;
         string dia_chi;
@@ -48,7 +49,8 @@ void QuanLyNV::Readf()
         getline(filein, tenNV, ',');
         getline(filein, gioi_tinh_chuoi, ',');
         HamChuanHoa(gioi_tinh_chuoi);
-        filein >> ngay_sinh;
+        filein.ignore();
+        filein >> ngay_sinh_chuoi;
         filein.ignore(2);
         getline(filein, sdt, ',');
         filein.ignore();
@@ -90,6 +92,44 @@ void QuanLyNV::Readf()
         else{
             cout << "\n\t\t\t\t\t\tGioi tinh cua nhan vien " << maNV << " khong hop le!" << endl;
             continue;
+        }
+        int tmp = 0;
+        try{
+            int n = ngay_sinh_chuoi.length();
+            int count = 0, count_pow = 1; int i = n - 1;
+            for(int j = n - 1; j >= 0; --j){
+                if (ngay_sinh_chuoi[j] == '/') count++;
+            }
+            if (count != 2) throw "";
+            while (ngay_sinh_chuoi[i] != '/' && i >= 0){
+                if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
+                else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            ngay_sinh.setNam(tmp); tmp = 0;
+            i--;
+            count_pow = 1;
+            while (ngay_sinh_chuoi[i] != '/' && i >= 0){
+                if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
+                else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            ngay_sinh.setThang(tmp); tmp = 0;
+            i--; count_pow = 1;
+            while (i >= 0){
+                if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
+                else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            ngay_sinh.setNgay(tmp);
+            break;
+        }
+        catch(...) {
+            cout << "\t\t\t\t\t\tNgay sinh cua " << maNV << " khong dung dinh dang";
+            return;
         }
         // Kiem tra ma nhan vien co trung khong 
         if (FindIndex(maNV) != -1)
@@ -310,8 +350,7 @@ void QuanLyNV::Update(){
             case 3:
             {
                 Date ngaysinh;
-                cout << "\t\t\t\t\t\tNhap ngay sinh nhan vien: ";
-                cin >> ngaysinh;
+                cout << "\t\t\t\t\t\tNhap ngay sinh nhan vien: ";   ngaysinh.Input();
                 databaseNV[n]->setNgaySinh(ngaysinh);
                 break;
             }

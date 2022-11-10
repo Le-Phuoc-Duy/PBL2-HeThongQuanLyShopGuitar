@@ -99,19 +99,56 @@ string& QuanLy::KiemTraSDT()
     {
         try
         {
-            cin.ignore();
-            cout << "\t\t\t\t\t\tNhap so dien thoai: "; cin >> x;
-            if (x.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
-            if (x[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            cout << "\t\t\t\t\t\tNhap so dien thoai: ";     fflush(stdin); cin >> x;
+            if (x.length() != 10) throw "";
+            if (x[0] != '0') throw "";
             for (int i = 1; i < x.length(); i++){
-                if (x[i] < 48 || x[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+                if (x[i] < 48 || x[i] > 57) throw "";
             }
             break;
         }
-        catch(const char* e)
+        catch(...)
         {
-            cout << e;
+            cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
         }
     }
     return x;
+}
+double& QuanLy::In_double()
+{
+    static double kq;
+    string data;
+    fflush(stdin); cin >> data;
+    while(1)
+    {
+        try
+        {
+            int a = 0, b = 0;
+            int count = 0, n = data.length(), i = n - 1, count_pow = 1;
+            for(int j = n - 1; j >= 0; --j){
+                if (data[j] == '.') count++;
+            }
+            if (count != 0 && count != 1) throw "";
+            while (data[i] != '.' && i >= 0){
+                if (data[i] < 48 || data[i] > 57) throw "";
+                else a += (int)(data[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            i--; count_pow = 1;
+            while (i >= 0){
+                if (data[i] < 48 || data[i] > 57) throw "";
+                else b += (int)(data[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            kq = b + a/10;
+            break;
+        }
+        catch(...)
+        {
+            cout << "\t\t\t\t\t\tKieu du lieu nhap vao khong hop le. Nhap lai: "; fflush(stdin); cin >> data;
+        }
+        return kq;
+    }
 }

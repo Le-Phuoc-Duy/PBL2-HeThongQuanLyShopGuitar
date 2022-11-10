@@ -89,7 +89,7 @@ void Kho::Input(QuanLyHang& ql_hh, string tenHH, int maPL)
 {
     this->tenHH = tenHH; this->setMaPL(maPL);
     
-    cout << "\t\t\t\t\t\tNhap gia nhap vao: ";     cin >> gia_von;
-    cout << "\t\t\t\t\t\tNhap gia ban ra: ";     cin >> gia_ban;
-    cout << "\t\t\t\t\t\tNhap so luong con trong kho: ";    cin >> so_luong;
+    cout << "\t\t\t\t\t\tNhap gia nhap vao: ";     this->gia_von = ql_hh.In_double();
+    cout << "\t\t\t\t\t\tNhap gia ban ra: ";     this->gia_ban = ql_hh.In_double();
+    cout << "\t\t\t\t\t\tNhap so luong con trong kho: ";    this->so_luong = ql_hh.In_double();
 }

@@ -133,29 +133,31 @@ ostream& operator<<(ostream& out, NhanVien& nv)
 }
 istream& operator>>(istream& in, NhanVien& nv)
 {
+    char x;
     cin.ignore();
     cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";  getline(in, nv.ho_dem_NV);
     cout << "\t\t\t\t\t\tNhap ten nhan vien: ";  getline(in, nv.tenNV);
     do{
         cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
-        cout << "\t\t\t\t\t\tNhap gioi tinh : "; in >> nv.gioi_tinh;
-    }while(nv.gioi_tinh != 0 && nv.gioi_tinh != 1);
+        cout << "\t\t\t\t\t\tNhap gioi tinh : "; fflush(stdin); in >> x;
+    }while(x != '0' && x!= '1');
+    nv.gioi_tinh = (int)(x - '0');
     cout << "\t\t\t\t\t\tNhap ngay sinh: ";     nv.ngay_sinh.Input();
     while(1)
     {
         try
         {   fflush(stdin);
             cout << "\t\t\t\t\t\tNhap so dien thoai: "; in >> nv.sdt;
-            if (nv.sdt.length() != 10) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
-            if (nv.sdt[0] != '0') throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+            if (nv.sdt.length() != 10) throw "";
+            if (nv.sdt[0] != '0') throw "";
             for (int i = 1; i < nv.sdt.length(); i++){
-                if (nv.sdt[i] < 48 || nv.sdt[i] > 57) throw "\t\t\t\t\t\tSo dien thoai khong hop le";
+                if (nv.sdt[i] < 48 || nv.sdt[i] > 57) throw "";
             }
             break;
         }
-        catch(const char* e)
+        catch(...)
         {
-            cout << e;
+            cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
         }
     }
     cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
