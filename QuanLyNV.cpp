@@ -50,8 +50,8 @@ void QuanLyNV::Readf()
         getline(filein, gioi_tinh_chuoi, ',');
         HamChuanHoa(gioi_tinh_chuoi);
         filein.ignore();
-        filein >> ngay_sinh_chuoi;
-        filein.ignore(2);
+        getline(filein, ngay_sinh_chuoi, ',');
+        filein.ignore();
         getline(filein, sdt, ',');
         filein.ignore();
         getline(filein, dia_chi, ',');
@@ -125,7 +125,6 @@ void QuanLyNV::Readf()
                 i--;
             }
             ngay_sinh.setNgay(tmp);
-            break;
         }
         catch(...) {
             cout << "\t\t\t\t\t\tNgay sinh cua " << maNV << " khong dung dinh dang";
@@ -166,7 +165,7 @@ void QuanLyNV::Insert()
     string ten = nv->getTenNV();    HamChuanHoa(ten);   nv->setTenNV(ten);
     databaseNV.push_back(nv);
     this->lengthNV++;
-    cout << "\t\t\t\t\t\tThem hang hoa thanh cong!" << endl;
+    cout << "\t\t\t\t\t\tThem nhan vien thanh cong!" << endl;
 }
 
 void QuanLyNV::Writef()

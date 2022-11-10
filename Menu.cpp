@@ -141,8 +141,9 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 cout << "\n\t\t\t\t\t\t|\t2. Them phan loai\t\t\t|";
                 cout << "\n\t\t\t\t\t\t|\t3. Xoa mot phan loai\t\t\t|";
                 cout << "\n\t\t\t\t\t\t|\t4. Tim thong tin phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t5. In ra danh sach phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t6. Xuat file danh sach phan loai\t|";
+                cout << "\n\t\t\t\t\t\t|\t5. Thay doi thong tin phan loai\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach phan loai\t\t|";
+                cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach phan loai\t|";
                 cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                 cout << "\n\t\t\t\t\t\t-------------------------------------------------";
                 luachon2 = Lua_chon_hop_le();
@@ -179,11 +180,17 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 5:
                 {
-                    ql_hang.ShowPL(0);
+                    ql_hang.UpdatePL();
                     cout << "\t\t\t\t\t\t";         system("pause");
                     break;
                 }
                 case 6:
+                {
+                    ql_hang.ShowPL(0);
+                    cout << "\t\t\t\t\t\t";         system("pause");
+                    break;
+                }
+                case 7:
                 {
                     ql_hang.WritefPL();
                     cout << "\t\t\t\t\t\t";         system("pause");

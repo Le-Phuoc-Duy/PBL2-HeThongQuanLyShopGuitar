@@ -46,7 +46,7 @@ void QuanLyHang::Insert()
         return;
     }
     // kiem tra ma hang hoa ton tai chua
-    cout << "\t\t\t\t\t\tMa phan loai: ";     int maPL = Nhap_ma();
+    cout << "\t\t\t\t\t\tHang hoa thuoc phan loai? ";     int maPL = Nhap_ma();
     if (FindIndexPL(maPL) == -1 ){
         int opt;
         cout << "\t\t\t\t\t\tMa phan loai chua ton tai! Ban muon them ma phan loai moi khong?";
@@ -216,7 +216,7 @@ void QuanLyHang::Remove()
         this->databaseK[n]->setCheckDelete(1);
         cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
     } 
-    if (luachon == 2){
+    else if (luachon == 2){
         string tenHH;
         Show(0);
         cin.ignore(); 
@@ -724,5 +724,5 @@ void QuanLyHang::UpdatePL(){
     default:
         break;
     }
-    cout << "\nCap nhat thanh cong!" << endl;
+    cout << "\nt\t\t\t\t\tCap nhat thanh cong!" << endl;
 }

@@ -161,12 +161,14 @@ istream& operator>>(istream& in, NhanVien& nv)
         }
     }
     cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
+    char y;
     do{
         cout << "\t\t\t\t\t\tChuc vu: ";
         cout << "\n\t\t\t\t\t\t 0. Quan Ly "; 
         cout << "\n\t\t\t\t\t\t 1. Nhan vien "; 
-        cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   in >> nv.chuc_vu;
-    }while(nv.chuc_vu != 0 && nv.chuc_vu != 1);
+        cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   fflush(stdin); in >> y;
+    }while(y != '0' && y != '1');
+    nv.chuc_vu = (int)(y - '0');
     nv.setLuong();
     return in;
 }
