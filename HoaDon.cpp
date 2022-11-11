@@ -5,7 +5,7 @@ using namespace std;
 
 int HoaDon::count_id = 0;
 // Ham dung va ham huy
-HoaDon::HoaDon(int maHD, int lengthCTHD, int maNV, string sdt,  Date ngay_lap, double thanh_tien){
+HoaDon::HoaDon(int maHD, int lengthCTHD, int maNV, string sdt,  Date ngay_lap, double thanh_tien, int trang_thai){
     if (maHD != -1){
         this->maHD = maHD;
         if (count_id < maHD) count_id = maHD;
@@ -17,6 +17,7 @@ HoaDon::HoaDon(int maHD, int lengthCTHD, int maNV, string sdt,  Date ngay_lap, d
     this->thanh_tien = thanh_tien;
     this->lengthCTHD = lengthCTHD;
     this->thanh_tien = thanh_tien;
+    this->trang_thai = trang_thai;
 }
 HoaDon::~HoaDon(){}
 
@@ -48,6 +49,10 @@ void HoaDon::setMaNV(int maNV)
 {
     this->maNV = maNV;
 }
+void HoaDon::setTrangThai(int trang_thai)
+{
+    this->trang_thai = trang_thai;
+}
 // Ham Getter
 int HoaDon::getMaHD()
 {
@@ -76,17 +81,24 @@ int HoaDon::getMaNV()
 {
     return this->maNV;
 }
+int HoaDon::getTrangThai()
+{
+    return this->trang_thai;
+}
 //
 void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV, string sdt){
     this->sdt = sdt; this->maNV = maNV;
     Date ngay_lap;
     setNgayLap(ngay_lap);
+    cout << "\t\t\t\t\t\tTrang thai hoa don:    0. Mua       1. Ban" << endl;
+    cout << "\t\t\t\t\t\tNhap trang thai hoa don: "; cin >> this->trang_thai; ///////////////!!!!!!!!try catch
     cout << "\t\t\t\t\t\tNhap so luong loai hang: "; cin >> this->lengthCTHD;
     for (int i = 0; i < this->lengthCTHD; i++){
         hh.Show(0);
         cout << "\n\t\t\t\t\t\tNhap thong tin chi tiet loai " << i + 1;       
         ChiTietHoaDon *p = new ChiTietHoaDon;
-        p->Input(hh);
+        if(this->trang_thai == 1) p->InputB(hh);
+        else p->InputM(hh);
         this->cthd.push_back(p);
         this->thanh_tien = this->thanh_tien + this->cthd[i]->getDonGia();
     }
@@ -111,15 +123,16 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV, string 
 ostream& operator<<(ostream& out, HoaDon& nv)
 {
     out << "\t\t\t\t" << "|" << setw(5) << nv.getMaHD() << "|" << setw(5) << nv.getMaNV() << "|" << setw(5) << nv.getSDT() 
-    << "|" << setw(14) << setprecision(13) << nv.getThanhTien() << "|" << endl;
+    << "|" << setw(5) << nv.getTrangThai() << "|" << setw(14) << setprecision(13) << nv.getThanhTien() << "|" << endl;
     return out;
 }
 void HoaDon::Output(QuanLyHang& hh)
 {
     cout << "\n\t\t\t\t\t\t1. Ma hoa don: " << maHD ;
-    cout << "\n\t\t\t\t\t\t1. Ma nhan vien nhap: " << maNV ;
-    cout << "\n\t\t\t\t\t\t2. SDT khach hang: " << sdt;
-    cout << "\n\t\t\t\t\t\t3. Ngay lap: ";
+    cout << "\n\t\t\t\t\t\t2. Trang thai hoa don: " << trang_thai ;
+    cout << "\n\t\t\t\t\t\t3. Ma nhan vien nhap: " << maNV ;
+    cout << "\n\t\t\t\t\t\t4. SDT khach hang: " << sdt;
+    cout << "\n\t\t\t\t\t\t5. Ngay lap: ";
     ngay_lap.Output(); 
     cout << endl;
     cout << "\t\t\t\t\t\t--------------------------------------------" << endl;

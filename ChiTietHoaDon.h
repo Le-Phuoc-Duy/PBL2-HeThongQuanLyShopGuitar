@@ -20,6 +20,7 @@ class ChiTietHoaDon
         double getDonGia();
         int getSoLuong();
 
-        void Input(QuanLyHang&);
+        void InputB(QuanLyHang&);
+        void InputM(QuanLyHang&);
         void Output(QuanLyHang&);
 };

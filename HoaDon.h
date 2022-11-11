@@ -15,8 +15,9 @@ class HoaDon
         int maNV;
         List<ChiTietHoaDon*> cthd;
         int lengthCTHD;
+        int trang_thai;
     public:
-        HoaDon(int = -1, int = 0, int = 0,string = "", Date = Date(0, 0, 0), double = 0);
+        HoaDon(int = -1, int = 0, int = 0,string = "", Date = Date(0, 0, 0), double = 0, int = 0);
         ~HoaDon();
         //getter
         int getMaHD();
@@ -25,6 +26,7 @@ class HoaDon
         Date getNgayLap();
         double getThanhTien();
         int getMaNV();
+        int getTrangThai();
         //setter
         void setMaHD(int);
         void setSDT(string);
@@ -32,6 +34,7 @@ class HoaDon
         void setNgayLap(Date);
         void setThanhTien(double);
         void setMaNV(int);
+        void setTrangThai(int);
 
         void Input(QuanLyKH&, QuanLyNV&, QuanLyHang&, int, string);
         friend ostream& operator<<(ostream&, HoaDon&);

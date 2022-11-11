@@ -45,6 +45,7 @@ class QuanLyHang : public QuanLy{
         void UpdatePL();
         
         friend void Input(QuanLyHang&);
-        friend void ChiTietHoaDon::Input(QuanLyHang& hh);
+        friend void ChiTietHoaDon::InputB(QuanLyHang& hh);
+        friend void ChiTietHoaDon::InputM(QuanLyHang& hh);
         friend void ChiTietHoaDon::Output( QuanLyHang& hh);
 };

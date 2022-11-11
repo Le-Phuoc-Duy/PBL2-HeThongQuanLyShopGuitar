@@ -43,7 +43,7 @@ int ChiTietHoaDon::getSoLuong()
 {
     return so_luong;
 }
-void ChiTietHoaDon::Input(QuanLyHang& hh){
+void ChiTietHoaDon::InputB(QuanLyHang& hh){
     int n;
     do {    
     cout << "\n\t\t\t\t\t\tNhap ma hang hoa: "; cin >> maHH;
@@ -73,7 +73,36 @@ void ChiTietHoaDon::Input(QuanLyHang& hh){
     hh.databaseK[n]->setSoLuong(hh.databaseK[n]->getSoLuong() - this->so_luong);
     don_gia = so_luong * hh.databaseK[n]->getGiaBan();
 }
-
+//chi tiet hoa don cho trang thai mua
+void ChiTietHoaDon::InputM(QuanLyHang& hh){
+    char luachon;
+    cout << "\n\t\t\t\t\t\t1. Mua hang hoa moi.";
+    cout << "\n\t\t\t\t\t\t2. Mua hang hoa da nhap kho";
+    cout << "\n\t\t\t\t\t\tNhap lua  chon: ";     cin >> luachon;
+    if (luachon == '1'){
+        hh.Insert();
+        int n = hh.getLengthK();
+        n--;
+        this->so_luong = hh.databaseK[n]->getSoLuong();
+        don_gia = this->so_luong * hh.databaseK[n]->getGiaVon();
+    }
+    else if(luachon == '2')
+    {
+        int n;
+        do {
+        hh.Show(0);    
+        cout << "\n\t\t\t\t\t\tNhap ma hang hoa: "; cin >> maHH;
+        n = hh.FindIndex(maHH);
+        if (n == -1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai. Nhap lai!" << endl;
+        }while(n == -1);
+        cout << "\t\t\t\t\t\tNhap so luong: "; cin >> so_luong;
+        hh.databaseK[n]->setSoLuong(hh.databaseK[n]->getSoLuong()+so_luong);
+        don_gia = so_luong * hh.databaseK[n]->getGiaVon();
+    }
+    else {
+        cout << "\t\t\t\t\t\tLua chon khong hop le." << endl;
+    }
+}
 void ChiTietHoaDon::Output( QuanLyHang& hh)
 {
     int n = hh.FindIndex(maHH);
