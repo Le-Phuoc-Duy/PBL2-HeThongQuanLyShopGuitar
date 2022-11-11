@@ -86,12 +86,10 @@ int HoaDon::getTrangThai()
     return this->trang_thai;
 }
 //
-void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV, string sdt){
-    this->sdt = sdt; this->maNV = maNV;
+void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV){
+    this->maNV = maNV;
     Date ngay_lap;
     setNgayLap(ngay_lap);
-    cout << "\t\t\t\t\t\tTrang thai hoa don:    0. Mua       1. Ban" << endl;
-    cout << "\t\t\t\t\t\tNhap trang thai hoa don: "; cin >> this->trang_thai; ///////////////!!!!!!!!try catch
     cout << "\t\t\t\t\t\tNhap so luong loai hang: "; cin >> this->lengthCTHD;
     for (int i = 0; i < this->lengthCTHD; i++){
         hh.Show(0);

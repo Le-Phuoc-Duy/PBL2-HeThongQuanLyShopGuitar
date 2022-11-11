@@ -36,7 +36,7 @@ class HoaDon
         void setMaNV(int);
         void setTrangThai(int);
 
-        void Input(QuanLyKH&, QuanLyNV&, QuanLyHang&, int, string);
+        void Input(QuanLyKH&, QuanLyNV&, QuanLyHang&, int);
         friend ostream& operator<<(ostream&, HoaDon&);
         void Output (QuanLyHang&);
         friend class QuanLyHD;

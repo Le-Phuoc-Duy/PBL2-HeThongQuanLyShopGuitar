@@ -43,65 +43,74 @@ int ChiTietHoaDon::getSoLuong()
 {
     return so_luong;
 }
-void ChiTietHoaDon::InputB(QuanLyHang& hh){
+void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
     int n;
     do {    
     cout << "\n\t\t\t\t\t\tNhap ma hang hoa: "; cin >> maHH;
-    n = hh.FindIndex(maHH);
-    if (n == -1 || hh.databaseK[n]->getCheckDeleteSo() == 1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai hoac da bi xoa. Nhap lai!" << endl;
+    n = ql_hh.FindIndex(maHH);
+    if (n == -1 || ql_hh.databaseK[n]->getCheckDeleteSo() == 1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai hoac da bi xoa. Nhap lai!" << endl;
     }while(n == -1);
 
-    cout << "\t\t\t\t\t\tNhap so luong: "; cin >> so_luong;
-    while ((hh.databaseK[n]->getSoLuong()) < so_luong)
+    cout << "\t\t\t\t\t\tNhap so luong: "; 
+    while ((ql_hh.databaseK[n]->getSoLuong()) < so_luong)
     {
-        char luachon;
-        cout << "\t\t\t\t\t\tSo luong hang hoa khong du. Kho chi con " << hh.databaseK[n]->getSoLuong() << " mon" << endl;
+        int luachon;
+        cout << "\t\t\t\t\t\tSo luong hang hoa khong du. Kho chi con " << ql_hh.databaseK[n]->getSoLuong() << " mon" << endl;
         cout << "\t\t\t\t\t\tBan muon thay doi so luong khong?" << endl;
         cout << "\t\t\t\t\t\t1. Co              0. Khong" << endl;
-        cout << "\t\t\t\t\t\tNhap lua  chon: ";     cin >> luachon;
-        if (luachon == '0'){
+        ql_hh.Lua_chon();
+        if (luachon == 0){
             so_luong = 0;   return;
         }
-        else if(luachon != '1')
-        {
-            cout << "\t\t\t\t\t\tLua chon khong hop le." << endl;
-        }
-        else {
-            cout << "\t\t\t\t\t\tNhap so luong: ";  cin >> this->so_luong;
+        else if (luachon == 1){
+            cout << "\t\t\t\t\t\tNhap so luong: ";  ql_hh.In_double();
         }
     }
-    hh.databaseK[n]->setSoLuong(hh.databaseK[n]->getSoLuong() - this->so_luong);
-    don_gia = so_luong * hh.databaseK[n]->getGiaBan();
+    ql_hh.databaseK[n]->setSoLuong(ql_hh.databaseK[n]->getSoLuong() - this->so_luong);
+    don_gia = so_luong * ql_hh.databaseK[n]->getGiaBan();
 }
 //chi tiet hoa don cho trang thai mua
-void ChiTietHoaDon::InputM(QuanLyHang& hh){
-    char luachon;
-    cout << "\n\t\t\t\t\t\t1. Mua hang hoa moi.";
-    cout << "\n\t\t\t\t\t\t2. Mua hang hoa da nhap kho";
-    cout << "\n\t\t\t\t\t\tNhap lua  chon: ";     cin >> luachon;
-    if (luachon == '1'){
-        hh.Insert();
-        int n = hh.getLengthK();
-        n--;
-        this->so_luong = hh.databaseK[n]->getSoLuong();
-        don_gia = this->so_luong * hh.databaseK[n]->getGiaVon();
+void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
+    ql_hh.Show(0);
+    int maHH;
+    cout << "\n\t\t\t\t\t\tMa hang hoa can mua: "; maHH = ql_hh.Nhap_ma();
+    int n = ql_hh.FindIndex(maHH);
+    int luachon;
+    while (n == -1){    
+        cout << "\t\t\t\t\t\tMa hang hoa chua ton tai. Ban lua chon?" << endl;
+        cout << "\t\t\t\t\t\t1. Nhap lai" << endl;
+        cout << "\t\t\t\t\t\t2. Them hang hoa moi";
+        if (luachon == 1){
+            maHH = ql_hh.Nhap_ma();
+            n = ql_hh.FindIndex(maHH);
+        }
+        else if (luachon == 2){
+            int tmp = ql_hh.lengthK;
+            ql_hh.Insert();
+            if (ql_hh.lengthK == tmp){ n = ql_hh.databaseK[0]->getCountID();    return;}
+            else break;
+        }
     }
-    else if(luachon == '2')
-    {
-        int n;
+
+    int luachon2;
+    if (ql_hh.databaseK[n]->getCheckDeleteSo() == 1){
         do {
-        hh.Show(0);    
-        cout << "\n\t\t\t\t\t\tNhap ma hang hoa: "; cin >> maHH;
-        n = hh.FindIndex(maHH);
-        if (n == -1) cout << "\t\t\t\t\t\tMa hang hoa chua ton tai. Nhap lai!" << endl;
-        }while(n == -1);
-        cout << "\t\t\t\t\t\tNhap so luong: "; cin >> so_luong;
-        hh.databaseK[n]->setSoLuong(hh.databaseK[n]->getSoLuong()+so_luong);
-        don_gia = so_luong * hh.databaseK[n]->getGiaVon();
+            cout << "\n\t\t\t\t\t\tHang hoa da bi xoa khoi kho. Ban muon khoi phuc lai khong? ";
+            cout << "\n\t\t\t\t\t\t1. Co ";
+            cout << "\n\t\t\t\t\t\t0. Khong ";
+            int luachon = ql_hh.Lua_chon();
+            if (luachon2 == 1){
+                ql_hh.databaseK[n]->setCheckDelete(0);
+            }
+            else if (luachon == 0)
+            {
+                return;
+            }
+        } while (luachon != 0 && luachon != 1 );
     }
-    else {
-        cout << "\t\t\t\t\t\tLua chon khong hop le." << endl;
-    }
+        cout << "\t\t\t\t\t\tNhap so luong: "; ql_hh.In_double();
+        ql_hh.databaseK[n]->setSoLuong(ql_hh.databaseK[n]->getSoLuong() + so_luong);
+        don_gia = so_luong * ql_hh.databaseK[n]->getGiaVon();
 }
 void ChiTietHoaDon::Output( QuanLyHang& hh)
 {

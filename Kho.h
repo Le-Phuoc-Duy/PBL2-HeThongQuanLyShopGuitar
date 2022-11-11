@@ -24,6 +24,7 @@ public:
         int getSoLuong();
         int getCheckDeleteSo();
         string getCheckDelete();
+        int getCountID();
     // Ham setter
         void setMaHH(int);
         void setTenHH(string);

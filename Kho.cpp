@@ -33,7 +33,9 @@ string Kho::getCheckDelete()
     if (check_delete == 0) return "Ton Tai";
     else return "Da Xoa";
 }
-
+int Kho::getCountID() {
+    return this->count_id;
+}
 // Ham setter
 void Kho::setMaHH(int maHH){
     this->maHH = maHH;
@@ -91,5 +93,4 @@ void Kho::Input(QuanLyHang& ql_hh, string tenHH, int maPL)
     
     cout << "\t\t\t\t\t\tNhap gia nhap vao: ";     this->gia_von = ql_hh.In_double();
     cout << "\t\t\t\t\t\tNhap gia ban ra: ";     this->gia_ban = ql_hh.In_double();
-    cout << "\t\t\t\t\t\tNhap so luong con trong kho: ";    this->so_luong = ql_hh.In_double();
 }
