@@ -90,7 +90,7 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh, int maNV){
     this->maNV = maNV;
     Date ngay_lap;
     setNgayLap(ngay_lap);
-    cout << "\t\t\t\t\t\tNhap so luong loai hang: "; cin >> this->lengthCTHD;
+    cout << "\t\t\t\t\t\tNhap so luong loai hang: "; this->lengthCTHD = hh.In_double();
     for (int i = 0; i < this->lengthCTHD; i++){
         hh.Show(0);
         cout << "\n\t\t\t\t\t\tNhap thong tin chi tiet loai " << i + 1;       
