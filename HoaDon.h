@@ -26,7 +26,8 @@ class HoaDon
         Date getNgayLap();
         double getThanhTien();
         int getMaNV();
-        int getTrangThai();
+        int getTrangThaiSo();
+        string getTrangThai();
         //setter
         void setMaHD(int);
         void setSDT(string);
@@ -36,7 +37,7 @@ class HoaDon
         void setMaNV(int);
         void setTrangThai(int);
 
-        void Input(QuanLyKH&, QuanLyNV&, QuanLyHang&, int);
+        void Input(QuanLyKH&, QuanLyNV&, QuanLyHang&);
         friend ostream& operator<<(ostream&, HoaDon&);
         void Output (QuanLyHang&);
         friend class QuanLyHD;

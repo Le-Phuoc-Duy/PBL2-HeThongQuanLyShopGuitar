@@ -82,7 +82,7 @@ int QuanLy::Nhap_ma(){
             }
             // Neu ket qua dung, thi tra ve lua 
             for(int i = n - 1; i >= 0; --i){
-                luachon += (int)(x[i] - '0') * pow(10, n-i-1);
+                luachon += int(x[i] - '0') * pow(10, n-i-1);
             }
             break;
         }
@@ -114,9 +114,9 @@ string& QuanLy::KiemTraSDT()
     }
     return x;
 }
-double& QuanLy::In_double()
+double QuanLy::In_double()
 {
-    static double kq;
+    double kq;
     string data;
     fflush(stdin); cin >> data;
     while(1)
@@ -129,26 +129,27 @@ double& QuanLy::In_double()
                 if (data[j] == '.') count++;
             }
             if (count != 0 && count != 1) throw "";
-            while (data[i] != '.' && i >= 0){
+            while (count == 1 && data[i] != '.' && i >= 0){
                 if (data[i] < 48 || data[i] > 57) throw "";
-                else a += (int)(data[i] - '0') * count_pow;
+                else a += (int)(data[i] - '0') * pow(10, i - n);
                 count_pow *= 10;
                 i--;
             }
-            i--; count_pow = 1;
+            if (count == 1) i--; 
+            count_pow = 1;
             while (i >= 0){
                 if (data[i] < 48 || data[i] > 57) throw "";
                 else b += (int)(data[i] - '0') * count_pow;
                 count_pow *= 10;
                 i--;
             }
-            kq = b + a/10;
+            kq = b + a;
             break;
         }
         catch(...)
         {
             cout << "\t\t\t\t\t\tKieu du lieu nhap vao khong hop le. Nhap lai: "; fflush(stdin); cin >> data;
         }
-        return kq;
     }
+    return kq;
 }

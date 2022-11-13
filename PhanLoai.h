@@ -11,12 +11,14 @@ class PhanLoai{
     // Ham getter
         string getTenPL();
         int getMaPL();
+        int getCountID();
         int getCheckDeleteSo();
         string getCheckDelete();
     // Ham setter
         void setTenPL(string);
         void setMaPL(int);
         void setCheckDelete(int);
+        void setCountID(int);
     // Ham constructor
         PhanLoai(int = -1, string = "", int = 0);
     // Ham desstructor

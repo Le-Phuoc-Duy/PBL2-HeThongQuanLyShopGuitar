@@ -2,4 +2,4 @@
 1234, Guitar Classic, 1500000, 1700000, 10, 1, Ton Tai
 473, Marshall, 500000, 600000, 5, 6, Ton Tai
 1236, Capo, 200000, 210000, 5, 3, Ton Tai
-1237, Piano, 120000, 123000, 4, 7, Da Xoa
+1237, Piano, 120000, 123000, 4, 7, Ton Tai

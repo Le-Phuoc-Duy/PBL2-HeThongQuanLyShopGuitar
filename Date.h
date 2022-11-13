@@ -31,7 +31,6 @@ class Date{
     // Ham da nang hoa
     friend ostream& operator<<(ostream&, const Date&);
     friend istream& operator>>(istream&, Date&);
-    void Output();
     void Input();
     friend bool HamThoiGian(const Date&);
 };

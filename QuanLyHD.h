@@ -21,8 +21,10 @@ class QuanLyHD : public QuanLy{
         int FindIndexHH(const int&);
         void Remove();
         void Show(QuanLyHang&);
-        void ShowGeneral();
-        void Find(QuanLyHang&);
+        void ShowGeneral(int);
+        void Find(QuanLyNV&, QuanLyHang&);
+        void Readf();
+        void Writef();
 
         friend class ChiTietHoaDon;
         friend void QuanLyKH::Update(QuanLyHD&);

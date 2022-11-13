@@ -86,44 +86,45 @@ void QuanLyKH::Readf()
     while (filein.eof() != true)
     {
         filein >> maKH;
-        filein.ignore();
+        filein.ignore(2);
         getline(filein, hodem, ',');
+        filein.ignore();
         getline(filein, tenKH, ',');
         filein.ignore();
         getline(filein, sdt, ',');
         filein.ignore();
         filein >> so_diem;
-        filein.ignore();
+        filein.ignore(2);
         getline(filein, check_delete_chuoi);
-        HamChuanHoa(check_delete_chuoi);
+        // HamChuanHoa(check_delete_chuoi);
         // kiem tra bien check co hop le khong
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
-        else{
-            cout << "\n\t\t\t\t\t\tTrang thai khach hang " << maKH << " khong hop le!" << endl;    
-            continue;
-        }
-        // kiem tra so dien thoai co hop le khong (chi co chuoi cac so)
-        for (int i = 0; i < sdt.length(); i++){
-            if (sdt[i] < 48 || sdt[i] > 57) sdt = "0";
-            break;
-        }
-            // kiem tra sdt co du 10 so khong
-        if (sdt.length() != 10){
-            cout << "\n\t\t\t\t\t\tSo dien thoai cua khach hang " << maKH << " khong hop le";
-            continue;
-        }
-        // Kiem tra ma hang hoa va ten hang hoa co trung khong
-        if (FindIndex(maKH) != -1)
-        {
-            cout << "\t\t\t\t\t\tMa khach hang " << maKH << " da ton tai" << endl;
-            continue;
-        }
-        else if (FindIndexSDT(sdt) != -1)
-        {
-            cout << "\t\t\t\t\t\tSo dien thoai " << sdt << " da ton tai" << endl;
-            continue;
-        } 
+        // else{
+        //     cout << "\n\t\t\t\t\t\tTrang thai khach hang " << maKH << " khong hop le!" << endl;    
+        //     continue;
+        // }
+        // // kiem tra so dien thoai co hop le khong (chi co chuoi cac so)
+        // for (int i = 0; i < sdt.length(); i++){
+        //     if (sdt[i] < 48 || sdt[i] > 57) sdt = "0";
+        //     break;
+        // }
+        //     // kiem tra sdt co du 10 so khong
+        // if (sdt.length() != 10){
+        //     cout << "\n\t\t\t\t\t\tSo dien thoai cua khach hang " << maKH << " khong hop le";
+        //     continue;
+        // }
+        // // Kiem tra ma hang hoa va ten hang hoa co trung khong
+        // if (FindIndex(maKH) != -1)
+        // {
+        //     cout << "\t\t\t\t\t\tMa khach hang " << maKH << " da ton tai" << endl;
+        //     continue;
+        // }
+        // else if (FindIndexSDT(sdt) != -1)
+        // {
+        //     cout << "\t\t\t\t\t\tSo dien thoai " << sdt << " da ton tai" << endl;
+        //     continue;
+        // } 
         HamChuanHoa(tenKH); HamChuanHoa(hodem);
         KhachHang *khachhang = new KhachHang(maKH, hodem, tenKH, sdt, so_diem);
         databaseKH.push_back(khachhang);

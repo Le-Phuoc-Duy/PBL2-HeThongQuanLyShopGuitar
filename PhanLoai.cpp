@@ -10,6 +10,9 @@ string PhanLoai::getTenPL(){
 int PhanLoai::getMaPL(){
     return this-> maPL;
 }
+int PhanLoai::getCountID(){
+    return this-> count_id;
+}
 int PhanLoai::getCheckDeleteSo(){
     return this-> check_delete;
 }
@@ -26,6 +29,9 @@ void PhanLoai::setMaPL(int  maPL){
 }
 void PhanLoai::setCheckDelete(int check_delete){
     this->check_delete =  check_delete;
+}
+void PhanLoai::setCountID(int count_id){
+    this->count_id =  count_id;
 }
 // Ham constructor
 PhanLoai::PhanLoai(int  maPL, string tenPL, int check_delete){

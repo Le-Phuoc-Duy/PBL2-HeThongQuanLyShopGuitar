@@ -19,6 +19,6 @@ public:
     string& KiemTraSDT();
     int& Lua_chon();
     int Nhap_ma();
-    double& In_double();
+    double In_double();
 };
 
