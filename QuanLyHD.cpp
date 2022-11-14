@@ -64,7 +64,7 @@ void QuanLyHD::Readf()
         filein.ignore();
         filein >> thanh_tien;
         hd->setThanhTien(thanh_tien);
-        filein.ignore(2);
+        // filein.ignore(2);
         this->databaseHD.push_back(hd);
         this->lengthHD++;
     }
@@ -286,4 +286,26 @@ void QuanLyHD::ShowGeneral(int trang_thai){
         cout << *databaseHD[i];
     }
     cout << "\n\t\t\t\t--------------------------------------------------" << endl;
+}
+void QuanLyHD::ThongKeHomNay(){
+    double doanhthu = 0, loinhuan = 0, von = 0;
+
+    int day, month, year;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    day = ltm->tm_mday;
+    month = 1+ltm->tm_mon;
+    year = 1900 + ltm->tm_year;
+
+    for(int i = 0; i<this->getLengthHD();i++){
+        if (databaseHD[i]->getNgayLap().getNgay() == day 
+        && databaseHD[i]->getNgayLap().getThang() == month 
+        && databaseHD[i]->getNgayLap().getNam() == year){
+            if (databaseHD[i]->getTrangThaiSo() == 2) doanhthu += databaseHD[i]->getThanhTien();
+            if (databaseHD[i]->getTrangThaiSo() == 1) von += databaseHD[i]->getThanhTien();
+        }
+    }
+    loinhuan = doanhthu - von;
+    cout << "Doanh thu: " << doanhthu << endl;
+    cout << "Loi nhuan: " << loinhuan << endl;
 }

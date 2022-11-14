@@ -2,6 +2,7 @@
 #include "QuanLy.h"
 #include "List.h"
 #include "HoaDon.h"
+// #include "ThongKe.h"
 #include "QuanLyHang.h"
 class QuanLyHD : public QuanLy{
     private:
@@ -25,7 +26,9 @@ class QuanLyHD : public QuanLy{
         void Find(QuanLyNV&, QuanLyHang&);
         void Readf();
         void Writef();
+        void ThongKeHomNay();
 
         friend class ChiTietHoaDon;
+        friend class ThongKe;
         friend void QuanLyKH::Update(QuanLyHD&);
 };

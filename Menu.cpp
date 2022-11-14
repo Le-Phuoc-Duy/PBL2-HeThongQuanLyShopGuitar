@@ -3,6 +3,7 @@
 #include "QuanLyNV.h"
 #include "QuanLyKH.h"
 #include "QuanLyHD.h"
+#include "BaoCaoTaiChinh.h"
 #include <fstream>
 #include <conio.h>
 string PASS;
@@ -428,6 +429,61 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         }
     } while (luachon1);
 }
+
+void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, BaoCaoTaiChinh &bctc){
+    int luachon1;
+    do
+    {
+        system("cls");
+        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY HOA DON\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t1. Bao cao doanh thu hom nay\t\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t2. Bao cao theo thang\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t3. Bao cao theo quy\t\t\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t4. Bao cao theo nam\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
+        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+        luachon1 = Lua_chon_hop_le();
+
+        switch (luachon1)
+        {
+        case 0:
+        {
+            break;
+        }
+        case 1:
+        {
+            ql_hd.ThongKeHomNay();
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        case 2:
+        {
+            bctc.ThongKeThang(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        case 3:
+        {
+            bctc.ThongKeQuy(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        case 4:
+        {
+            bctc.ThongKeNam(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        default:
+        {
+            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         system("pause");
+            break;
+        }
+        }
+    } while (luachon1);
+}
 // Ham dang nhap
 void savePass(){
     //Luu pass vao file password
@@ -474,12 +530,14 @@ int main()
     QuanLyNV ql_nv;
     QuanLyKH ql_kh;
     QuanLyHD ql_hd;
+    BaoCaoTaiChinh bctc;
     //doc file .txt
     ql_nv.Readf();
     ql_kh.Readf();
     ql_hang.ReadfPL();
     ql_hang.Readf();
     ql_hd.Readf();
+    bctc.Readf();
     // Menu dang nhap
     int luachon1;
     do
@@ -525,7 +583,8 @@ int main()
                     cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi kho hang\t\t|";
                     cout << "\n\t\t\t\t\t\t|\t3. Thao tac voi khach hang\t\t|";
                     cout << "\n\t\t\t\t\t\t|\t4. Thao tac voi hoa don\t\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t5. Doi mat khau admin\t\t\t|";
+                    cout << "\n\t\t\t\t\t\t|\t5. Bao cao tai chinh\t\t\t|";
+                    cout << "\n\t\t\t\t\t\t|\t6. Doi mat khau admin\t\t\t|";
                     cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
                     cout << "\n\t\t\t\t\t\t***********************END***********************";
                     luachon2 = Lua_chon_hop_le();
@@ -558,6 +617,11 @@ int main()
                         break;
                     }
                     case 5:
+                    {
+                        Bao_cao_tai_chinh(ql_hd,ql_nv,bctc);
+                        break;
+                    }
+                    case 6:
                     {
                         string newpass;
                         cout << "\n\t\t\t\t\t\tNhap mat khau moi: ";
@@ -635,4 +699,5 @@ int main()
     ql_hang.Writef();
     ql_hang.WritefPL();
     ql_hd.Writef();
+    bctc.Writef();
 }

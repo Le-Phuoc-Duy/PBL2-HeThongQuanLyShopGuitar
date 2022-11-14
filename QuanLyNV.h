@@ -1,5 +1,6 @@
 #include "QuanLy.h"
 #include "NhanVien.h"
+// #include "ThongKe.h"
 #include "List.h"
 #pragma once
 
@@ -30,4 +31,5 @@ public:
 
         friend void Input(QuanLyNV&, int, string);
         friend class QuanLyHD;
+        friend class ThongKe;
 };
