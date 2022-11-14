@@ -17,7 +17,7 @@ int PhanLoai::getCheckDeleteSo(){
     return this-> check_delete;
 }
 string PhanLoai::getCheckDelete(){
-    if (check_delete == 0) return "Ton tai";
+    if (check_delete == 0) return "Ton Tai";
     else return "Da Xoa";
 }
 // Ham setter

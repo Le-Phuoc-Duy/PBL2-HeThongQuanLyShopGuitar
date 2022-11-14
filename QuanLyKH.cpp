@@ -96,8 +96,6 @@ void QuanLyKH::Readf()
         filein >> so_diem;
         filein.ignore(2);
         getline(filein, check_delete_chuoi);
-        // HamChuanHoa(check_delete_chuoi);
-        // kiem tra bien check co hop le khong
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
         // else{
@@ -126,7 +124,7 @@ void QuanLyKH::Readf()
         //     continue;
         // } 
         HamChuanHoa(tenKH); HamChuanHoa(hodem);
-        KhachHang *khachhang = new KhachHang(maKH, hodem, tenKH, sdt, so_diem);
+        KhachHang *khachhang = new KhachHang(maKH, hodem, tenKH, sdt, so_diem, check_delete);
         databaseKH.push_back(khachhang);
         (this->lengthKH)++;
     }

@@ -1,6 +1,6 @@
-1, Dan Guitar, Ton tai
-3, Phu Kien, Ton tai
-4, Day, Ton tai
-5, Bao Dan, Ton tai
-6, Loa, Ton tai
-7, Abc, Ton tai
+1, Dan Guitar, Ton Tai
+3, Phu Kien, Ton Tai
+4, Day, Ton Tai
+5, Bao Dan, Ton Tai
+6, Loa, Ton Tai
+7, Abc, Ton Tai

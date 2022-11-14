@@ -52,7 +52,7 @@ int& QuanLy::Lua_chon(){
     {
         try{
             string x;
-            cin.ignore();
+            fflush(stdin);
             cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen tu 0 -> 9 khong
             if (x.length() != 1) throw "";

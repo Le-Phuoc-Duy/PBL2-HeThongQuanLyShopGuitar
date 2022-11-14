@@ -33,7 +33,7 @@ int KhachHang::getSoDiem(){
 }
 string KhachHang::getCheckDelete()
 {
-    if (check_delete == 0) return "Ton tai";
+    if (check_delete == 0) return "Ton Tai";
     else return "Da Xoa";
 }
 int KhachHang::getCheckDeleteSo(){

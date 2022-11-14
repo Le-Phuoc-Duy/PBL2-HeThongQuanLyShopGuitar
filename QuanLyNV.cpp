@@ -51,7 +51,7 @@ void QuanLyNV::Readf()
         getline(filein, gioi_tinh_chuoi, ',');
         filein.ignore();
         filein >> ngay_sinh;
-        filein.ignore();
+        filein.ignore(2);
         getline(filein, sdt, ',');
         filein.ignore();
         getline(filein, dia_chi, ',');

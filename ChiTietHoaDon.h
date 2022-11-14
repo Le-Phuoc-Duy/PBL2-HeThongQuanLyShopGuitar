@@ -9,7 +9,7 @@ class ChiTietHoaDon
         int so_luong;
     public:
         ChiTietHoaDon();
-        ChiTietHoaDon(int, double, int);
+        ChiTietHoaDon(int, int, double);
         ~ChiTietHoaDon();
 
         void setMaHH(int);

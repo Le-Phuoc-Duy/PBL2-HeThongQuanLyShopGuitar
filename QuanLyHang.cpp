@@ -173,7 +173,7 @@ void QuanLyHang::Readf()
             }
         }
 
-        Kho *kho = new Kho(maHH, tenHH, gia_von, gia_ban, so_luong, maPL);
+        Kho *kho = new Kho(maHH, tenHH, gia_von, gia_ban, so_luong, maPL, check_delete);
         databaseK.push_back(kho);
         (this->lengthK)++;
     }
@@ -563,7 +563,7 @@ void QuanLyHang::ReadfPL(){
             continue;
         }
 
-        PhanLoai *phan_loai = new PhanLoai(maPL, tenPL);
+        PhanLoai *phan_loai = new PhanLoai(maPL, tenPL, check_delete);
         databasePL.push_back(phan_loai);
         this->lengthPL++;
     }

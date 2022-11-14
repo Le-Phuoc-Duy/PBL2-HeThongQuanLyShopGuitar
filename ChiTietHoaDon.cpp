@@ -7,7 +7,7 @@ using namespace std;
 //Ham dung va ham huy
 ChiTietHoaDon::ChiTietHoaDon(){}
 
-ChiTietHoaDon::ChiTietHoaDon(int maHH, double don_gia, int so_luong)
+ChiTietHoaDon::ChiTietHoaDon(int maHH, int so_luong, double don_gia)
 {
     this->maHH = maHH;
     this->don_gia = don_gia;
@@ -116,9 +116,9 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
     ql_hh.databaseK[n]->setSoLuong(ql_hh.databaseK[n]->getSoLuong() + this->so_luong); // mua: so luong hang trong kho tang len
     don_gia = so_luong * ql_hh.databaseK[n]->getGiaVon(); // mua: don gia = so luong * gia von
 }
-void ChiTietHoaDon::Output( QuanLyHang& hh)
+void ChiTietHoaDon::Output(QuanLyHang& hh)
 {
-    int n = hh.FindIndex(maHH);
+    int n = hh.FindIndex(this->maHH);
     cout << "\n\t\t\t\t\t\t|" << setw(18) << hh.databaseK[n]->getTenHH() << "|" << setw(8) << this->so_luong << "|" 
     << setw(14) << setprecision(13) << this->don_gia << "|";
 }
