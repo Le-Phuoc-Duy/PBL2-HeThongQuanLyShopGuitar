@@ -99,7 +99,7 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
                 return;
             }
         }else if (trang_thai == 1) sdt = "NULL";
-    }while(trang_thai != 1 && trang_thai != 2);
+    } while(trang_thai != 1 && trang_thai != 2);
     HoaDon *hd = new HoaDon;
     hd->setTrangThai(trang_thai);
     hd->setMaNV(maNV);
