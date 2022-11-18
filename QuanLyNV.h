@@ -1,6 +1,5 @@
 #include "QuanLy.h"
 #include "NhanVien.h"
-// #include "ThongKe.h"
 #include "List.h"
 #pragma once
 
@@ -30,6 +29,6 @@ public:
         int FindIndexTen(const string&);
 
         friend void Input(QuanLyNV&, int, string);
-        friend class QuanLyHD;
         friend class ThongKe;
+        friend class QuanLyHD;
 };

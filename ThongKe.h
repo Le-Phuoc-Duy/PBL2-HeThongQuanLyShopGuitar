@@ -8,18 +8,11 @@
 #include <ctime>
 class ThongKe{
     private:
-        struct TaiChinh
-        {
-            double luongNV, doanh_thu, loi_nhuan, von;
-        };
-        struct TaiChinh tc[12];
-        int year;
+        double luongNV, doanh_thu, loi_nhuan, von;
     public:
-        ThongKe(QuanLyNV&, QuanLyHD&);
-        ~ThongKe();
-        ThongKe(double, double, double, double, int);
-        void setYear(int);
-        int getYear();
-
-        friend class BaoCaoTaiChinh;
+        int DemNgay(int, int);
+        ThongKe();
+        void ThongKeThang(QuanLyNV&, QuanLyHD&);
+        void ThongKeNam(QuanLyNV&, QuanLyHD&);
+        
 };

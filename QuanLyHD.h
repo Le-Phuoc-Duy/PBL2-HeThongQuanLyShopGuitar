@@ -2,7 +2,6 @@
 #include "QuanLy.h"
 #include "List.h"
 #include "HoaDon.h"
-// #include "ThongKe.h"
 #include "QuanLyHang.h"
 class QuanLyHD : public QuanLy{
     private:

@@ -1,6 +1,3 @@
-1, Tran Van, Duc, Nam, 1/01/2000,           0654846486, 92 Nguyen Lam, Nhan vien, 2000000, Ton Tai
-2, Nguyen Van, Bo, Nam, 2/02/2001,           0654846486, K23/3 Tran Phu, Nhan vien, 7000000, Da Xoa
-3, Le Phuoc, Duy, Nam, 20/02/2003,           0833234321, 23 Ngo Van So, Nhan vien, 3000000, Ton Tai
-5, Nguyen Van, N, Nam, 12/12/2002,           0123456789, 21 Ly Thai To, Nhan vien, 7000000, Ton Tai
-6, Nguyen Thi, Le, Nu, 22/10/1999,           0853171684, K24/1 Dong Ke, Nhan vien, 7000000, Ton Tai
-4, Nguyen Thi Tra, My, Nu, 19/11/2003,           0853171684, 34/1 Au Co, Nhan vien, 3000000, Ton Tai
+1, Tran Van, Duc, Nam, 1/01/2000, 0654846486, 92 Nguyen Lam, Nhan vien, 2000, Da Xoa, 15/07/2019, 16/06/2022
+2, Tran Van, Duy, Nam, 1/01/2000, 0654846236, 92 Nguyen Lam, Nhan vien, 2000, Ton Tai, 16/03/2022
+3, Test, Test, Nam, 10/10/2003, 0866926126, test, Quan ly, 7000000, Ton Tai, 17/11/2022

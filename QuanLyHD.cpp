@@ -21,6 +21,10 @@ void QuanLyHD::Readf()
         cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
         return;
     }
+    filein.seekg(0, ios::end);
+    if (filein.tellg() == 0) return;
+    filein.seekg(0, ios::beg);
+        
         int maHD;
         Date ngay_lap; int gio; int phut;
         double thanh_tien;
@@ -45,7 +49,7 @@ void QuanLyHD::Readf()
         filein.ignore();
         getline(filein, trang_thai_chuoi, ',');
         if (trang_thai_chuoi == "Ban"){/// Neu la don ban thi doc sdt
-            trang_thai == 2;
+            trang_thai = 2;
         } else if (trang_thai_chuoi == "Mua"){
             trang_thai = 1;
         }
@@ -64,7 +68,7 @@ void QuanLyHD::Readf()
         filein.ignore();
         filein >> thanh_tien;
         hd->setThanhTien(thanh_tien);
-        // filein.ignore(2);
+        filein.ignore();
         this->databaseHD.push_back(hd);
         this->lengthHD++;
     }

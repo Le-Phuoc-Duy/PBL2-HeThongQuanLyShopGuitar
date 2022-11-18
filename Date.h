@@ -32,5 +32,8 @@ class Date{
     friend ostream& operator<<(ostream&, const Date&);
     friend istream& operator>>(istream&, Date&);
     void Input();
+    int operator== (Date);
+    int operator!= (Date);
+    int operator< (Date);
     friend bool HamThoiGian(const Date&);
 };

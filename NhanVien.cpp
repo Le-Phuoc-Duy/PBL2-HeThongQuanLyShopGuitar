@@ -4,7 +4,7 @@
 
 int NhanVien::count_id = 0;
 //Ham dung
-NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date ngay_sinh, string sdt, string dia_chi, int chuc_vu, double luong, int check_delete)
+NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date ngay_sinh, string sdt, string dia_chi, int chuc_vu, double luong, int check_delete, Date ngay_vao, Date ngay_nghi)
 {
     if (maNV != -1){
         this->maNV = maNV;
@@ -20,6 +20,8 @@ NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date nga
     this->chuc_vu = chuc_vu;
     this->luong = luong;
     this->check_delete = check_delete;
+    this->ngay_vao = ngay_vao;
+    this->ngay_nghi = ngay_nghi;
 }
 NhanVien::~NhanVien(){}
 // Ham Setter
@@ -67,6 +69,18 @@ void NhanVien::setChucVu(int chuc_vu)
 void NhanVien::setCheckDelete(int check)
 {
     this->check_delete = check;
+}
+void NhanVien::setNgayVao(){
+    Date ngayvao;
+    ngayvao.setGio(0);
+    ngayvao.setPhut(0);
+    this->ngay_vao = ngayvao;
+}
+void NhanVien::setNgayNghi(){
+    Date ngaynghi;
+    ngaynghi.setGio(0);
+    ngaynghi.setPhut(0);
+    this->ngay_nghi = ngaynghi;
 }
 //Ham Getter
 int NhanVien::getCountID()
@@ -123,12 +137,18 @@ string NhanVien::getCheckDelete()
 int NhanVien::getCheckDeleteSo(){
     return check_delete;
 }
+Date NhanVien::getNgayVao(){
+    return this->ngay_vao;
+}
+Date NhanVien::getNgayNghi(){
+    return this->ngay_nghi;
+}
 /// Da nang hoa toan tu
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\n\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
     <<  "|" << setw(2) << nv.ngay_sinh << "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
-    <<setw(9) << (size_t)nv.luong << "|";
+    <<setw(9) << (size_t)nv.luong << "|" << setw(13) << nv.ngay_vao ;
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
@@ -170,5 +190,7 @@ istream& operator>>(istream& in, NhanVien& nv)
     }while(y != '0' && y != '1');
     nv.chuc_vu = (int)(y - '0');
     nv.setLuong();
+    nv.setNgayVao();
+
     return in;
 }

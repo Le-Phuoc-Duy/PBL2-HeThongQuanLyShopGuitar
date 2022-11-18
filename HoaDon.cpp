@@ -114,7 +114,7 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
         {
             if (sd_bd*1000 <= this->thanh_tien) {
                 this->thanh_tien -= sd_bd * 1000; // tien tich duoc <= thanh tien
-                sd_bd = 0;
+                //sd_bd = 0;///////////////////////////////////!!!!!!!!!!!!!!!!!!!!//////////////////
                 cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << sd_bd * 1000 << endl;
             }
             else{// tien tu diem tich duoc > thanh tien

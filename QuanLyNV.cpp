@@ -26,11 +26,14 @@ void QuanLyNV::Readf()
         cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
         return;
     }
+    filein.seekg(0, ios::end);
+    if (filein.tellg() == 0) return;
+    filein.seekg(0, ios::beg);
         int maNV;
         string ho_dem_NV;
         string tenNV;
         int gioi_tinh;
-        Date ngay_sinh(0,0,0);
+        Date ngay_sinh(0,0,0),ngay_vao(0,0,0),ngay_nghi(0,0,0);
         string sdt;
         string dia_chi;
         double luongcoban;
@@ -60,84 +63,24 @@ void QuanLyNV::Readf()
         // HamChuanHoa(chuc_vu_chuoi);
         filein >> luong;
         filein.ignore(2);
-        getline(filein, check_delete_chuoi);
+        getline(filein, check_delete_chuoi, ',');
+        filein.ignore();
+        filein >> ngay_vao;
+        
         // HamChuanHoa(check_delete_chuoi);
         // kiem tra bien check co hop le khong
-        if (check_delete_chuoi == "Da Xoa") check_delete = 1;
+        if (check_delete_chuoi == "Da Xoa"){
+            filein.ignore();
+            filein >> ngay_nghi;
+            check_delete = 1;
+        } 
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
-        // else{
-        //     cout << "\n\t\t\t\t\t\tTrang thai nhan vien " << maNV << " khong hop le!" << endl;    
-        //     continue;
-        // }
-        // // Kiem tra chuc vu hop le khong
-        // if (chuc_vu_chuoi == "Quan Ly") chuc_vu = 0;   
-        // else if (chuc_vu_chuoi == "Nhan Vien") chuc_vu = 1;
-        // else{
-        //     cout << "\n\t\t\t\t\t\tChuc vu khong hop le!" << endl;    
-        //     continue;
-        // }
-        // ///// Kiem tra SDT hop le khong
-        // for (int i = 0; i < sdt.length(); i++){
-        //     if (sdt[i] < 48 || sdt[i] > 57) sdt = "0";
-        //     break;
-        // }
-        //     // kiem tra sdt co du 10 so chua
-        // if (sdt.length() != 10){
-        //     cout << "\n\t\t\t\t\t\tSo dien thoai cua nhan vien " << maNV << " khong hop le";
-        //     continue;
-        // };
-        // Kiem tra gioi tinh co hop le khong
+        
         if (gioi_tinh_chuoi == "Nam") gioi_tinh = 1;  
         else if (gioi_tinh_chuoi == "Nu") gioi_tinh = 0;  
-        // else{
-        //     cout << "\n\t\t\t\t\t\tGioi tinh cua nhan vien " << maNV << " khong hop le!" << endl;
-        //     continue;
-        // }
-        // int tmp = 0;
-        // try{
-        //     int n = ngay_sinh_chuoi.length();
-        //     int count = 0, count_pow = 1; int i = n - 1;
-        //     for(int j = n - 1; j >= 0; --j){
-        //         if (ngay_sinh_chuoi[j] == '/') count++;
-        //     }
-        //     if (count != 2) throw "";
-        //     while (ngay_sinh_chuoi[i] != '/' && i >= 0){
-        //         if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
-        //         else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
-        //         count_pow *= 10;
-        //         i--;
-        //     }
-        //     ngay_sinh.setNam(tmp); tmp = 0;
-        //     i--;
-        //     count_pow = 1;
-        //     while (ngay_sinh_chuoi[i] != '/' && i >= 0){
-        //         if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
-        //         else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
-        //         count_pow *= 10;
-        //         i--;
-        //     }
-        //     ngay_sinh.setThang(tmp); tmp = 0;
-        //     i--; count_pow = 1;
-        //     while (i >= 0){
-        //         if (ngay_sinh_chuoi[i] < 48 || ngay_sinh_chuoi[i] > 57) throw "";
-        //         else tmp += (int)(ngay_sinh_chuoi[i] - '0') * count_pow;
-        //         count_pow *= 10;
-        //         i--;
-        //     }
-        //     ngay_sinh.setNgay(tmp);
-        // }
-        // catch(...) {
-        //     cout << "\t\t\t\t\t\tNgay sinh cua " << maNV << " khong dung dinh dang";
-        //     return;
-        // }
-        // // Kiem tra ma nhan vien co trung khong 
-        // if (FindIndex(maNV) != -1)
-        // {
-        //     cout << "\n\t\t\t\t\t\tMa nhan vien " << maNV << " da ton tai!" << endl;
-        //     continue;
-        // }
+        
         HamChuanHoa(ho_dem_NV); HamChuanHoa(tenNV);
-        NhanVien *nv = new NhanVien(maNV, ho_dem_NV, tenNV, gioi_tinh, ngay_sinh, sdt, dia_chi, chuc_vu, luong, check_delete);
+        NhanVien *nv = new NhanVien(maNV, ho_dem_NV, tenNV, gioi_tinh, ngay_sinh, sdt, dia_chi, chuc_vu, luong, check_delete, ngay_vao, ngay_nghi);
         databaseNV.push_back(nv);
         (this->lengthNV)++;
     }
@@ -150,7 +93,8 @@ void QuanLyNV::Show(int trang_thai)
     else cout << "\n\t\t\t\t\t\t\tDANH SACH NHAN VIEN DA XOA";
     cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
     cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) 
-    << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |";
+    << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |" 
+    << setw(10)  << "Ngay vao  |";
     cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------";
     for (int i = 0; i < this->lengthNV; i++)
     {
@@ -179,7 +123,8 @@ void QuanLyNV::Writef()
         fileout << databaseNV[i]->getMaNV() << ", " <<  databaseNV[i]->getHoDemNV() << ", " <<  databaseNV[i]->getTenNV() << ", " 
         << databaseNV[i]->getGioiTinh() <<  ", " << databaseNV[i]->getNgaySinh() << ", " << databaseNV[i]->getSDT() << ", " 
         << databaseNV[i]->getDiaChi() << ", " << databaseNV[i]->getChucVu() << ", " << (size_t)databaseNV[i]->getLuong() 
-        << ", " << databaseNV[i]->getCheckDelete();
+        << ", " << databaseNV[i]->getCheckDelete() << ", " << databaseNV[i]->getNgayVao();
+        if (databaseNV[i]->getCheckDelete() == "Da Xoa") fileout << ", " << databaseNV[i]->getNgayNghi();  
     }
     cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
     fileout.close();
@@ -407,6 +352,7 @@ void QuanLyNV::Remove()
         return;
     }
     else{
+        this->databaseNV[n]->setNgayNghi();
         this->databaseNV[n]->setCheckDelete(1);
         cout << "\t\t\t\t\t\tXoa nhan vien thanh cong!" << endl;
     }

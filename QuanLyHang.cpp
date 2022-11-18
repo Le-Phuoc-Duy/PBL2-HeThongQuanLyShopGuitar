@@ -101,6 +101,9 @@ void QuanLyHang::Readf()
         cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
         return;
     }
+    filein.seekg(0, ios::end);
+    if (filein.tellg() == 0) return;
+    filein.seekg(0, ios::beg);
         int maHH, so_luong, maPL;
         string tenHH;
         double gia_von, gia_ban;
@@ -528,6 +531,9 @@ void QuanLyHang::ReadfPL(){
         cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
         return;
     }
+    filein.seekg(0, ios::end);
+    if (filein.tellg() == 0) return;
+    filein.seekg(0, ios::beg);
     
     while (filein.eof() != true)
     {

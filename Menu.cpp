@@ -3,7 +3,7 @@
 #include "QuanLyNV.h"
 #include "QuanLyKH.h"
 #include "QuanLyHD.h"
-#include "BaoCaoTaiChinh.h"
+#include "ThongKe.h"
 #include <fstream>
 #include <conio.h>
 string PASS;
@@ -430,7 +430,7 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
     } while (luachon1);
 }
 
-void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, BaoCaoTaiChinh &bctc){
+void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
     int luachon1;
     do
     {
@@ -439,8 +439,7 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, BaoCaoTaiChinh &bctc){
         cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY HOA DON\t\t|";
         cout << "\n\t\t\t\t\t\t|\t1. Bao cao doanh thu hom nay\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t|\t2. Bao cao theo thang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Bao cao theo quy\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Bao cao theo nam\t\t|";
+        cout << "\n\t\t\t\t\t\t|\t3. Bao cao theo nam\t\t|";
         cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
         cout << "\n\t\t\t\t\t\t-------------------------------------------------";
         luachon1 = Lua_chon_hop_le();
@@ -464,12 +463,6 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, BaoCaoTaiChinh &bctc){
             break;
         }
         case 3:
-        {
-            bctc.ThongKeQuy(ql_nv,ql_hd);
-            cout << "\t\t\t\t\t\t";         system("pause");
-            break;
-        }
-        case 4:
         {
             bctc.ThongKeNam(ql_nv,ql_hd);
             cout << "\t\t\t\t\t\t";         system("pause");
@@ -530,14 +523,14 @@ int main()
     QuanLyNV ql_nv;
     QuanLyKH ql_kh;
     QuanLyHD ql_hd;
-    BaoCaoTaiChinh bctc;
+    ThongKe bctc;
     //doc file .txt
     ql_nv.Readf();
     ql_kh.Readf();
     ql_hang.ReadfPL();
     ql_hang.Readf();
     ql_hd.Readf();
-    bctc.Readf();
+    // bctc.Readf();
     // Menu dang nhap
     int luachon1;
     do
@@ -699,5 +692,5 @@ int main()
     ql_hang.Writef();
     ql_hang.WritefPL();
     ql_hd.Writef();
-    bctc.Writef();
+    // bctc.Writef();
 }

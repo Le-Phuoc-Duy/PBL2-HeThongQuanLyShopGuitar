@@ -79,6 +79,9 @@ void QuanLyKH::Readf()
         cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
         return;
     }
+    filein.seekg(0, ios::end);
+    if (filein.tellg() == 0) return;
+    filein.seekg(0, ios::beg);
     int maKH, so_diem;
     string tenKH, hodem, sdt;
     char x;
