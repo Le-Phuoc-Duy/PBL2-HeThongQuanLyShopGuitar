@@ -148,20 +148,21 @@ ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\n\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
     <<  "|" << setw(2) << nv.ngay_sinh << "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
-    <<setw(9) << (size_t)nv.luong << "|" << setw(13) << nv.ngay_vao ;
+    <<setw(9) << (size_t)nv.luong << "|" << setw(13) << nv.ngay_vao << "|";
+    if (nv.getCheckDeleteSo() == 1) out << setw(13) << nv.ngay_nghi << "|";
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
 {
-    char x;
+    string x;
     cin.ignore();
     cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";  getline(in, nv.ho_dem_NV);
     cout << "\t\t\t\t\t\tNhap ten nhan vien: ";  getline(in, nv.tenNV);
+    cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
     do{
-        cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
         cout << "\t\t\t\t\t\tNhap gioi tinh : "; fflush(stdin); in >> x;
-    }while(x != '0' && x!= '1');
-    nv.gioi_tinh = (int)(x - '0');
+    }while(x != "0" && x!= "1");
+    nv.gioi_tinh = (int)(x[0] - '0');
     cout << "\t\t\t\t\t\tNhap ngay sinh: ";     nv.ngay_sinh.Input();
     while(1)
     {
@@ -181,16 +182,14 @@ istream& operator>>(istream& in, NhanVien& nv)
         }
     }
     cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
-    char y;
+    string y;
+    cout << "\t\t\t\t\t\tChuc vu:     0. Quan Ly              1. Nhan vien"; 
     do{
-        cout << "\t\t\t\t\t\tChuc vu: ";
-        cout << "\n\t\t\t\t\t\t 0. Quan Ly "; 
-        cout << "\n\t\t\t\t\t\t 1. Nhan vien "; 
         cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   fflush(stdin); in >> y;
-    }while(y != '0' && y != '1');
-    nv.chuc_vu = (int)(y - '0');
+    }while(y != "0" && y != "1");
+    fflush(stdin);
+    nv.chuc_vu = (int)(y[0] - '0');
     nv.setLuong();
     nv.setNgayVao();
-
     return in;
 }

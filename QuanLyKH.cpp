@@ -101,31 +101,6 @@ void QuanLyKH::Readf()
         getline(filein, check_delete_chuoi);
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
-        // else{
-        //     cout << "\n\t\t\t\t\t\tTrang thai khach hang " << maKH << " khong hop le!" << endl;    
-        //     continue;
-        // }
-        // // kiem tra so dien thoai co hop le khong (chi co chuoi cac so)
-        // for (int i = 0; i < sdt.length(); i++){
-        //     if (sdt[i] < 48 || sdt[i] > 57) sdt = "0";
-        //     break;
-        // }
-        //     // kiem tra sdt co du 10 so khong
-        // if (sdt.length() != 10){
-        //     cout << "\n\t\t\t\t\t\tSo dien thoai cua khach hang " << maKH << " khong hop le";
-        //     continue;
-        // }
-        // // Kiem tra ma hang hoa va ten hang hoa co trung khong
-        // if (FindIndex(maKH) != -1)
-        // {
-        //     cout << "\t\t\t\t\t\tMa khach hang " << maKH << " da ton tai" << endl;
-        //     continue;
-        // }
-        // else if (FindIndexSDT(sdt) != -1)
-        // {
-        //     cout << "\t\t\t\t\t\tSo dien thoai " << sdt << " da ton tai" << endl;
-        //     continue;
-        // } 
         HamChuanHoa(tenKH); HamChuanHoa(hodem);
         KhachHang *khachhang = new KhachHang(maKH, hodem, tenKH, sdt, so_diem, check_delete);
         databaseKH.push_back(khachhang);
@@ -231,7 +206,6 @@ void QuanLyKH::Remove()
 
 void QuanLyKH::Update(QuanLyHD& ql_hd){
     system("cls");
-    Show(0);
     cout << "\n\t\t\t\t\t\t-----------------------------------------";
     cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ten\t\t\t|";
     cout << "\n\t\t\t\t\t\t|\t2. Cap nhat so dien thoai\t|";
@@ -241,14 +215,27 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
     int luachon = Lua_chon(); 
     if (luachon == 0){
         return;
-    }else{
-        int ma; 
+    }else if (luachon < 0 || luachon > 3){
+        cout << "\t\t\t\t\t\tLua chon khong hop le!";
+        return;
+    }
+    else{
         if (luachon == 3) Show(1);
+        else Show(0);
+        int ma; 
         cout << "\n\t\t\t\t\t\tMa so khach hang can cap nhat: ";        ma = Nhap_ma();
         int n = FindIndex(ma);
-        if (n == -1){
-            cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
-            return;
+        if (luachon != 3){
+            if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1){
+                cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;
+                return;
+            }
+        }
+        else{
+            if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 0){
+                cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;
+                return;
+            }
         }
         switch (luachon){
             case 1:
@@ -266,7 +253,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
             {
                 string sdt = KiemTraSDT();
                 while (FindIndexSDT(sdt) != -1){
-                    cout << "\t\t\t\t\t\tSDT da ton tai. Nhap lai!";
+                    cout << "\t\t\t\t\t\tSDT da ton tai. Nhap lai!" << endl;
                     sdt = KiemTraSDT();
                 }
                 // bien SDT luu SDT cu
@@ -287,8 +274,6 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
             }
             default:
             {
-                cout << "\t\t\t\t\t\tLua chon khong hop le!";
-                cout << "\n\t\t\t\t\t\t"; system("pause");
                 break;
             } 
         }
@@ -325,7 +310,6 @@ void QuanLyKH::Sort()
     cout << "\n\t\t\t\t\t\t|1. Sap xep ten khach hang theo chieu giam|";
     cout << "\n\t\t\t\t\t\t|2. Sap xep ten khach hang theo chieu tang|";
     cout << "\n\t\t\t\t\t\t------------------------------------------";
-    cout << "\n\t\t\t\t\t\tNhap lua chon:\t";
     int luachon = Lua_chon();
     switch(luachon){
         case 1:

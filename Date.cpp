@@ -108,13 +108,15 @@ void Date::Input()
                 count_pow *= 10;
                 i--;
             }
+            if (HamThoiGian(*this) == false){
+                this->ngay = this->thang = 1;  this->nam = 2000;
+            }
             break;
         }
         catch(...) {
             cout << "\t\t\t\t\t\tNgay thang phai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
         }
     }
-    HamThoiGian(*this);
 }
 ostream& operator<<(ostream& out , const Date& date)
 {

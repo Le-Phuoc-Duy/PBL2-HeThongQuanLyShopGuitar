@@ -477,7 +477,7 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         }
     } while (luachon1);
 }
-// Ham dang nhap
+//// Quan ly dang nhap co mat khau
 void savePass(){
     //Luu pass vao file password
     ofstream ofs("Password.txt", std::ofstream::out);
@@ -515,8 +515,6 @@ string getPass(string prompt)
     }
     return pass;
 }
-
-//
 int main()
 {
     QuanLyHang ql_hang;
@@ -549,17 +547,27 @@ int main()
             int check = 1;
             input = getPass("\t\t\t\t\t\tNhap mat khau: ");
             setPass();
+            int count = 0;
             while (input != PASS)
             {
                 cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
                 cout << "\n\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
                 char x;
                 cin >> x;
-                if (x == 'c')
+                if (x == 'c'){
+                    count++;
                     input = getPass("\t\t\t\t\t\tNhap mat khau: ");
+                }
                 else
                 {
                     check = 0;
+                    break;
+                }
+                /// Neu mat khau sai 3 lan thi se thoat
+                if (count == 2 && input != PASS){
+                    cout << "\n\n\t\t\t\t\t\tBan da sai mat khau 3 lan. Thoat!" << endl;
+                    check = 0;
+                    cout << "\t\t\t\t\t\t"; system("pause");
                     break;
                 }
             }

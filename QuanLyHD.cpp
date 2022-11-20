@@ -213,9 +213,7 @@ void QuanLyHD::Remove()
     }while(luachon1 != 1 && luachon1 != 2);
         int luachon;
         do{
-            cout << "\t\t\t\t\t\tXac nhan?";
-            cout << "\n\t\t\t\t\t\t1. Co";
-            cout << "\n\t\t\t\t\t\t0. Khong?";
+            cout << "\t\t\t\t\t\tXac nhan?      1. Co           0. Khong";
             luachon = Lua_chon();
             if (luachon == 1)
             {
@@ -287,7 +285,7 @@ void QuanLyHD::ShowGeneral(int trang_thai){
     << "|" << setw(14) << "Thanh tien" << "|" << setw(11) << "Trang Thai|" << endl;
     cout << "\t\t\t\t--------------------------------------------------";
     for (int i = 0; i < this->lengthHD; i++){
-        cout << *databaseHD[i];
+        if (databaseHD[i]->getTrangThaiSo() == trang_thai) cout << *databaseHD[i];
     }
     cout << "\n\t\t\t\t--------------------------------------------------" << endl;
 }

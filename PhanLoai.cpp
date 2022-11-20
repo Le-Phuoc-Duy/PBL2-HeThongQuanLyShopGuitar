@@ -48,8 +48,8 @@ PhanLoai::~PhanLoai(){}
 
 istream& operator>>(istream& in, PhanLoai& pl)
 {
-    in.ignore();
-    cout << "\t\t\t\t\t\tNhap ten phan loai: ";  getline(in, pl.tenPL);
+    fflush(stdin);
+    cout << "\t\t\t\t\t\tNhap ten phan loai: ";  getline(cin, pl.tenPL);
     return in;
 }
 ostream& operator<<(ostream& out, const PhanLoai& pl)

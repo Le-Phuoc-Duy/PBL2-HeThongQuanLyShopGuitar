@@ -105,6 +105,7 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
         this->cthd.push_back(p);
         this->thanh_tien += this->cthd[i]->getDonGia();
     }
+    if (this->thanh_tien == 0) cout << "\n\t\t\t\t\t\tTHANH TIEN: 0" << "\n\t\t\t\t\t\tHoa don khong duoc lap!";
     //////// Tinh diem tich luy cho khach hang
     if (trang_thai == 2){
         int n = kh.FindIndexSDT(sdt);
@@ -120,7 +121,7 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
             else{// tien tu diem tich duoc > thanh tien
                 this->thanh_tien = 0;
                 sd_bd = (sd_bd * 1000 - thanh_tien)/1000;
-                cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << thanh_tien << endl;
+                cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << thanh_tien;
             }
         }
         double sd_ct = (this->thanh_tien) / 100000; // so diem duoc cong them khi mua: 100k tich 1 diem
