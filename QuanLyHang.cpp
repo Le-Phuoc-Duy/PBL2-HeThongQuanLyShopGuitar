@@ -667,7 +667,7 @@ void QuanLyHang::FindPL(){
             cout << "\n" << setw(61) << " " << "| Ma Phan Loai |" << "     Ten Phan Loai     |" << " Trang Thai |" << endl;
             cout << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-";
             cout << *databasePL[n] << " " << left << setw(11) << databasePL[n]->getCheckDelete() << "|";
-            cout << " " << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-"; cout << endl;
+            cout << "\n" << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-"; cout << endl;
         }
     } else if (luachon ==  2)
     {
@@ -684,7 +684,7 @@ void QuanLyHang::FindPL(){
             cout << "\n" << setw(61) << " " << "| Ma Phan Loai |" << "     Ten Phan Loai     |" << " Trang Thai |" << endl;
             cout << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-";
             cout << *databasePL[n] << " " << left << setw(11) << databasePL[n]->getCheckDelete() << "|";
-            cout << " " << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-"; cout << endl;
+            cout << "\n" << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-"; cout << endl;
         }
     }else{
         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
