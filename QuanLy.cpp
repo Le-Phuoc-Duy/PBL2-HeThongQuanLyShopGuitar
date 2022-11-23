@@ -48,6 +48,7 @@ void QuanLy::HamChuanHoa(string& a){
 
 int& QuanLy::Lua_chon(){
     static int luachon;
+    cout << endl;
     while(1)
     {
         try{
@@ -62,7 +63,7 @@ int& QuanLy::Lua_chon(){
             break;
         }
         catch(...) {
-            cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;textcolor(7);
         }
     }
     return luachon;
@@ -109,7 +110,7 @@ string& QuanLy::KiemTraSDT()
         }
         catch(...)
         {
-            cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;textcolor(7);
         }
     }
     return x;
@@ -152,4 +153,10 @@ double QuanLy::In_double()
         }
     }
     return kq;
+}
+void QuanLy::textcolor(int x)
+{
+    HANDLE color;
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, x);
 }

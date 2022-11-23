@@ -6,14 +6,160 @@
 #include "ThongKe.h"
 #include <fstream>
 #include <conio.h>
+#include <windows.h>
+#include <iomanip>
+CONST INT MIDDLE = 48;
 string PASS;
+//// Ham tao bang
+void textColor(int x)
+{
+    HANDLE color;
+    color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, x);
+}
+void Table(string str, string str1 = "NULL", string str2 = "NULL", string str3 = "NULL", string str4 = "NULL", string str5 = "NULL", string str6 = "NULL", string str7 = "NULL", string str8 = "NULL")
+{
+    textColor(14);
+    cout << setw(MIDDLE) << " ";
+    for (int i = 1; i <= (65 - str.length()) / 2; i++)
+        cout << "=";
+    cout << str;
+    for (int i = 1; i <= 65 - str.length() - (65 - str.length()) / 2; i++)
+        cout << "=";
+    cout << "\n\n";
+
+    textColor(11);
+    if (str1 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str1 << endl;
+    }
+    if (str2 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str2 << endl;
+    }
+    if (str3 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str3 << endl;
+    }
+    if (str4 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str4 << endl;
+    }
+    if (str5 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str5 << endl;
+    }
+    if (str6 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str6 << endl;
+    }
+    if (str7 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str7 << endl;
+    }
+    if (str8 != "NULL")
+    {
+        for (int i = 1; i <= MIDDLE + 3 * (65 - str.length()) / 8; i++)
+            cout << " ";
+        cout << str8 << endl;
+    }
+
+    cout << "\n";
+    textColor(14);
+    for (int i = 1; i <= MIDDLE; i++)
+        cout << " ";
+    for (int i = 1; i <= 30; i++)
+        cout << "=";
+    cout << " END ";
+    for (int i = 1; i <= 30; i++)
+        cout << "=";
+}
+//// Giao dien khoi dong
+void gotoxy(int x, int y)
+{
+    COORD d;
+    d.X = x - 1;
+    d.Y = y - 1;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),d);
+}
+void load()
+{
+    textColor(14);
+    char a = 219;
+    gotoxy(73,34);
+    cout << ("Loading...\n");
+    gotoxy(55,36);
+    for (int r = 1; r<=46; r++)
+    {
+        for (int q = 0; q <= 100000000; q++);
+        cout << a;
+    }
+
+}
+void Start()
+{
+    textColor(11);
+    cout << "   .d88888b.                                 888                   .d8888b.  888                             .d8888b.           d8b 888                    " << endl;
+    cout << "  d88P* *Y88b                                888                  d88P  Y88b 888                            d88P  Y88b          Y8P 888                    " << endl;
+    cout << "  888     888                                888                  Y88b.      888                            888    888              888                    " << endl;
+    cout << "  888     888 888  888  8888b.  88888b.      888     888  888      *Y888b.   88888b.   .d88b.  88888b.      888        888  888 888 888888  8888b.  888d888" << endl;
+    cout << "  888     888 888  888     *88b 888 *88b     888     888  888         *Y88b. 888 *88b d88**88b 888 *88b     888  88888 888  888 888 888        *88b 888P*  " << endl;
+    cout << "  888 Y8b 888 888  888 .d888888 888  888     888     888  888           *888 888  888 888  888 888  888     888    888 888  888 888 888    .d888888 888    " << endl;
+    cout << "  Y88b.Y8b88P Y88b 888 888  888 888  888     888     Y88b 888     Y88b  d88P 888  888 Y88..88P 888 d88P     Y88b  d88P Y88b 888 888 Y88b.  888  888 888    " << endl;
+    cout << "   *Y888888*   *Y88888 *Y888888 888  888     88888888 *Y88888      *Y8888P*  888  888  *Y88P*  88888P*       *Y8888P88  *Y88888 888  *Y888 *Y888888 888    " << endl;
+    cout << "         Y8b                                              888                                  888                                                          ";
+    cout << "                                                     Y8b d88P                                  888                                                          ";
+    cout << "                                                      YY88PP                                   888                                                          " << endl;
+
+    Sleep(350);
+
+    int x= 80;
+    cout << "                                                                                                     @ @@@@@ "<< endl;
+    Sleep(x); cout << "                                                                                                     @@@@@@@*"<< endl;
+    Sleep(x); cout << "                                                                                                    @@@@@@   "<< endl;
+    Sleep(x); cout << "                                                                                                 @@@@        "<< endl;
+    Sleep(x); cout << "                                                                                               @@@@          "<< endl;
+    Sleep(x); cout << "                                                                                            @@@@             "<< endl;
+    Sleep(x); cout << "                                                                                         @@@@@               "<< endl;
+    Sleep(x); cout << "                                                                                       @@@@                  "<< endl;
+    Sleep(x); cout << "                                                                           @@@@@@.  @@@@@                    "<< endl;
+    Sleep(x); cout << "                                                                          @@@#(@@@@@@@                       "<< endl;
+    Sleep(x); cout << "                                                                        @@@@@@@@@@@@                         "<< endl;
+    Sleep(x); cout << "                                                               @@@@@@@@@@@@@@//(@@@                          "<< endl;
+    Sleep(x); cout << "                                                             @@@@@@@@@@@@@@@@@@@@@@@@@@                      "<< endl;
+    Sleep(x); cout << "                                                            @@@@@@@@@@@*%(@@@@@@@@&                          "<< endl;
+    Sleep(x); cout << "                                                            @@@@@@@@@@@@@@@@@@@@@                            "<< endl;
+    Sleep(x); cout << "                                                            @@@@@@@@@@@@@@@@@@@@                             "<< endl;
+    Sleep(x); cout << "                                                             @@@@@@@@@@@@@@@@@@@                             "<< endl;
+    Sleep(x); cout << "                                                               %@@@@@@@@@@@@@@#                              "<< endl;
+    Sleep(x); cout << "                                                                   @@@@@@@@@                                 "<< endl;
+
+    load();
+    cout << "\n\n\n";textColor(7);system("pause");
+}
+////Ham thao tac
 int& Lua_chon_hop_le(){
     static int luachon;
+    cout << endl;
     while(1)
     {
         try{
             string x;
-            cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
+            textColor(7);cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen tu 0 -> 9 khong
             if (x.length() != 1) throw "";
             if (x[0] < 48 || x[0] > 57) throw int(1);
@@ -22,7 +168,7 @@ int& Lua_chon_hop_le(){
             break;
         }
         catch(...) {
-            cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;
+            textColor(12);cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;
         }
     }
     return luachon;
@@ -33,12 +179,10 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t=================================================";
-        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY KHO HANG\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Thao tac voi hang hoa\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi phan loai hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t======================END========================";
+        Table(" MENU QUAN LY KHO HANG",
+        ">> 1. Thao tac voi hang hoa",
+        ">> 2. Thao tac voi phan loai hang",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
@@ -51,17 +195,15 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
             do
             {
                 system("cls");
-                cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-                cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY MAT HANG\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t1. Them hang hoa\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t2. Xoa mot mat hang\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t4. Thay doi thong tin hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t5. Sap xep cac hang hoa\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach hang hoa\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-                cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+                Table(" MENU QUAN LY MAT HANG ",
+                ">> 1. Them hang hoa",
+                ">> 2. Xoa mot mat hang",
+                ">> 3. Tim thong tin hang hoa",
+                ">> 4. Thay doi thong tin hang hoa",
+                ">> 5. Sap xep cac hang hoa",
+                ">> 6. In ra danh sach hang hoa",
+                ">> 7. Xuat file danh sach hang hoa",
+                ">> 0. Thoat");
                 luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
@@ -72,51 +214,50 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    ql_hang.Insert();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Insert();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 2:
                 {
-                    ql_hang.Remove();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Remove();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 3:
                 {
-                    ql_hang.Find();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Find();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 4:
                 {
-                    ql_hang.Update();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Update();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 5:
                 {
-                    ql_hang.Sort();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Sort();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 6:
                 {
-                    system("cls");
-                    ql_hang.Show(0);
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.Show(0);
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 7:
                 {
                     ql_hang.Writef();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 default:
                 {
-                    cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 }
@@ -129,16 +270,14 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
             do
             {
                 system("cls");
-                cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-                cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY PHAN LOAI\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t1. Them phan loai\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t2. Xoa mot phan loai\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t4. Thay doi thong tin phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t5. In ra danh sach phan loai\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t6. Xuat file danh sach phan loai\t|";
-                cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-                cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+                Table(" MENU QUAN LY PHAN LOAI ",
+                ">> 1. Them phan loai",
+                ">> 2. Xoa mot phan loai",
+                ">> 3. Tim thong tin phan loai",
+                ">> 4. Thay doi thong tin phan loai",
+                ">> 5. In ra danh sach phan loai",
+                ">> 6. Xuat file danh sach phan loai",
+                ">> 0. Thoat");
                 luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
@@ -149,44 +288,44 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    ql_hang.InsertPL();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.InsertPL();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 2:
                 {
-                    ql_hang.RemovePL();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.RemovePL();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 3:
                 {
-                    ql_hang.FindPL();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.FindPL();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 4:
                 {
-                    ql_hang.UpdatePL();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.UpdatePL();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 5:
                 {
-                    ql_hang.ShowPL(0);
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.ShowPL(0);
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 case 6:
                 {
-                    ql_hang.WritefPL();
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    cout << endl; ql_hang.WritefPL();
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 default:
                 {
-                    cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-                    cout << "\t\t\t\t\t\t";         system("pause");
+                    textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+                    cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
                 }
@@ -195,8 +334,8 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         }
@@ -209,17 +348,16 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY NHAN VIEN\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Them nhan vien\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Xoa mot nhan vien\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Cap nhat thong tin nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t5. Sap xep nhan vien theo ten\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach nhan vien\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+
+        Table(" MENU QUAN LY NHAN VIEN ",
+        ">> 1. Them nhan vien",
+        ">> 2. Xoa mot nhan vien",
+        ">> 3. Tim thong tin nhan vien",
+        ">> 4. Cap nhat thong tin nhan vien",
+        ">> 5. Sap xep nhan vien theo ten",
+        ">> 6. In ra danh sach nhan vien",
+        ">> 7. Xuat file danh sach nhan vien",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
@@ -230,51 +368,50 @@ void Thao_tac_nhan_vien(QuanLyNV &ql_nv, QuanLyHD &ql_hd)
         }
         case 1:
         {
-            ql_nv.Insert();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Insert();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 2:
         {
-            ql_nv.Remove();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Remove();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
         {
-            ql_nv.Find();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Find();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 4:
         {
-            ql_nv.Update();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Update();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 5:
         {
-            ql_nv.Sort();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Sort();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 6:
         {
-            system("cls");
-            ql_nv.Show(0);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_nv.Show(0);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 7:
         {
             ql_nv.Writef();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         }
@@ -287,17 +424,15 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY KHACH HANG\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Them khach hang\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Xoa mot khach hang\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Tim thong tin khach hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Thay doi thong tin khach hang\t|";
-        cout << "\n\t\t\t\t\t\t|\t5. Sap xep khach hang theo ten\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. In ra danh sach khach hang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t7. Xuat file danh sach khach hang\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+        Table(" MENU QUAN LY KHACH HANG ",
+        ">> 1. Them khach hang",
+        ">> 2. Xoa mot khach hang",
+        ">> 3. Tim thong tin khach hang",
+        ">> 4. Thay doi thong tin khach hang",
+        ">> 5. Sap xep khach hang theo ten",
+        ">> 6. In ra danh sach khach hang",
+        ">> 7. Xuat file danh sach khach hang",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();;
 
         switch (luachon1)
@@ -308,52 +443,50 @@ void Thao_tac_khach_hang(QuanLyKH &ql_kh, QuanLyHD &ql_hd)
         }
         case 1:
         {
-            ql_kh.Insert();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Insert();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 2:
         {
-            ql_kh.Remove();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Remove();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
         {
-            ql_kh.Find();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Find();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 4:
         {
-            ql_kh.Update(ql_hd);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Update(ql_hd);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 5:
         {
-            system("cls");
-            ql_kh.Sort();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Sort();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 6:
         {
-            system("cls");
-            ql_kh.Show(0);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_kh.Show(0);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 7:
         {
             ql_kh.Writef();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         }
@@ -366,16 +499,14 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY HOA DON\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Them hoa don\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Tim thong tin hoa don\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Xoa hoa don\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t4. Tim danh sach hoa don\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t5. In ra danh sach hoa don\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t6. Xuat file danh sach hoa don\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+        Table(" MENU QUAN LY HOA DON ",
+        ">> 1. Them hoa don",
+        ">> 2. Tim thong tin hoa don",
+        ">> 3. Xoa hoa don",
+        ">> 4. Tim danh sach hoa don",
+        ">> 5. In ra danh sach hoa don",
+        ">> 6. Xuat file danh sach hoa don",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
@@ -386,44 +517,44 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         }
         case 1:
         {
-            ql_hd.Insert(ql_nv, ql_kh, ql_hh);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.Insert(ql_nv, ql_kh, ql_hh);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 2:
         {
-            ql_hd.Find(ql_nv, ql_hh);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.Find(ql_nv, ql_hh);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
         {
-            ql_hd.Remove();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.Remove();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 4:
         {
-            ql_hd.Find(ql_nv, ql_hh);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.Find(ql_nv, ql_hh);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 5:
         {
-            ql_hd.Show(ql_hh);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.Show(ql_hh);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 6:
         {
             ql_hd.Writef();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         }
@@ -435,13 +566,11 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
-        cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY HOA DON\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Bao cao doanh thu hom nay\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Bao cao theo thang\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t3. Bao cao theo nam\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t-------------------------------------------------";
+        Table(" MENU QUAN LY HOA DON ",
+        ">> 1. Bao cao doanh thu hom nay",
+        ">> 2. Bao cao theo thang",
+        ">> 3. Bao cao theo nam",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
         switch (luachon1)
@@ -452,31 +581,32 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         }
         case 1:
         {
-            ql_hd.ThongKeHomNay();
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; ql_hd.ThongKeHomNay();
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 2:
         {
-            bctc.ThongKeThang(ql_nv,ql_hd);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; bctc.ThongKeThang(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
         {
-            bctc.ThongKeNam(ql_nv,ql_hd);
-            cout << "\t\t\t\t\t\t";         system("pause");
+            cout << endl; bctc.ThongKeNam(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         }
     } while (luachon1);
 }
+
 //// Quan ly dang nhap co mat khau
 void savePass(){
     //Luu pass vao file password
@@ -494,7 +624,7 @@ void setPass(){
 }
 string getPass(string prompt)
 {
-    cout << prompt;
+    textColor(7);cout << prompt;
     string pass;
     char ch;
     while ((ch = _getch()) != 13)
@@ -510,7 +640,7 @@ string getPass(string prompt)
         else
         {
             pass += ch;
-            cout << "*";
+            textColor(7);cout << "*";
         }
     }
     return pass;
@@ -528,35 +658,35 @@ int main()
     ql_hang.ReadfPL();
     ql_hang.Readf();
     ql_hd.Readf();
-    // bctc.Readf();
+    system("cls");
+    //Khoi dong
+    Start();
     // Menu dang nhap
     int luachon1;
     do
     {
         system("cls");
-        cout << "\n\t\t\t\t\t\t*************************************************";
-        cout << "\n\t\t\t\t\t\t|\t\tPHAN MEM QUAN LY DAN GUITAR\t|";
-        cout << "\n\t\t\t\t\t\t|\t1. Dang nhap bang admin\t\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t2. Dang nhap bang nhan vien\t\t|";
-        cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-        cout << "\n\t\t\t\t\t\t***********************END***********************";
+        Table(" PHAN MEM QUAN LY DAN GUITAR ",
+        ">> 1. Dang nhap bang admin",
+        ">> 2. Dang nhap bang nhan vien",
+        ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
         if (luachon1 == 1)
         {
             string input;
             int check = 1;
-            input = getPass("\t\t\t\t\t\tNhap mat khau: ");
+            input = getPass("\n\t\t\t\t\t\tNhap mat khau: ");
             setPass();
             int count = 0;
             while (input != PASS)
             {
-                cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
-                cout << "\n\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
+                textColor(12); cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
+                textColor(7); cout << "\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
                 char x;
                 cin >> x;
                 if (x == 'c'){
                     count++;
-                    input = getPass("\t\t\t\t\t\tNhap mat khau: ");
+                    input = getPass("\n\t\t\t\t\t\tNhap mat khau: ");
                 }
                 else
                 {
@@ -565,9 +695,9 @@ int main()
                 }
                 /// Neu mat khau sai 3 lan thi se thoat
                 if (count == 2 && input != PASS){
-                    cout << "\n\n\t\t\t\t\t\tBan da sai mat khau 3 lan. Thoat!" << endl;
+                    textColor(12);cout << "\n\n\t\t\t\t\t\tBan da sai mat khau 3 lan. Thoat!" << endl;
                     check = 0;
-                    cout << "\t\t\t\t\t\t"; system("pause");
+                    textColor(7);cout << "\t\t\t\t\t\t"; textColor(7);system("pause");
                     break;
                 }
             }
@@ -578,16 +708,14 @@ int main()
                 do
                 {
                     system("cls");
-                    cout << "\n\t\t\t\t\t\t*************************************************";
-                    cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY CHINH\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t1. Thao tac voi nhan vien\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi kho hang\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t3. Thao tac voi khach hang\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t4. Thao tac voi hoa don\t\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t5. Bao cao tai chinh\t\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t6. Doi mat khau admin\t\t\t|";
-                    cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-                    cout << "\n\t\t\t\t\t\t***********************END***********************";
+                    Table(" MENU QUAN LY CHINH",
+                    ">> 1. Thao tac voi nhan vien",
+                    ">> 2. Thao tac voi kho hang",
+                    ">> 3. Thao tac voi khach hang",
+                    ">> 4. Thao tac voi hoa don",
+                    ">> 5. Bao cao tai chinh",
+                    ">> 6. Doi mat khau admin",
+                    ">> 0. Thoat");
                     luachon2 = Lua_chon_hop_le();
 
                     switch (luachon2)
@@ -625,18 +753,19 @@ int main()
                     case 6:
                     {
                         string newpass;
-                        cout << "\n\t\t\t\t\t\tNhap mat khau moi: ";
+                        textColor(7);cout << "\n\t\t\t\t\t\tNhap mat khau moi: ";
                         cin.ignore();
                         getline(cin, PASS);
                         savePass();
-                        cout << "\n\t\t\t\t\t\tDoi mat khau thanh cong!" << endl;
+                        textColor(6);cout << "\t\t\t\t\t\tDoi mat khau thanh cong!" << endl;
+                        cout << "\t\t\t\t\t\t"; textColor(7);system("pause");
                         break;
                     }
                     default:
                     {
-                        cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
+                        textColor(12);cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
                         cout << "\t\t\t\t\t\t";
-                        system("pause");
+                        textColor(7);system("pause");
                         break;
                     }
                     }
@@ -651,13 +780,12 @@ int main()
             do
             {
                 system("cls");
-                cout << "\n\t\t\t\t\t\t*************************************************";
-                cout << "\n\t\t\t\t\t\t|\t\tMENU QUAN LY CHINH\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t1. Thao tac voi khach hang\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t2. Thao tac voi kho hang\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t3. Thao tac voi hoa don\t\t\t|";
-                cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t\t|";
-                cout << "\n\t\t\t\t\t\t***********************END***********************";
+                Table(" MENU QUAN LY CHINH ",
+                ">> 1. Thao tac voi khach hang",
+                ">> 2. Thao tac voi kho hang",
+                ">> 3. Thao tac voi hoa don",
+                ">> 0. Thoat");
+                
                 luachon2 = Lua_chon_hop_le();
 
                 switch (luachon2)
@@ -683,16 +811,16 @@ int main()
                 }
                 default:
                 {
-                    cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
-                    cout << "\t\t\t\t\t\t";     system("pause");
+                    textColor(12);cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
+                    cout << "\t\t\t\t\t\t";     textColor(7);system("pause");
                     break;
                 }
                 }
             } while (luachon2 != 0);
         }
         else if (luachon1 != 0){
-            cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
-            cout << "\t\t\t\t\t\t";         system("pause");
+            textColor(12);cout << "\n\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
         }
     } while (luachon1 != 0);
     ql_nv.Writef();

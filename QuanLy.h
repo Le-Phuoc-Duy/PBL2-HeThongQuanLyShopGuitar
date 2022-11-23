@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <windows.h>
 using namespace std;
 
 class QuanLy
@@ -20,5 +21,6 @@ public:
     int& Lua_chon();
     int Nhap_ma();
     double In_double();
+    void textcolor(int);
 };
 

@@ -83,8 +83,8 @@ Kho::~Kho(){}
 // Da nang hoa toan tu
 ostream& operator<<(ostream& out, Kho& kho)
 {
-    out << "\n\t\t\t" << "|" << setw(8) << kho.maHH << "|" << setw(19) <<  kho.tenHH << "|" << setw(14) << setprecision(10) << kho.gia_von 
-    << "|" << setw(14) << kho.gia_ban << "|" << setw(9) << kho.so_luong << "|" << setw(9) << kho.phan_loai.getMaPL() << "|";
+    out << "\n"<< setw(26) << " " << "|" << left << setw(9) << kho.maHH << "|" << left << setw(30) <<  kho.tenHH << "|" << left << setw(15) << setprecision(10) << kho.gia_von 
+    << "|" << left << setw(15) << kho.gia_ban << "|" << left << setw(12) << kho.so_luong << "|" << left << setw(22) << kho.phan_loai.getMaPL() << "|";
     return out;
 }
 void Kho::Input(QuanLyHang& ql_hh, string tenHH, int maPL)

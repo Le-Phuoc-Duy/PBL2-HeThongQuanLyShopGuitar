@@ -3,6 +3,7 @@
 #include "List.h"
 #include "HoaDon.h"
 #include "QuanLyHang.h"
+#include <math.h>
 class QuanLyHD : public QuanLy{
     private:
         List <HoaDon*> databaseHD;

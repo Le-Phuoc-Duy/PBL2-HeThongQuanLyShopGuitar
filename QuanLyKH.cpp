@@ -76,7 +76,7 @@ void QuanLyKH::Readf()
 
     if (!filein)
     {
-        cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
+        textcolor(12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;textcolor(7);
         return;
     }
     filein.seekg(0, ios::end);
@@ -112,41 +112,40 @@ void QuanLyKH::Readf()
 
 void QuanLyKH::Show(int trang_thai)
 {
-    cout << "\n\t\t\t\t\t\t\t\tDANH SACH KHACH HANG";
-    cout << "\n\t\t\t\t\t\t--------------------------------------------------" << endl;
-    cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(11) << " SDT|" << setw(5)
-         << "So Diem|" << endl;
-    cout << "\t\t\t\t\t\t--------------------------------------------------";
+    textcolor(6);cout << "\n"<< setw(71) << " " <<"DANH SACH KHACH HANG"<< endl;textcolor(7);
+    cout << setw(52) << " "; for (int i = 1; i <= 58;i++) cout << "-";
+    cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << endl;
+    cout << setw(52) << " "; for (int i = 1; i <= 58;i++) cout << "-";
 
     for (int i = 0; i < this->getLengthKH(); i++)
     {
         if (databaseKH[i]->getCheckDeleteSo() == trang_thai) cout << *databaseKH[i];
     }
-    cout << "\n\t\t\t\t\t\t--------------------------------------------------" << endl;
+    cout << "\n" << setw(52) << " "; for (int i = 1; i <= 58;i++) cout << "-";cout << endl;
 }
 void QuanLyKH::Find()
 {
-    cout << "\n\t\t\t\t\t\t---------------------------------";
-    cout << "\n\t\t\t\t\t\t|\t1. Tim theo SDT\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t2. Tim theo ten\t\t|";
-    cout << "\n\t\t\t\t\t\t---------------------------------";
+    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(74) << " " << "1. Tim theo SDT" << endl;
+    cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
         string sdt = KiemTraSDT();
         int n = FindIndexSDT(sdt);
         if (n == -1)
         {
-            cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;textcolor(7);
             return;
         }
         else
         {
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------" << endl;
-            cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(10) << " SDT|" << setw(5)
-            << "So Diem|" << setw(11) << "Trang thai|";
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------";
-            cout << *databaseKH[n] << setw(10) << databaseKH[n]->getCheckDelete() << "|";
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------" << endl;
+            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+            cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
+            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+            cout << *databaseKH[n] <<" " << left << setw(11) << databaseKH[n]->getCheckDelete() << "|";
+            cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
         }
     }else if (luachon == 2)
     {
@@ -155,21 +154,21 @@ void QuanLyKH::Find()
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenKH);
         HamChuanHoa(tenKH);
         if (FindIndexTen(tenKH) == -1){
-            cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
             return;
         }else{
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------" << endl;
-            cout << "\t\t\t\t\t\t" << setw(10) << "| Ma Khach Hang|" << setw(9) << "Ten Khach Hang|" << setw(10) << " SDT|" << setw(5)
-            << "So Diem|" << setw(11) << "Trang thai|";
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------";
+            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+            cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
+            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
             for (int i = 0; i < this->lengthKH; i++)
             {
-                if (databaseKH[i]->getTenKH() == tenKH) cout << *databaseKH[i] << setw(10) << databaseKH[i]->getCheckDelete() << "|";      
+                if (databaseKH[i]->getTenKH() == tenKH) cout << *databaseKH[i] <<" " << left << setw(11) << databaseKH[i]->getCheckDelete() << "|";      
             }
-            cout << "\n\t\t\t\t\t\t------------------------------------------------------------" << endl;    
+            cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
+              
         }
     } else{
-        cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         return;
     }
 }
@@ -195,7 +194,7 @@ void QuanLyKH::Remove()
     int n = FindIndex(ma);
     if (n == -1)
     {
-        cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
+        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
         return;
     }
     else{
@@ -205,18 +204,18 @@ void QuanLyKH::Remove()
 }
 
 void QuanLyKH::Update(QuanLyHD& ql_hd){
-    system("cls");
-    cout << "\n\t\t\t\t\t\t-----------------------------------------";
-    cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ten\t\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t2. Cap nhat so dien thoai\t|";
-    cout << "\n\t\t\t\t\t\t|\t3. Khoi phuc trang thai\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t|";
-    cout << "\n\t\t\t\t\t\t-----------------------------------------";
+    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(69) << " " << "1. Cap nhat ten" << endl;
+    cout << setw(69) << " " << "2. Cap nhat so dien thoai" << endl;
+    cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
+    cout << setw(69) << " " << "0. Thoat" << endl;
+    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon(); 
     if (luachon == 0){
         return;
     }else if (luachon < 0 || luachon > 3){
-        cout << "\t\t\t\t\t\tLua chon khong hop le!";
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
         return;
     }
     else{
@@ -227,13 +226,13 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
         int n = FindIndex(ma);
         if (luachon != 3){
             if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1){
-                cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
                 return;
             }
         }
         else{
             if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 0){
-                cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;textcolor(7);
                 return;
             }
         }
@@ -305,13 +304,18 @@ void QuanLyKH::selectionsortTen(bool (*cmp)(string,string)){
 }
 void QuanLyKH::Sort()
 {
-    system("cls");
-    cout << "\n\t\t\t\t\t\t------------------------------------------";
-    cout << "\n\t\t\t\t\t\t|1. Sap xep ten khach hang theo chieu giam|";
-    cout << "\n\t\t\t\t\t\t|2. Sap xep ten khach hang theo chieu tang|";
-    cout << "\n\t\t\t\t\t\t------------------------------------------";
+    cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(62)<< " " << "1. Sap xep ten khach hang theo chieu giam" << endl;
+    cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
+    cout << setw(62)<< " " << "0. Thoat" << endl;
+    cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
     int luachon = Lua_chon();
     switch(luachon){
+        case 0:
+        {
+            break;
+        }
         case 1:
         {
             selectionsortTen(descrease);
@@ -326,7 +330,7 @@ void QuanLyKH::Sort()
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
             break;
 
         }

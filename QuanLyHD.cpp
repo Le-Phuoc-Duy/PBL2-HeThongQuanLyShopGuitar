@@ -18,7 +18,7 @@ void QuanLyHD::Readf()
     filein.open("HoaDon.txt");
     if (!filein)
     {
-        cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
+        textcolor(12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;textcolor(7);
         return;
     }
     filein.seekg(0, ios::end);
@@ -154,17 +154,18 @@ int QuanLyHD::FindIndexHH(const int &index)
 
 void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
 {
-    cout << "\n\t\t\t\t\t\t-------------------------------------";
-    cout << "\n\t\t\t\t\t\t|\t1. Tim theo ma\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t2. Tim danh sach hoa don do nhan vien 'X' lap\t\t|";
-    cout << "\n\t\t\t\t\t\t--------------------------------------";
+    cout << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(61) << " " << "1. Tim theo ma" << endl;
+    cout << setw(61) << " " << "2. Tim danh sach hoa don theo nhan vien" << endl;
+    cout << "\n" << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
         int maHD;
         cout << "\t\t\t\t\t\tNhap ma hoa don can tim: ";    maHD = Nhap_ma();
         int n = FindIndexHD(maHD);
         if (n == -1){
-            cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
             return;
         }else{
                 databaseHD[n]->Output(hh);
@@ -197,7 +198,7 @@ void QuanLyHD::Remove()
             int n = FindIndexHD(maHD);
             if (n == -1 || databaseHD[n]->getTrangThaiSo() != 2)
             {
-                cout << "\t\t\t\t\t\tHoa don ban khong ton tai!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tHoa don ban khong ton tai!" << endl;textcolor(7);
                 return;
             }
         }else if (luachon1 == 1){
@@ -206,7 +207,7 @@ void QuanLyHD::Remove()
             int n = FindIndexHD(maHD);
             if (n == -1 || databaseHD[n]->getTrangThaiSo() != 1)
             {
-                cout << "\t\t\t\t\t\tHoa don mua khong ton tai!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tHoa don mua khong ton tai!" << endl;textcolor(7);
                 return;
             }
         }
@@ -233,22 +234,22 @@ void QuanLyHD::Show(QuanLyHang& hh){
         cout << "\t\t\t\t\t\tBan muon in danh sach hoa don?    1. Mua       2. Ban";
         luachon1 = Lua_chon();
         if (luachon1 == 2){
-            cout << "\n\t\t\t\t\t\t\t\tDANH SACH HOA DON BAN" << endl;
+            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON BAN" << endl;textcolor(7);
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 2){
-                    cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;
+                    textcolor(3);cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;
                 }
             }
         }else if (luachon1 == 1){
-            cout << "\n\t\t\t\t\t\t\t\tDANH SACH HOA DON MUA" << endl;
+            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON MUA" << endl;textcolor(7);
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 1){
-                    cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;
+                    textcolor(3);cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;
@@ -277,17 +278,16 @@ void QuanLyHD::Writef(){
     fileout.close();
 }
 void QuanLyHD::ShowGeneral(int trang_thai){
-    if (trang_thai == 1) cout << "\n\t\t\t\t\t\t\t\tDANH SACH HOA DON MUA";
-    else cout << "\n\t\t\t\t\t\t\t\tDANH SACH HOA DON BAN";
+    if (trang_thai == 1) {textcolor(6);cout << "\n" << setw(70) << " " <<"DANH SACH HOA DON MUA" << endl;textcolor(7);}
+    else {textcolor(6);cout << "\n" << setw(70) << " " <<"DANH SACH HOA DON BAN" << endl;textcolor(7);}
 
-    cout << "\n\t\t\t\t--------------------------------------------------" << endl;
-    cout << "\t\t\t\t" << "|" << setw(5) << "Ma HD" << "|" << setw(5) << "MaNV" << "|" << setw(5) << "SDT" 
-    << "|" << setw(14) << "Thanh tien" << "|" << setw(11) << "Trang Thai|" << endl;
-    cout << "\t\t\t\t--------------------------------------------------";
+    cout << setw(53) << " "; for (int i = 1; i<=55; i++) cout << "-"; cout << endl;
+    cout << setw(53) << " " << "| Ma HD |" << " Ma NV |" << "    SDT    |" << " Thanh Tien |"<< " Trang Thai |" << endl;
+    cout << setw(53) << " "; for (int i = 1; i<=55; i++) cout << "-";
     for (int i = 0; i < this->lengthHD; i++){
         if (databaseHD[i]->getTrangThaiSo() == trang_thai) cout << *databaseHD[i];
     }
-    cout << "\n\t\t\t\t--------------------------------------------------" << endl;
+    cout << "\n" << setw(53) << " "; for (int i = 1; i<=55; i++) cout << "-"; cout << endl;
 }
 void QuanLyHD::ThongKeHomNay(){
     double doanhthu = 0, loinhuan = 0, von = 0;
@@ -308,6 +308,12 @@ void QuanLyHD::ThongKeHomNay(){
         }
     }
     loinhuan = doanhthu - von;
-    cout << "Doanh thu: " << doanhthu << endl;
-    cout << "Loi nhuan: " << loinhuan << endl;
+
+    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
+    cout << setw(56) << " " << "|      Von (nghin)      |"<< setw(9) << " "<< left << setw(14) << round((von / 1000)*10)/10 << "|" <<endl;
+    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
+    cout << setw(56) << " " << "|   Doanh thu (nghin)   |"<< setw(9) << " "<< left << setw(14) << round((doanhthu / 1000)*10)/10 << "|" <<endl;
+    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
+    cout << setw(56) << " " << "|   Loi nhuan (nghin)   |"<< setw(9) << " "<< left << setw(14) << round((loinhuan / 1000)*10)/10 << "|" <<endl;
+    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
 }

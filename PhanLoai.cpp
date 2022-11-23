@@ -5,7 +5,7 @@
 int PhanLoai::count_id = 0;
 // Ham getter
 string PhanLoai::getTenPL(){
-    return this->tenPL;
+    return this-> tenPL;
 }
 int PhanLoai::getMaPL(){
     return this-> maPL;
@@ -54,6 +54,6 @@ istream& operator>>(istream& in, PhanLoai& pl)
 }
 ostream& operator<<(ostream& out, const PhanLoai& pl)
 {
-    out << "\n\t\t\t\t\t\t\t |" << setw(12) << pl.maPL << "|" << setw(14) << pl.tenPL <<  "|";
+    out << "\n" << right << setw(62) << "|" << left << setw(14) << pl.maPL << "|" << left << setw(23) << pl.tenPL <<  "|";
     return out;
 }

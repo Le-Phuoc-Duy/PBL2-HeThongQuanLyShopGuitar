@@ -146,10 +146,9 @@ Date NhanVien::getNgayNghi(){
 /// Da nang hoa toan tu
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
-    out << "\n\t\t\t" << "|" << setw(5) << nv.maNV << "|" << setw(15) << nv.ho_dem_NV + " " << setw(5) << nv.tenNV << "|" << setw(9) << nv.getGioiTinh() 
-    <<  "|" << setw(2) << nv.ngay_sinh << "|" << setw(13) << nv.getSDT() << "|" <<  setw(19) << nv.dia_chi << "|" << setw(9) << nv.getChucVu() << "|" 
-    <<setw(9) << (size_t)nv.luong << "|" << setw(13) << nv.ngay_vao << "|";
-    if (nv.getCheckDeleteSo() == 1) out << setw(13) << nv.ngay_nghi << "|";
+    out << "\n" << setw(12) << " " << "|" << left << setw(7)<< nv.maNV << "|" << left << setw(17) << nv.ho_dem_NV + " " << left << setw(6) << nv.tenNV << "|" << left << setw(11) << nv.getGioiTinh() 
+    << "|" <<left << setw(2) << nv.ngay_sinh << " |" << left << setw(11) << nv.getSDT() << "|" << left << setw(27) << nv.dia_chi << "|" << left <<  setw(11) << nv.getChucVu() 
+    << "|" << left << setw(9) << (size_t)nv.luong << "|" << left << setw(2) << nv.ngay_vao << "  |";
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
