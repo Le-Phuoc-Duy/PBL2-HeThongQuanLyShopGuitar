@@ -153,7 +153,8 @@ void QuanLyNV::Find()
             << " Ngay Sinh |"<< "    SDT    |"<< "          Dia Chi          |"<<"  Chuc Vu  |" << "  Luong  |"
             << "  Ngay Vao  |"<< " Ngay Nghi |" << endl;
             cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
-            cout << *databaseNV[n] << left << setw(2) << databaseNV[n]->getNgayNghi() << " |";
+            if(databaseNV[n]->getCheckDeleteSo() == 0) cout << *databaseNV[n] << "           |";
+            else cout << *databaseNV[n] << left << setw(2) << databaseNV[n]->getNgayNghi() << " |";
             cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
         }
     }else if (luachon == 2)
@@ -173,7 +174,10 @@ void QuanLyNV::Find()
             cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
             for (int i = 0; i < this->lengthNV; i++)
             {
-                if (databaseNV[i]->getTenNV() == tenNV) cout << *databaseNV[i] << left << setw(2) << databaseNV[i]->getNgayNghi() << " |";      
+                if (databaseNV[i]->getTenNV() == tenNV){
+                    if (databaseNV[i] == 0) cout << *databaseNV[i] << "           |";
+                    else cout << *databaseNV[i] << left << setw(2) << databaseNV[i]->getNgayNghi() << " |";
+                }       
             }
             cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
         }
