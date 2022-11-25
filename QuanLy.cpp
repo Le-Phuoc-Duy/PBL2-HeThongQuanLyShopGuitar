@@ -48,7 +48,6 @@ void QuanLy::HamChuanHoa(string& a){
 
 int& QuanLy::Lua_chon(){
     static int luachon;
-    cout << endl;
     while(1)
     {
         try{

@@ -10,7 +10,7 @@ class NhanVien
     private:
         int static count_id;
         int maNV;
-        string ho_dem_NV;
+        string hodem;
         string tenNV;
         int gioi_tinh;
         Date ngay_sinh;

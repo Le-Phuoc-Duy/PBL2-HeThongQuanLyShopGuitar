@@ -268,7 +268,6 @@ void QuanLyNV::Update(){
     cout << setw(68) << " " << "4. Cap nhat so dien thoai" << endl;
     cout << setw(68) << " " << "5. Cap nhat dia chi" << endl;
     cout << setw(68) << " " << "6. Cap nhat chuc vu" << endl;
-    cout << setw(68) << " " << "7. Khoi phuc trang thai" << endl;
     cout << setw(68) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon(); 
@@ -352,11 +351,6 @@ void QuanLyNV::Update(){
                 }while(chucvu != 0 && chucvu != 1);
                 databaseNV[n]->setChucVu(chucvu);
                 databaseNV[n]->setLuong();
-                break;
-            }
-            case 7:
-            {
-                databaseNV[n]->setCheckDelete(0);
                 break;
             }
             default:

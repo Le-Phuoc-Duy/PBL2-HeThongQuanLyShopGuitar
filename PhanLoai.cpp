@@ -48,8 +48,18 @@ PhanLoai::~PhanLoai(){}
 
 istream& operator>>(istream& in, PhanLoai& pl)
 {
-    fflush(stdin);
-    cout << "\t\t\t\t\t\tNhap ten phan loai: ";  getline(cin, pl.tenPL);
+     do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten phan loai: ";  getline(cin, pl.tenPL);
+            while(pl.tenPL[0] == ' ')pl.tenPL.erase(pl.tenPL.begin() + 0);
+            if (pl.tenPL.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
     return in;
 }
 ostream& operator<<(ostream& out, const PhanLoai& pl)

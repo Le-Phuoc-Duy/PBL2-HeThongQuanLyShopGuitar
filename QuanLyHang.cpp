@@ -31,8 +31,18 @@ void QuanLyHang::Insert()
     Show(0); Show(1);
     // kiem tra ma va ten hang hoa co trung khong
     string tenHH;
-    cin.ignore();
-    cout << "\t\t\t\t\t\tNhap ten hang hoa moi: ";  getline(cin, tenHH);
+    do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten hang hoa moi: ";  getline(cin, tenHH);
+            while(tenHH[0] == ' ') tenHH.erase(tenHH.begin() + 0);
+            if (tenHH.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
     HamChuanHoa(tenHH);
     int n = FindIndexTen(tenHH);
     if (n != -1 && databaseK[n]->getCheckDeleteSo() == 1){
@@ -44,6 +54,7 @@ void QuanLyHang::Insert()
             luachon1 = Lua_chon();
             if (luachon1 == 1){
                 databaseK[n]->setCheckDelete(0);
+                return;
             }
             else if (luachon1 == 0)
             {
@@ -74,7 +85,12 @@ void QuanLyHang::Insert()
         }
         else if (luachon2 == 1){
             int tmp;
-            InsertPL();
+            try{
+                InsertPL();
+            }catch(int e){
+                maPL = e;
+                break;
+            }
             if (lengthPL != tmp){
                 PhanLoai pl;
                 maPL = pl.getCountID();
@@ -591,6 +607,7 @@ void QuanLyHang::InsertPL(){
     ShowPL(0); ShowPL(1);
     PhanLoai *pl = new PhanLoai;
     cin >> *pl;
+    // Cuan hoa ten dung
     string tenPL = pl->getTenPL(); HamChuanHoa(tenPL); pl->setTenPL(tenPL);
     int n = FindIndexTenPL(pl->getTenPL());
     if (n != -1 && databasePL[n]->getCheckDeleteSo() == 1){
@@ -602,9 +619,14 @@ void QuanLyHang::InsertPL(){
             luachon1 = Lua_chon();
             if (luachon1 == 1){
                 databaseK[n]->setCheckDelete(0);
+                int m = pl->getMaPL();
+                delete pl;
+                cout << "\t\t\t\t\t\tKhoi phuc phan loai thanh cong!" << endl;
+                throw m; // Nem ma duoc khoi phuc
             }
             else if (luachon1 == 0)
             {
+                delete pl;
                 return;
             }
         } while (luachon1 != 0 && luachon1 != 1 );
@@ -615,8 +637,6 @@ void QuanLyHang::InsertPL(){
         delete pl;
         return;
     }
-    string ten = pl->getTenPL();
-    HamChuanHoa(ten)    ; pl->setTenPL(ten);
     databasePL.push_back(pl);
     this->lengthPL++;
     cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;

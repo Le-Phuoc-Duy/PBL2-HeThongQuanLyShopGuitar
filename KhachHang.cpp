@@ -61,14 +61,40 @@ void KhachHang::setCheckDelete(int check)
 }
 
 istream& operator>>(istream& in, KhachHang& khachhang){
-    in.ignore();
-    cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(in, khachhang.hodem);
-    cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(in, khachhang.tenKH);
+    /// Kiem tra ten va ho co rong khong?
+    do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(in, khachhang.hodem);
+            while(khachhang.hodem[0] == ' ') khachhang.hodem.erase(khachhang.hodem.begin() + 0);
+            if (khachhang.hodem.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
+
+    do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(in, khachhang.tenKH);
+            while(khachhang.tenKH[0] == ' ') khachhang.tenKH.erase(khachhang.tenKH.begin() + 0);
+            if (khachhang.tenKH.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
+    ///
+
+    /// Kiem tra so dien thoai co hop le khong
     while(1)
     {
         try
         {
-            cout << "\n\t\t\t\t\t\tNhap so dien thoai: "; in >> khachhang.sdt;
+            cout << "\t\t\t\t\t\tNhap so dien thoai: "; in >> khachhang.sdt;
             if (khachhang.sdt.length() != 10) throw "";
             if (khachhang.sdt[0] != '0') throw "";
             for (int i = 1; i < khachhang.sdt.length(); i++){

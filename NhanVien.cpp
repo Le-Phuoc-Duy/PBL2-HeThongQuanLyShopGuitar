@@ -12,7 +12,7 @@ NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date nga
     }
     else this->maNV = ++count_id;
     this->gioi_tinh = gioi_tinh;
-    this->ho_dem_NV = hodem;
+    this->hodem = hodem;
     this->tenNV = tenNV;
     this->ngay_sinh = ngay_sinh;
     this->sdt = sdt;
@@ -43,7 +43,7 @@ void NhanVien::setTenNV(string tenNV)
 }
 void NhanVien::setHoDemNV(string hodem)
 {
-    this->ho_dem_NV = hodem;
+    this->hodem = hodem;
 }
 void NhanVien::setNgaySinh(Date ngay_sinh)
 {
@@ -97,11 +97,11 @@ string NhanVien::getTenNV()
 }
 string NhanVien::getHoDemNV()
 {
-    return ho_dem_NV;
+    return hodem;
 }
 string NhanVien::getHoTenNV()
 {
-    return ho_dem_NV + tenNV;
+    return hodem + tenNV;
 }
 string NhanVien::getGioiTinh()
 {
@@ -146,17 +146,41 @@ Date NhanVien::getNgayNghi(){
 /// Da nang hoa toan tu
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
-    out << "\n" << setw(12) << " " << "|" << left << setw(7)<< nv.maNV << "|" << left << setw(17) << nv.ho_dem_NV + " " << left << setw(6) << nv.tenNV << "|" << left << setw(11) << nv.getGioiTinh() 
+    out << "\n" << setw(12) << " " << "|" << left << setw(7)<< nv.maNV << "|" << left << setw(17) << nv.hodem + " " << left << setw(6) << nv.tenNV << "|" << left << setw(11) << nv.getGioiTinh() 
     << "|" <<left << setw(2) << nv.ngay_sinh << " |" << left << setw(11) << nv.getSDT() << "|" << left << setw(27) << nv.dia_chi << "|" << left <<  setw(11) << nv.getChucVu() 
     << "|" << left << setw(9) << (size_t)nv.luong << "|" << left << setw(2) << nv.ngay_vao << "  |";
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
 {
+     /// Kiem tra ten va ho co rong khong?
+    do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(in, nv.hodem);
+            while(nv.hodem[0] == ' ') nv.hodem.erase(nv.hodem.begin() + 0);
+            if (nv.hodem.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
+
+    do{
+        try{
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(in, nv.tenNV);
+            while(nv.tenNV[0] == ' ') nv.tenNV.erase(nv.tenNV.begin() + 0);
+            if (nv.tenNV.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
+    ///
     string x;
-    cin.ignore();
-    cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";  getline(in, nv.ho_dem_NV);
-    cout << "\t\t\t\t\t\tNhap ten nhan vien: ";  getline(in, nv.tenNV);
     cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
     do{
         cout << "\t\t\t\t\t\tNhap gioi tinh : "; fflush(stdin); in >> x;
