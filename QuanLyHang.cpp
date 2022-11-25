@@ -194,6 +194,7 @@ void QuanLyHang::Remove()
     cout << "\n\n";
     cout << setw(74) << " " << "1. Xoa theo ma" << endl;
     cout << setw(74) << " " << "2. Xoa theo ten" << endl;
+    cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
 
@@ -202,8 +203,8 @@ void QuanLyHang::Remove()
         Show(0);
         cout << "\t\t\t\t\t\tMa can xoa: ";   maHH = Nhap_ma();
         int n = FindIndex(maHH);
-        if (n == -1){
-            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
+        if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
+            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
             return;
         }
         this->databaseK[n]->setCheckDelete(1);
@@ -215,15 +216,18 @@ void QuanLyHang::Remove()
         Show(0);
         cin.ignore(); 
         cout << "\t\t\t\t\t\tNhap ten hang hoa: ";  getline(cin,tenHH);
-        int n = FindIndexTen(tenHH);
         HamChuanHoa(tenHH);
-        if (n == -1){
-            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
+        int n = FindIndexTen(tenHH);
+        if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
+            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai hoac da bi xoa!" << endl;textcolor(7);
             return;
         }
         this->databaseK[n]->setCheckDelete(1);
         this->databaseK[n]->setSoLuong(0);
         cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
+    }
+    else if(luachon == 0){
+        return;
     }
     else {
         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
@@ -235,6 +239,7 @@ void QuanLyHang::Find(){
     cout << "\n\n";
     cout << setw(74) << " " << "1. Tim theo ma" << endl;
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
@@ -269,11 +274,17 @@ void QuanLyHang::Find(){
             if (databaseK[n]->getTenHH() == tenHH) cout << *databaseK[n] << " " << left << setw(11) << databaseK[n]->getCheckDelete() << "|";
             cout << "\n" << setw(26) << " "; for (int i = 1; i <= 123;i++) cout << "-"; cout << endl;  
         }
-    } else return;
+    }else if (luachon == 0){
+        return;
+    }
+    else{
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
+        return;
+    }
 }
 void QuanLyHang::Update(){
     cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\n";
+    cout << "\n\n\n";
     cout << setw(69) << " " << "1. Cap nhat ten" << endl;
     cout << setw(69) << " " << "2. Cap nhat phan loai" << endl;
     cout << setw(69) << " " << "3. Cap nhat gia von" << endl;
@@ -614,8 +625,8 @@ void QuanLyHang::RemovePL(){
     ShowPL(0);
     cout << "\t\t\t\t\t\tMa phan loai: ";   maPL = Nhap_ma();
     int n = FindIndexPL(maPL);
-    if (n == -1){
-        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
+    if (n == -1 || databasePL[n]->getCheckDeleteSo() == 1){
+        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
         return;
     } else{
         this->databasePL[n]->setCheckDelete(1);
@@ -652,6 +663,7 @@ void QuanLyHang::FindPL(){
     cout << "\n\n";
     cout << setw(74) << " " << "1. Tim theo ma" << endl;
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
 
@@ -686,7 +698,10 @@ void QuanLyHang::FindPL(){
             cout << *databasePL[n] << " " << left << setw(11) << databasePL[n]->getCheckDelete() << "|";
             cout << "\n" << setw(61) << " ";for (int i = 1; i <= 53; i++) cout << "-"; cout << endl;
         }
-    }else{
+    }else if(luachon == 0){
+        return;
+    }
+    else{
         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         return;
     }

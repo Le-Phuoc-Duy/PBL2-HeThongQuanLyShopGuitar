@@ -192,9 +192,9 @@ void QuanLyKH::Remove()
     Show(0);
     cout << "\t\t\t\t\t\tMa khach hang can xoa: "; ma = Nhap_ma();
     int n = FindIndex(ma);
-    if (n == -1)
+    if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1)
     {
-        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
+        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
         return;
     }
     else{
