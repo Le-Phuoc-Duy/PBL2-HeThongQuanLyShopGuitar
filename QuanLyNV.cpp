@@ -373,8 +373,8 @@ void QuanLyNV::Remove()
     Show(0);
     cout << "\t\t\t\t\t\tMa can xoa: ";   manv = Nhap_ma();
     int n = FindIndex(manv);
-    if (n == -1){
-        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
+    if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
+        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
         return;
     }
     else{
