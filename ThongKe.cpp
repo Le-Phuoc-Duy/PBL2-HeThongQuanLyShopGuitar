@@ -25,7 +25,37 @@ void ThongKe::ThongKeThang(QuanLyNV& nv, QuanLyHD& hd){
     this->luongNV = 0;
 
     int month, year;
-    cout << "\t\t\t\t\t\tNhap thang, nam can thong ke: "; cin >> month; cin.ignore(); cin >> year;
+    cout << "\t\t\t\t\t\tNhap thang, nam can thong ke: ";
+    while(1){
+        try{
+            string x;
+            fflush(stdin); getline(cin, x);
+            int n = x.length();
+            month = year = 0;
+            int count = 0, count_pow = 1; int i = n - 1;
+            for(int j = n - 1; j >= 0; --j){
+                if (x[j] == '/') count++;
+            }
+            if (count != 1 || x[0] == '/') throw "";
+            while (x[i] != '/' && i >= 0){
+                if (x[i] < 48 || x[i] > 57) throw "";
+                else year += (int)(x[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            i--; count_pow = 1;
+            while (i >= 0){
+                if (x[i] < 48 || x[i] > 57) throw "";
+                else month += (int)(x[i] - '0') * count_pow;
+                count_pow *= 10;
+                i--;
+            }
+            break;
+        }
+        catch(...) {
+            cout << "\t\t\t\t\t\tThang nam phai nhap theo dinh dang mm/yyyy. Nhap lai: ";
+        }
+    }
     Date a(1,month,year);   //thoi gian nhap vao
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -104,7 +134,7 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
     this->luongNV = 0;
 
     int year;
-    cout << "\t\t\t\t\t\tNhap nam can thong ke: "; cin >> year;
+    cout << "\t\t\t\t\t\tNhap nam can thong ke: "; year = hd.In_double();
     time_t now = time(0);
     tm *ltm = localtime(&now);
     int yy = 1900 + ltm->tm_year;   //nam hien tai
@@ -165,6 +195,7 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
             && hd.databaseHD[j]->getNgayLap() == hientai)
                 this->von = this->von + hd.databaseHD[j]->getThanhTien();
         }
+        this->loi_nhuan = this->doanh_thu - this->von - this->luongNV;
         cout << setw(30) << " " <<"| Thang " << left << setw(3) << month <<"|"<< setw(12) << " "<< left << setw(18) << round((this->luongNV / 1000)*10)/10 << "|"
         << setw(5) << " "<< left << setw(10) << round((this->von / 1000)*10)/10 << "|"
         << setw(7) << " "<< left << setw(12) << round((this->doanh_thu / 1000)*10)/10 << "|"

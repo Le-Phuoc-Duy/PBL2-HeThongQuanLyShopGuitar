@@ -94,7 +94,7 @@ string HoaDon::getTrangThai()
 void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
     Date ngay_lap; setNgayLap(ngay_lap);  //set thoi gian tu dong
 
-    cout << "\t\t\t\t\t\tNhap so luong loai hang: "; this->lengthCTHD = hh.In_double();
+    cout << "\t\t\t\t\t\tBan muon mua(ban) bao nhieu loai hang?: "; this->lengthCTHD = hh.In_double();
     hh.Show(0);
     for (int i = 0; i < this->lengthCTHD; i++){
         cout << "\n\t\t\t\t\t\tNhap thong tin chi tiet loai " << i + 1;       

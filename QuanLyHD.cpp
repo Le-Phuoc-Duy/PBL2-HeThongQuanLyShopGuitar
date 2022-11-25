@@ -238,7 +238,7 @@ void QuanLyHD::Show(QuanLyHang& hh){
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 2){
-                    textcolor(3);cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
+                    textcolor(3);cout << "\t\t\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;
@@ -249,7 +249,7 @@ void QuanLyHD::Show(QuanLyHang& hh){
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 1){
-                    textcolor(3);cout << "\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
+                    textcolor(3);cout << "\t\t\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;
@@ -298,7 +298,7 @@ void QuanLyHD::ThongKeHomNay(){
     day = ltm->tm_mday;
     month = 1+ltm->tm_mon;
     year = 1900 + ltm->tm_year;
-
+    Date homnay(day, month, year);
     for(int i = 0; i<this->getLengthHD();i++){
         if (databaseHD[i]->getNgayLap().getNgay() == day 
         && databaseHD[i]->getNgayLap().getThang() == month 
@@ -308,7 +308,7 @@ void QuanLyHD::ThongKeHomNay(){
         }
     }
     loinhuan = doanhthu - von;
-
+    cout << "\n" << setw(73) << " " << "BAO CAO NGAY " << homnay << endl;
     cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
     cout << setw(56) << " " << "|      Von (nghin)      |"<< setw(9) << " "<< left << setw(14) << round((von / 1000)*10)/10 << "|" <<endl;
     cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;

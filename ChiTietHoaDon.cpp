@@ -54,7 +54,7 @@ void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
                 cout << "\t\t\t\t\t\tBan muon nhap lai?      1. Co           0. Khong";
                 int luachon1 = ql_hh.Lua_chon();
                 if (luachon1 == 0){
-                so_luong = 0;   return; // Khong thay doi so luong ~ khong mua hang nua
+                    so_luong = 0;   return; // Khong thay doi so luong ~ khong mua hang nua
                 }else if (luachon1 == 1) break;
             }while(1);
         }else break;
@@ -94,7 +94,12 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
         }
         else if (luachon == 2){
             int tmp = ql_hh.lengthK;
-            ql_hh.Insert();
+            try{
+                ql_hh.Insert();
+            }catch(int e){
+                maHH = e;
+                break;
+            }
             if (tmp != ql_hh.lengthK){
                 maHH = ql_hh.databaseK[0]->getCountID();
                 n = ql_hh.FindIndex(maHH);
@@ -116,8 +121,10 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
                 ql_hh.databaseK[n]->setCheckDelete(0);
             }
             else if (luachon1 == 0)
-            {
+            { /// Khong khoi phuc lai, tuc la khong mua hang hoa do
                 so_luong = 0;
+                don_gia = 0;
+                return;
             }
         } while (luachon1 != 0 && luachon1 != 1);
     }

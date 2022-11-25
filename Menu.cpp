@@ -214,7 +214,11 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    cout << endl; ql_hang.Insert();
+                    cout << endl;
+                    try{
+                        ql_hang.Insert();
+                    }catch(int e){
+                    }
                     cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
@@ -288,7 +292,12 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
                 }
                 case 1:
                 {
-                    cout << endl; ql_hang.InsertPL();
+                    cout << endl; 
+                    try
+                    {
+                        ql_hang.InsertPL();
+                    }
+                    catch(int e){}
                     cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
                     break;
                 }
