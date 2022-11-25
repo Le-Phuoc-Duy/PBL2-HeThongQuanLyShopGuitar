@@ -87,7 +87,7 @@ istream& operator>>(istream& in, KhachHang& khachhang){
 
 ostream& operator<<(ostream& out, KhachHang& khachhang)
 {
-    out << "\n\t\t\t\t\t\t" << "|" << setw(14) << khachhang.maKH << "|" << setw(1) << khachhang.hodem + " " << setw(5) << khachhang.tenKH 
-    << "|" << setw(5) << khachhang.sdt << "|" << setw(7) << khachhang.so_diem << "|";
+    out << "\n" << setw(52) << " " << "|" << left << setw(7) << khachhang.maKH << "|" << left << setw(17) << khachhang.hodem + " " << left << setw(5) << khachhang.tenKH 
+    << "|" << left << setw(13) << khachhang.sdt << "|" << setw(11) << khachhang.so_diem << "|";
     return out;
 }

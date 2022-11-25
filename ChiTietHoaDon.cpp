@@ -128,6 +128,6 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
 void ChiTietHoaDon::Output(QuanLyHang& hh)
 {
     int n = hh.FindIndex(this->maHH);
-    cout << "\n\t\t\t\t\t\t|" << setw(18) << hh.databaseK[n]->getTenHH() << "|" << setw(8) << this->so_luong << "|" 
-    << setw(14) << setprecision(20) << this->don_gia << "|";
+    cout << "\n"<< setw(48) << " " << "|" << left << setw(20) << hh.databaseK[n]->getTenHH() << "|" << left <<setw(10) << this->so_luong << "|" << 
+    left << setw(11) << setprecision(20) << this->don_gia << "|";
 }

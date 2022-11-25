@@ -23,7 +23,7 @@ void QuanLyNV::Readf()
 
     if (!filein)
     {
-        cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;
+        textcolor(12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;textcolor(7);
         return;
     }
     filein.seekg(0, ios::end);
@@ -88,19 +88,23 @@ void QuanLyNV::Readf()
 }
 void QuanLyNV::Show(int trang_thai)
 {
-    if (trang_thai == 0) cout << "\n\t\t\t\t\t\t\tDANH SACH NHAN VIEN HIEN CO";
-    else cout << "\n\t\t\t\t\t\t\tDANH SACH NHAN VIEN DA XOA";
-    cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
-    cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) 
-    << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |" 
-    << setw(10)  << "Ngay vao  |";
-    if (trang_thai == 1) cout << setw(10)  << "Ngay ra  |";
-    cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------";
+    if (trang_thai == 0){
+        textcolor(6);cout << "\n"<< setw(67) << " " << "DANH SACH NHAN VIEN HIEN CO" << endl;textcolor(7);
+    } 
+    else{
+        textcolor(6);cout << "\n"<< setw(67) << " " << "DANH SACH NHAN VIEN DA XOA" << endl;textcolor(7);
+    } 
+    cout << setw(12) << " "; for (int i = 1; i <= 132;i++) cout << "-";
+    cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
+         << " Ngay Sinh |"<< "    SDT    |"<< "          Dia Chi          |"<<"  Chuc Vu  |" << "  Luong  |"
+         << "  Ngay Vao  |" << endl;
+    cout << setw(12) << " "; for (int i = 1; i <= 132;i++) cout << "-";
+    
     for (int i = 0; i < this->lengthNV; i++)
     {
         if (databaseNV[i]->getCheckDeleteSo() == trang_thai) cout << *databaseNV[i];
     }
-    cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
+    cout << "\n" <<setw(12) << " "; for (int i = 1; i <= 132;i++) cout << "-"; cout << endl;
 }
 void QuanLyNV::Insert()
 {
@@ -131,25 +135,27 @@ void QuanLyNV::Writef()
 }
 void QuanLyNV::Find()
 {
-    cout << "\n\t\t\t\t\t\t---------------------------------";
-    cout << "\n\t\t\t\t\t\t|\t1. Tim theo ma\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t2. Tim theo ten\t\t|";
-    cout << "\n\t\t\t\t\t\t---------------------------------";
+    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(74) << " " << "1. Tim theo ma" << endl;
+    cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
         cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
         int n = FindIndex(maNV);
         if (n == -1){
-            cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
             return;
         }else{
-            cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
-            cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) 
-            << "Ngay sinh|"<< setw(14) << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |" 
-            << setw(10)  << "Ngay vao  |" << setw(11) << "Trang thai|";
-            cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------";
-            cout << *databaseNV[n] << setw(10) << databaseNV[n]->getCheckDelete() << "|";
-            cout << "\n\t\t\t-------------------------------------------------------------------------------------------------------" << endl;
+            cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
+            cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
+            << " Ngay Sinh |"<< "    SDT    |"<< "          Dia Chi          |"<<"  Chuc Vu  |" << "  Luong  |"
+            << "  Ngay Vao  |"<< " Ngay Nghi |" << endl;
+            cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
+            if(databaseNV[n]->getCheckDeleteSo() == 0) cout << *databaseNV[n] << "           |";
+            else cout << *databaseNV[n] << left << setw(2) << databaseNV[n]->getNgayNghi() << " |";
+            cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
         }
     }else if (luachon == 2)
     {
@@ -158,22 +164,25 @@ void QuanLyNV::Find()
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenNV);
         HamChuanHoa(tenNV);
         if (FindIndexTen(tenNV) == -1){
-            cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
             return;
         }else{
-            cout << "\n\t\t\t------------------------------------------------------------------------------------------------------------------" << endl;
-            cout << "\t\t\t"<< "|Ma NV|" << setw(21) << "Ho ten nhan vien  |" << setw(9) << "Gioi tinh|" << setw(11) << "Ngay sinh|" << setw(14) 
-            << "SDT     |" <<  setw(20) << "Dia chi     |"<< setw(10) << "Chuc vu |" << setw(10)  << "Luong  |" << setw(10)  << "Ngay vao  |" 
-            << setw(11) << "Trang thai|";
-            cout << "\n\t\t\t------------------------------------------------------------------------------------------------------------------";
+            cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
+            cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
+            << " Ngay Sinh |"<< "    SDT    |"<< "          Dia Chi          |"<<"  Chuc Vu  |" << "  Luong  |"
+            << "  Ngay Vao  |"<< " Ngay Nghi |" << endl;
+            cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
             for (int i = 0; i < this->lengthNV; i++)
             {
-                if (databaseNV[i]->getTenNV() == tenNV) cout << *databaseNV[i] << setw(10) << databaseNV[i]->getCheckDelete() << "|";      
+                if (databaseNV[i]->getTenNV() == tenNV){
+                    if (databaseNV[i] == 0) cout << *databaseNV[i] << "           |";
+                    else cout << *databaseNV[i] << left << setw(2) << databaseNV[i]->getNgayNghi() << " |";
+                }       
             }
-            cout << "\n\t\t\t------------------------------------------------------------------------------------------------------------------" << endl;
+            cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
         }
     } else{
-        cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         return;
     }
 }
@@ -217,13 +226,18 @@ void QuanLyNV::selectionsortTen(bool (*cmp)(string,string)){
 
 void QuanLyNV::Sort()
 {
-    system("cls");
-    cout << "\n\t\t\t\t\t\t------------------------------------------";
-    cout << "\n\t\t\t\t\t\t|1. Sap xep ten nhan vien theo chieu giam|";
-    cout << "\n\t\t\t\t\t\t|2. Sap xep ten nhan vien theo chieu tang|";
-    cout << "\n\t\t\t\t\t\t------------------------------------------";
+    cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(62)<< " " << "1. Sap xep ten nhan vien theo chieu giam" << endl;
+    cout << setw(62)<< " " << "2. Sap xep ten nhan vien theo chieu tang" << endl;
+    cout << setw(62)<< " " << "0. Thoat" << endl;
+    cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
     int luachon = Lua_chon();
     switch(luachon){
+        case 0:
+        {
+            break;
+        }
         case 1:
         {
             selectionsortTen(down);
@@ -238,7 +252,7 @@ void QuanLyNV::Sort()
         }
         default:
         {
-            cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
             break;
 
         }
@@ -246,23 +260,23 @@ void QuanLyNV::Sort()
 }
 
 void QuanLyNV::Update(){
-    system("cls");
-    cout << "\n\t\t\t\t\t\t-----------------------------------------";
-    cout << "\n\t\t\t\t\t\t|\t1. Cap nhat ten\t\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t2. Cap nhat gioi tinh\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t3. Cap nhat ngay sinh\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t4. Cap nhat so dien thoai\t|";
-    cout << "\n\t\t\t\t\t\t|\t5. Cap nhat dia chi\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t6. Cap nhat chuc vu\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t7. Khoi phuc trang thai\t\t|";
-    cout << "\n\t\t\t\t\t\t|\t0. Thoat\t\t\t|";
-    cout << "\n\t\t\t\t\t\t-----------------------------------------";
+    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+    cout << "\n\n";
+    cout << setw(68) << " " << "1. Cap nhat ten" << endl;
+    cout << setw(68) << " " << "2. Cap nhat gioi tinh" << endl;
+    cout << setw(68) << " " << "3. Cap nhat ngay sinh" << endl;
+    cout << setw(68) << " " << "4. Cap nhat so dien thoai" << endl;
+    cout << setw(68) << " " << "5. Cap nhat dia chi" << endl;
+    cout << setw(68) << " " << "6. Cap nhat chuc vu" << endl;
+    cout << setw(68) << " " << "7. Khoi phuc trang thai" << endl;
+    cout << setw(68) << " " << "0. Thoat" << endl;
+    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon(); 
 
     if (luachon == 0){
         return;
     } else if (luachon < 0 || luachon > 7){
-        cout << "\t\t\t\t\t\tLua chon khong hop le!";
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
         return;
     }
     else{
@@ -274,12 +288,12 @@ void QuanLyNV::Update(){
         // Kiem tra xem ma co ton tai khong (neu chon khoi phuc ma thi xem ban dau ma da xoa chua)
         if (luachon != 7){
             if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
-                cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
                 return;
             }
         }else{
             if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 0){
-                cout << "\t\t\t\t\t\tKhong ton tai nhan vien da xoa nhu tren!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai nhan vien da xoa nhu tren!" << endl;textcolor(7);
                 return;
             }
         }
@@ -360,7 +374,7 @@ void QuanLyNV::Remove()
     cout << "\t\t\t\t\t\tMa can xoa: ";   manv = Nhap_ma();
     int n = FindIndex(manv);
     if (n == -1){
-        cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;
+        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
         return;
     }
     else{

@@ -131,8 +131,8 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
 }
 ostream& operator<<(ostream& out, HoaDon& hd)
 {
-    out << "\n\t\t\t\t" << "|" << setw(5) << hd.getMaHD() << "|" << setw(5) << hd.getMaNV() << "|" << setw(5) << hd.getSDT() 
-    << "|" << "|" << setw(14) << setprecision(13) << hd.getThanhTien() << "|" << setw(10) << hd.getTrangThai() << "|";
+    out << "\n" << setw(53) << " " << "|" << left << setw(7) << hd.getMaHD() << "|" << left <<setw(7) << hd.getMaNV() << "|" << left << setw(11) << hd.getSDT() << "|"
+    << left << setw(12 ) << setprecision(13) << hd.getThanhTien() << "|" << left << setw(12) << hd.getTrangThai() << "|";
     return out;
 }
 void HoaDon::Output(QuanLyHang& hh)
@@ -144,13 +144,13 @@ void HoaDon::Output(QuanLyHang& hh)
     cout << "\n\t\t\t\t\t\t4. SDT khach hang: " << sdt;
     cout << "\n\t\t\t\t\t\t5. Ngay lap: " << ngay_lap;
     cout << endl;
-    cout << "\t\t\t\t\t\t--------------------------------------------" << endl;
-    cout << "\t\t\t\t\t" << setw(28) << "|      Ten hang hoa|" << setw(9) << "So luong|" << setw(15) << "Don gia|" << endl;
-    cout << "\t\t\t\t\t\t--------------------------------------------" ;
+    cout << setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-"; cout << endl;
+    cout << setw(48) << " " << "|    Ten hang hoa    |" << " So luong |" << "  Don gia  |" << endl;
+    cout << setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-";
     for (int i = 0; i < lengthCTHD; i++)
     {
         cthd[i]->Output(hh);
     }
-    cout << "\n\t\t\t\t\t\t--------------------------------------------" ;
-    cout << "\n\n\n\t\t\t\t\t\tTHANH TIEN: " << setprecision(15) << thanh_tien << endl;
+    cout << "\n" <<setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-";
+    cout << "\n\n\t\t\t\t\t\tTHANH TIEN: " << setprecision(15) << thanh_tien << endl;
 }

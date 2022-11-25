@@ -8,6 +8,8 @@
         "*.tcc": "cpp",
         "istream": "cpp",
         "new": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "xstring": "cpp",
+        "cmath": "cpp"
     }
 }
