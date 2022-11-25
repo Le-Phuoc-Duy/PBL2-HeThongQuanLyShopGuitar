@@ -56,7 +56,8 @@ void QuanLyHang::Insert()
         cout << "\t\t\t\t\t\tHang hoa " << tenHH << " da ton tai. Them khong thanh cong!" << endl;
         return;
     }
-    // kiem tra ma hang hoa ton tai chua
+    system("cls");
+    // kiem tra ma phan loai ton tai chua
     ShowPL(0); ShowPL(1);
     cout << "\t\t\t\t\t\tHang hoa thuoc phan loai? ";     int maPL = Nhap_ma();
     int m = FindIndexPL(maPL);
