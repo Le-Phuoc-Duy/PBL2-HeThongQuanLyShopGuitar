@@ -114,7 +114,7 @@ void QuanLyNV::Insert()
     string ten = nv->getTenNV();    HamChuanHoa(ten);   nv->setTenNV(ten);
     databaseNV.push_back(nv);
     this->lengthNV++;
-    cout << "\t\t\t\t\t\tThem nhan vien thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tThem nhan vien thanh cong!" << endl; textcolor(7);
 }
 
 void QuanLyNV::Writef()
@@ -130,7 +130,7 @@ void QuanLyNV::Writef()
         << ", " << databaseNV[i]->getCheckDelete() << ", " << databaseNV[i]->getNgayVao();
         if (databaseNV[i]->getCheckDelete() == "Da Xoa") fileout << ", " << databaseNV[i]->getNgayNghi();  
     }
-    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
     fileout.close();
 }
 void QuanLyNV::Find()
@@ -139,6 +139,7 @@ void QuanLyNV::Find()
     cout << "\n\n";
     cout << setw(74) << " " << "1. Tim theo ma" << endl;
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
@@ -181,6 +182,8 @@ void QuanLyNV::Find()
             }
             cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
         }
+    }else if(luachon == 0){
+        return;
     } else{
         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         return;
@@ -274,8 +277,8 @@ void QuanLyNV::Update(){
 
     if (luachon == 0){
         return;
-    } else if (luachon < 0 || luachon > 7){
-        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
+    } else if (luachon < 0 || luachon > 6){
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!"<< endl;textcolor(7);
         return;
     }
     else{
@@ -358,7 +361,7 @@ void QuanLyNV::Update(){
                 break;
             } 
         }
-        cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
+        textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
     }
 }
 void QuanLyNV::Remove()
@@ -374,6 +377,6 @@ void QuanLyNV::Remove()
     else{
         this->databaseNV[n]->setNgayNghi();
         this->databaseNV[n]->setCheckDelete(1);
-        cout << "\t\t\t\t\t\tXoa nhan vien thanh cong!" << endl;
+        textcolor(6);cout << "\t\t\t\t\t\tXoa nhan vien thanh cong!" << endl;textcolor(7);
     }
 }

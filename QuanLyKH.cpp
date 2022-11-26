@@ -66,7 +66,7 @@ void QuanLyKH::Insert()
 
     databaseKH.push_back(khachhang);
     this->lengthKH++;
-    cout << "\t\t\t\t\t\tThem khach hang thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tThem khach hang thanh cong!" << endl;textcolor(7);
 }
 
 void QuanLyKH::Readf()
@@ -106,7 +106,7 @@ void QuanLyKH::Readf()
         databaseKH.push_back(khachhang);
         (this->lengthKH)++;
     }
-    cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;
+    textcolor(6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;textcolor(7);
     filein.close();
 }
 
@@ -129,6 +129,7 @@ void QuanLyKH::Find()
     cout << "\n\n";
     cout << setw(74) << " " << "1. Tim theo SDT" << endl;
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
+    cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
@@ -167,7 +168,9 @@ void QuanLyKH::Find()
             cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
               
         }
-    } else{
+    }else if (luachon == 0){
+        return;
+    }else{
         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         return;
     }
@@ -182,7 +185,7 @@ void QuanLyKH::Writef()
         fileout << databaseKH[i]->getMaKH() << ", " <<  databaseKH[i]->getHoDemKH() << ", "<<  databaseKH[i]->getTenKH() 
         << ", " << databaseKH[i]->getSDT() << ", " <<  databaseKH[i]->getSoDiem() << ", " << databaseKH[i]->getCheckDelete();
     }
-    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
     fileout.close();
 }
 
@@ -199,7 +202,7 @@ void QuanLyKH::Remove()
     }
     else{
         this->databaseKH[n]->setCheckDelete(1);
-        cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
+        textcolor(6);cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;textcolor(7);
     }
 }
 
@@ -276,7 +279,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
                 break;
             } 
         }
-        cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
+        textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
     }
 }
 bool increase(string x, string y)

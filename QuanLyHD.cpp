@@ -72,7 +72,7 @@ void QuanLyHD::Readf()
         this->databaseHD.push_back(hd);
         this->lengthHD++;
     }
-    cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;
+    textcolor(6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;textcolor(7);
     filein.close();
 }
 
@@ -81,7 +81,7 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
     cout << "\t\t\t\t\t\tMa nhan vien nhap: ";  int maNV = Nhap_ma();
     int n = nv.FindIndex(maNV);
     while (n == -1 || nv.databaseNV[n]->getCheckDeleteSo() == 1){
-        cout << "\t\t\t\t\t\tMa nhan vien chua ton tai hoac da xoa!" << endl;
+        textcolor(12);cout << "\t\t\t\t\t\tMa nhan vien chua ton tai hoac da xoa!" << endl;textcolor(7);
         int luachon;
         do{
             cout << "\t\t\t\t\t\tBan muon?    1. Nhap lai       0. Thoat"; luachon = Lua_chon();
@@ -99,7 +99,7 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
             cout << "\t\t\t\t\t\tSDT khach hang: " << endl; sdt = KiemTraSDT();
             int m = kh.FindIndexSDT(sdt);
             if (m == -1 || (m != -1 && kh.databaseKH[m]->getCheckDeleteSo() == 1)){
-                cout << "\t\t\t\t\t\tKhach hang chua ton tai hoac da xoa!" << endl;
+                textcolor(12);cout << "\t\t\t\t\t\tKhach hang chua ton tai hoac da xoa!" << endl;textcolor(7);
                 return;
             }
         }else if (trang_thai == 1) sdt = "NULL";
@@ -158,6 +158,7 @@ void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
     cout << "\n\n";
     cout << setw(61) << " " << "1. Tim theo ma" << endl;
     cout << setw(61) << " " << "2. Tim danh sach hoa don theo nhan vien" << endl;
+    cout << setw(61) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
     int luachon = Lua_chon();
     if (luachon == 1){
@@ -183,6 +184,12 @@ void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
                 count++;
             }
         }
+    }else if(luachon == 0){
+        return;
+    }
+    else {
+        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
+        return;
     }
 }
 void QuanLyHD::Remove()
@@ -220,7 +227,7 @@ void QuanLyHD::Remove()
             {
                 databaseHD.erase(FindIndexHD(maHD));
                 this->lengthHD--;
-                cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
+                textcolor(6);cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;textcolor(7);
             }
             else if (luachon == 0)
             {
@@ -274,7 +281,7 @@ void QuanLyHD::Writef(){
         }
         fileout << databaseHD[i]->getThanhTien();
     }
-    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
     fileout.close();
 }
 void QuanLyHD::ShowGeneral(int trang_thai){
