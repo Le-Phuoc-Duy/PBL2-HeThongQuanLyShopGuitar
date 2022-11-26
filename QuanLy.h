@@ -18,7 +18,7 @@ public:
 
     void HamChuanHoa(string&);
     string& KiemTraSDT();
-    int& Lua_chon();
+    int So_nguyen();
     int Nhap_ma();
     double In_double();
     void textcolor(int);

@@ -49,23 +49,27 @@ void QuanLy::HamChuanHoa(string& a){
     }
 }
 
-int& QuanLy::Lua_chon(){
-    static int luachon;
+int QuanLy::So_nguyen(){
+    int luachon = 0;
     while(1)
     {
         try{
             string x;
-            fflush(stdin);
-            cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
-            // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen tu 0 -> 9 khong
-            if (x.length() != 1) throw "";
-            if (x[0] < 48 || x[0] > 57) throw int(1);
-            // Neu ket qua dung, thi tra ve lua chon
-            luachon = (int)(x[0] - '0');
+            fflush(stdin);  getline(cin, x);
+            int n = x.length();
+            // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
+            for(int i = n - 1; i >= 0; --i){
+                if (x[i] < 48 || x[i] > 57) throw "";
+            }
+            // Neu ket qua dung, thi tra ve lua 
+            for(int i = n - 1; i >= 0; --i){
+                luachon += int(x[i] - '0') * pow(10, n-i-1);
+            }
             break;
         }
         catch(...) {
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;textcolor(7);
+            textcolor(12);cout << "\t\t\t\t\t\tKieu du lieu khong hop le!" << endl;textcolor(7);
+            cout << "\n\t\t\t\t\t\tNhap lai: ";
         }
     }
     return luachon;
@@ -77,7 +81,7 @@ int QuanLy::Nhap_ma(){
         try{
             string x;
             fflush(stdin);
-            cout << "\n\t\t\t\t\t\tNhap ma: "; cin >> x;
+            cout << "\n\t\t\t\t\t\tNhap ma: "; getline(cin, x);
             int n = x.length();
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
             for(int i = n - 1; i >= 0; --i){
@@ -121,7 +125,7 @@ double QuanLy::In_double()
 {
     double kq;
     string data;
-    fflush(stdin); cin >> data;
+    fflush(stdin); getline(cin, data);
     while(1)
     {
         try
@@ -151,7 +155,8 @@ double QuanLy::In_double()
         }
         catch(...)
         {
-            cout << "\t\t\t\t\t\tKieu du lieu nhap vao khong hop le. Nhap lai: "; fflush(stdin); cin >> data;
+            cout << "\t\t\t\t\t\tKieu du lieu khong hop le!"; 
+            cout << "\n\t\t\t\t\t\tNhap lai: "; fflush(stdin); getline(cin, data);
         }
     }
     return kq;

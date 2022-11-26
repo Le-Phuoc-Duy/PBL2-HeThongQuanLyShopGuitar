@@ -140,7 +140,7 @@ void QuanLyNV::Find()
     cout << setw(74) << " " << "1. Tim theo ma" << endl;
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     if (luachon == 1){
         cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
         int n = FindIndex(maNV);
@@ -232,7 +232,7 @@ void QuanLyNV::Sort()
     cout << setw(62)<< " " << "2. Sap xep ten nhan vien theo chieu tang" << endl;
     cout << setw(62)<< " " << "0. Thoat" << endl;
     cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     switch(luachon){
         case 0:
         {
@@ -270,7 +270,7 @@ void QuanLyNV::Update(){
     cout << setw(68) << " " << "6. Cap nhat chuc vu" << endl;
     cout << setw(68) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon(); 
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
 
     if (luachon == 0){
         return;
@@ -306,7 +306,7 @@ void QuanLyNV::Update(){
                 int gioitinh;
                 do{
                     cout << "\t\t\t\t\t\tGioi tinh :    1.Nam       0. Nu" << endl;
-                    gioitinh = Lua_chon();
+                    cout << "\n\t\t\t\t\t\tNhap lua chon: "; gioitinh = So_nguyen();
                 }while(gioitinh != 0 && gioitinh != 1);
                 databaseNV[n]->setGioiTinh(gioitinh);
                 break;
@@ -339,7 +339,7 @@ void QuanLyNV::Update(){
                     cout << "\t\t\t\t\t\tChuc vu: ";
                     cout << "\n\t\t\t\t\t\t 0. Quan ly"; 
                     cout << "\n\t\t\t\t\t\t 1. Nhan vien"; 
-                    chucvu = Lua_chon();
+                    cout << "\n\t\t\t\t\t\tNhap lua chon: "; chucvu = So_nguyen();
                 }while(chucvu != 0 && chucvu != 1);
                 databaseNV[n]->setChucVu(chucvu);
                 databaseNV[n]->setLuong();

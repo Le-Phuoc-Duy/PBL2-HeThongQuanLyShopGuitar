@@ -152,23 +152,28 @@ void Start()
     cout << "\n\n\n";textColor(7);system("pause");
 }
 ////Ham thao tac
-int& Lua_chon_hop_le(){
-    static int luachon;
+int Lua_chon_hop_le(){
+    int luachon = 0;
     cout << endl;
     while(1)
     {
         try{
             string x;
-            textColor(7);cout << "\n\t\t\t\t\t\tNhap lua chon: "; cin >> x;
-            // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen tu 0 -> 9 khong
-            if (x.length() != 1) throw "";
-            if (x[0] < 48 || x[0] > 57) throw int(1);
+            fflush(stdin);
+            textColor(7); cout << "\n\t\t\t\t\t\tNhap lua chon: "; getline(cin, x);
+            int n = x.length();
+            // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
+            for(int i = n - 1; i >= 0; --i){
+                if (x[i] < 48 || x[i] > 57) throw "";
+            }
             // Neu ket qua dung, thi tra ve lua chon
-            luachon = (int)(x[0] - '0');
+            for(int i = n - 1; i >= 0; --i){
+                luachon += int(x[i] - '0') * pow(10, n-i-1);
+            }
             break;
         }
         catch(...) {
-            textColor(12);cout << "\t\t\t\t\t\tLua chon phai la kieu so nguyen tu 0-9!" << endl;
+            textColor(12);  cout << "\t\t\t\t\t\tLua chon phai la so tu nhien!" << endl;
         }
     }
     return luachon;
@@ -711,10 +716,10 @@ int main()
                 }
                 /// Neu mat khau sai 3 lan thi se thoat
                 if (count == 2 && input != PASS){
-                    textColor(12);cout << "\n\n\t\t\t\t\t\tBan da sai mat khau 3 lan. Thoat!" << endl;
+                    textColor(12);cout << "\n\n\t\t\t\t\t\tBan da sai mat khau 3 lan. Ket thuc!" << endl;
                     check = 0;
                     textColor(7);cout << "\t\t\t\t\t\t"; textColor(7);system("pause");
-                    break;
+                    return 0;
                 }
             }
             if (check == 1)

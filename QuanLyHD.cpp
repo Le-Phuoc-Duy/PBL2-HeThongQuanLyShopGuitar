@@ -84,7 +84,8 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
         cout << "\t\t\t\t\t\tMa nhan vien chua ton tai hoac da xoa!" << endl;
         int luachon;
         do{
-            cout << "\t\t\t\t\t\tBan muon?    1. Nhap lai       0. Thoat"; luachon = Lua_chon();
+            cout << "\t\t\t\t\t\tBan muon?    1. Nhap lai       0. Thoat";
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
             if (luachon == 0) return;
         }while(luachon != 1);
         maNV = Nhap_ma(); // Nhap lai ma
@@ -93,7 +94,7 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
     int trang_thai; string sdt;
     do{
         cout << "\t\t\t\t\t\tTrang thai hoa don?    1. Mua       2. Ban";
-        trang_thai = Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; trang_thai = So_nguyen();
         // Neu hoa don ban thi yeu cau nhap sdt khach hang
         if (trang_thai == 2){
             cout << "\t\t\t\t\t\tSDT khach hang: " << endl; sdt = KiemTraSDT();
@@ -159,7 +160,7 @@ void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
     cout << setw(61) << " " << "1. Tim theo ma" << endl;
     cout << setw(61) << " " << "2. Tim danh sach hoa don theo nhan vien" << endl;
     cout << "\n" << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     if (luachon == 1){
         int maHD;
         cout << "\t\t\t\t\t\tNhap ma hoa don can tim: ";    maHD = Nhap_ma();
@@ -191,7 +192,7 @@ void QuanLyHD::Remove()
     int luachon1;
     do{
         cout << "\t\t\t\t\t\tBan muon xoa hoa don?    1. Mua       2. Ban";
-        luachon1 = Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = So_nguyen();
         if (luachon1 == 2){
             ShowGeneral(2);
             cout << "\t\t\t\t\t\tNhap ma hoa don: "; maHD = Nhap_ma();
@@ -215,7 +216,7 @@ void QuanLyHD::Remove()
         int luachon;
         do{
             cout << "\t\t\t\t\t\tXac nhan?      1. Co           0. Khong";
-            luachon = Lua_chon();
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
             if (luachon == 1)
             {
                 databaseHD.erase(FindIndexHD(maHD));
@@ -232,7 +233,7 @@ void QuanLyHD::Show(QuanLyHang& hh){
     int luachon1;
     do{
         cout << "\t\t\t\t\t\tBan muon in danh sach hoa don?    1. Mua       2. Ban";
-        luachon1 = Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = So_nguyen();
         if (luachon1 == 2){
             textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON BAN" << endl;textcolor(7);
             int count = 0;
