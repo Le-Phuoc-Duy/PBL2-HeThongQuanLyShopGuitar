@@ -289,31 +289,3 @@ void QuanLyHD::ShowGeneral(int trang_thai){
     }
     cout << "\n" << setw(53) << " "; for (int i = 1; i<=55; i++) cout << "-"; cout << endl;
 }
-void QuanLyHD::ThongKeHomNay(){
-    double doanhthu = 0, loinhuan = 0, von = 0;
-
-    int day, month, year;
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-    day = ltm->tm_mday;
-    month = 1+ltm->tm_mon;
-    year = 1900 + ltm->tm_year;
-    Date homnay(day, month, year);
-    for(int i = 0; i<this->getLengthHD();i++){
-        if (databaseHD[i]->getNgayLap().getNgay() == day 
-        && databaseHD[i]->getNgayLap().getThang() == month 
-        && databaseHD[i]->getNgayLap().getNam() == year){
-            if (databaseHD[i]->getTrangThaiSo() == 2) doanhthu += databaseHD[i]->getThanhTien();
-            if (databaseHD[i]->getTrangThaiSo() == 1) von += databaseHD[i]->getThanhTien();
-        }
-    }
-    loinhuan = doanhthu - von;
-    cout << "\n" << setw(73) << " " << "BAO CAO NGAY " << homnay << endl;
-    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
-    cout << setw(56) << " " << "|      Von (nghin)      |"<< setw(9) << " "<< left << setw(14) << round((von / 1000)*10)/10 << "|" <<endl;
-    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
-    cout << setw(56) << " " << "|   Doanh thu (nghin)   |"<< setw(9) << " "<< left << setw(14) << round((doanhthu / 1000)*10)/10 << "|" <<endl;
-    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
-    cout << setw(56) << " " << "|   Loi nhuan (nghin)   |"<< setw(9) << " "<< left << setw(14) << round((loinhuan / 1000)*10)/10 << "|" <<endl;
-    cout << setw(56) << " ";for(int i = 1; i<=49;i++) cout << "-"; cout << endl;
-}

@@ -279,22 +279,14 @@ void QuanLyNV::Update(){
         return;
     }
     else{
-        if (luachon != 7) Show(0);
-        else Show(1);
+        Show(0);
         int nv; cout << "\n\t\t\t\t\t\tMa so nhan vien can cap nhat: ";
         nv = Nhap_ma();
         int n = FindIndex(nv);
-        // Kiem tra xem ma co ton tai khong (neu chon khoi phuc ma thi xem ban dau ma da xoa chua)
-        if (luachon != 7){
-            if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
-                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
-                return;
-            }
-        }else{
-            if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 0){
-                textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai nhan vien da xoa nhu tren!" << endl;textcolor(7);
-                return;
-            }
+        // Kiem tra xem ma co ton tai khong
+        if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
+            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
+            return;
         }
         switch (luachon){
             case 1:

@@ -32,8 +32,10 @@ class Date{
     friend ostream& operator<<(ostream&, const Date&);
     friend istream& operator>>(istream&, Date&);
     void Input();
+    // so sanh theo thang
     int operator== (Date);
     int operator!= (Date);
     int operator< (Date);
+    int operator> (Date);
     friend bool HamThoiGian(const Date&);
 };

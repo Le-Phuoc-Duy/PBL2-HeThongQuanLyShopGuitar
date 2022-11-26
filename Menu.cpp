@@ -577,6 +577,7 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         system("cls");
         Table(" MENU QUAN LY HOA DON ",
         ">> 1. Bao cao doanh thu hom nay",
+        ">> 1. Bao cao theo ngay",
         ">> 2. Bao cao theo thang",
         ">> 3. Bao cao theo nam",
         ">> 0. Thoat");
@@ -590,7 +591,7 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         }
         case 1:
         {
-            cout << endl; ql_hd.ThongKeHomNay();
+            cout << endl; bctc.ThongKeHomNay(ql_hd);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }

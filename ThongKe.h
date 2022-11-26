@@ -3,16 +3,16 @@
 #include "List.h"
 #include "HoaDon.h"
 #include "QuanLyHang.h"
-#include "QuanLyNV.h"
-#include "QuanLyHD.h"
+class QuanLyNV;
+class QuanLyHD;
 #include <ctime>
 class ThongKe{
     private:
         double luongNV, doanh_thu, loi_nhuan, von;
     public:
-        int DemNgay(int, int);
         ThongKe();
+        void ThongKeHomNay(QuanLyHD&);
+        void ThongKeNgay(QuanLyNV&, QuanLyHD&);
         void ThongKeThang(QuanLyNV&, QuanLyHD&);
         void ThongKeNam(QuanLyNV&, QuanLyHD&);
-        
 };
