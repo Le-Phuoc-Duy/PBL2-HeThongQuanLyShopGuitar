@@ -26,7 +26,6 @@ class QuanLyHD : public QuanLy{
         void Find(QuanLyNV&, QuanLyHang&);
         void Readf();
         void Writef();
-        void ThongKeHomNay();
 
         friend class ChiTietHoaDon;
         friend class ThongKe;

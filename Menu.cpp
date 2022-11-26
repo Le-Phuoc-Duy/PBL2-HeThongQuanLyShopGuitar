@@ -577,8 +577,9 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         system("cls");
         Table(" MENU QUAN LY HOA DON ",
         ">> 1. Bao cao doanh thu hom nay",
-        ">> 2. Bao cao theo thang",
-        ">> 3. Bao cao theo nam",
+        ">> 2. Bao cao theo ngay",
+        ">> 3. Bao cao theo thang",
+        ">> 4. Bao cao theo nam",
         ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
@@ -590,17 +591,23 @@ void Bao_cao_tai_chinh(QuanLyHD &ql_hd, QuanLyNV &ql_nv, ThongKe &bctc){
         }
         case 1:
         {
-            cout << endl; ql_hd.ThongKeHomNay();
+            cout << endl; bctc.ThongKeHomNay(ql_hd);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 2:
         {
-            cout << endl; bctc.ThongKeThang(ql_nv,ql_hd);
+            cout << endl; bctc.ThongKeNgay(ql_nv, ql_hd);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
+        {
+            cout << endl; bctc.ThongKeThang(ql_nv,ql_hd);
+            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
+            break;
+        }
+        case 4:
         {
             cout << endl; bctc.ThongKeNam(ql_nv,ql_hd);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
