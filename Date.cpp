@@ -114,7 +114,8 @@ void Date::Input()
             break;
         }
         catch(...) {
-            cout << "\t\t\t\t\t\tNgay thang phai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << "\t\t\t\t\t\tNgay thang phai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
 }

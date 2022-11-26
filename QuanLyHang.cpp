@@ -304,7 +304,7 @@ void QuanLyHang::Find(){
 }
 void QuanLyHang::Update(){
     cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\n\n";
+    cout << "\n\n";
     cout << setw(69) << " " << "1. Cap nhat ten" << endl;
     cout << setw(69) << " " << "2. Cap nhat phan loai" << endl;
     cout << setw(69) << " " << "3. Cap nhat gia von" << endl;
@@ -528,7 +528,7 @@ void QuanLyHang::Sort(){
         }
         default:
         {
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!"<< endl;textcolor(7);
             break;
 
         }
