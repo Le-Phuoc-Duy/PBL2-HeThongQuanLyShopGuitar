@@ -19,7 +19,9 @@ HoaDon::HoaDon(int maHD, int lengthCTHD, int maNV, string sdt,  Date ngay_lap, d
     this->thanh_tien = thanh_tien;
     this->trang_thai = trang_thai;
 }
-HoaDon::~HoaDon(){}
+HoaDon::~HoaDon(){
+    count_id--;
+}
 
 // Ham Setter
 void HoaDon::setMaHD(int maHD)
@@ -105,7 +107,10 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
         this->cthd.push_back(p);
         this->thanh_tien += this->cthd[i]->getDonGia();
     }
-    if (this->thanh_tien == 0) cout << "\n\t\t\t\t\t\tTHANH TIEN: 0" << "\n\t\t\t\t\t\tHoa don khong duoc lap!";
+    if (this->thanh_tien == 0) {
+        cout << "\n\t\t\t\t\t\tTHANH TIEN: 0" << "\n\t\t\t\t\t\tHoa don khong duoc lap!";
+        return;
+    }
     //////// Tinh diem tich luy cho khach hang
     if (trang_thai == 2){
         int n = kh.FindIndexSDT(sdt);

@@ -8,7 +8,7 @@ private:
     int static count_id;
     int maHH;
     string tenHH;
-    PhanLoai phan_loai;
+    int maPL;
     double gia_von;
     double gia_ban;
     int so_luong;
@@ -18,7 +18,6 @@ public:
         int getMaHH();
         string getTenHH();
         int getmaPL();
-        string getTenPL();
         double getGiaVon();
         double getGiaBan();
         int getSoLuong();
@@ -33,7 +32,6 @@ public:
         void setSoLuong(int);
         void setNgayNhap(Date);
         void setMaPL(int);
-        void setTenPL(string);
         void setCheckDelete(int);
     // Ham constructor
         Kho(int = -1, string = "", double = 0, double = 0, int = 0, int = 0, int = 0);

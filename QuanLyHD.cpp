@@ -110,6 +110,15 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
     hd->setMaNV(maNV);
     hd->setSDT(sdt);
     hd->Input(kh, nv, hh); // Cap nhat thong tin hoa don
+    int i;
+    // Kiem tra: neu nhu hoa don khong ban(mua) duoc gi thi xoa
+    for (i = 0; i < hd->getLengthCTHD(); i++){
+        if (hd->cthd[i]->getDonGia() != 0) break;
+    }
+    if (i == hd->getLengthCTHD() && hd->cthd[hd->getLengthCTHD() - 1]->getDonGia() == 0){
+        delete hd;
+        return;
+    }
     databaseHD.push_back(hd);
     this->lengthHD++;
 }

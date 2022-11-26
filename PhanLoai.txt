@@ -4,6 +4,4 @@
 4, Day, Ton Tai
 5, Bao Dan, Ton Tai
 6, Loa, Ton Tai
-23, Abc, Da Xoa
-41, A, Da Xoa
-42, B, Da Xoa
+7, Sdfjskf, Ton Tai

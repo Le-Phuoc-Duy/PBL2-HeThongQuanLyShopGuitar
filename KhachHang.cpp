@@ -18,7 +18,9 @@ KhachHang::KhachHang(int maKH, string hodem, string tenKH, string sdt, int so_di
     this->so_diem = so_diem;
     this->check_delete = check_delete;
 }
-KhachHang::~KhachHang() {}
+KhachHang::~KhachHang(){
+    count_id--;
+}
 // Ham getter
 int KhachHang::getMaKH()
 {
