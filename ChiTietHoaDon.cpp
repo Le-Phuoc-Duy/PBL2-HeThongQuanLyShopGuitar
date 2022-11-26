@@ -52,7 +52,7 @@ void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
             cout << "\t\t\t\t\t\tMa hang hoa chua ton tai hoac da bi xoa." << endl;
             do{
                 cout << "\t\t\t\t\t\tBan muon nhap lai?      1. Co           0. Khong";
-                int luachon1 = ql_hh.Lua_chon();
+                cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon1 = ql_hh.So_nguyen();
                 if (luachon1 == 0){
                     so_luong = 0;   return; // Khong thay doi so luong ~ khong mua hang nua
                 }else if (luachon1 == 1) break;
@@ -60,19 +60,19 @@ void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
         }else break;
     }while(1);
 
-    cout << "\t\t\t\t\t\tNhap so luong: "; this->so_luong = ql_hh.In_double();
+    cout << "\t\t\t\t\t\tNhap so luong: "; this->so_luong = ql_hh.So_nguyen();
     while ((ql_hh.databaseK[n]->getSoLuong()) < this->so_luong)
     {
         int luachon;
         cout << "\t\t\t\t\t\tSo luong hang hoa khong du. Kho chi con " << ql_hh.databaseK[n]->getSoLuong() << " mon" << endl;
         cout << "\t\t\t\t\t\tBan muon thay doi so luong khong?" << endl;
         cout << "\t\t\t\t\t\t1. Co              0. Khong" << endl;
-        luachon = ql_hh.Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = ql_hh.So_nguyen();
         if (luachon == 0){
             so_luong = 0;   return; // Khong thay doi so luong ~ khong mua hang nua
         }
         else if (luachon == 1){
-            cout << "\t\t\t\t\t\tNhap so luong: ";  this->so_luong = ql_hh.In_double();
+            cout << "\t\t\t\t\t\tNhap so luong: ";  this->so_luong = ql_hh.So_nguyen();
         }
     }
     ql_hh.databaseK[n]->setSoLuong(ql_hh.databaseK[n]->getSoLuong() - this->so_luong);
@@ -87,7 +87,7 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
         cout << "\n\t\t\t\t\t\tMa hang hoa can mua chua ton tai. Ban lua chon?" << endl;
         cout << "\t\t\t\t\t\t1. Nhap lai" << endl;
         cout << "\t\t\t\t\t\t2. Them hang hoa moi";
-        luachon = ql_hh.Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = ql_hh.So_nguyen();
         if (luachon == 1){
             maHH = ql_hh.Nhap_ma();
             n = ql_hh.FindIndex(maHH);
@@ -115,7 +115,7 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
             cout << "\n\t\t\t\t\t\tHang hoa da bi xoa khoi kho. Ban muon khoi phuc lai khong? ";
             cout << "\n\t\t\t\t\t\t0. Khong ";
             cout << "\n\t\t\t\t\t\t1. Co ";
-            int luachon1 = ql_hh.Lua_chon();
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = ql_hh.So_nguyen();
             cout << endl;
             if (luachon1 == 1){
                 ql_hh.databaseK[n]->setCheckDelete(0);
@@ -128,7 +128,7 @@ void ChiTietHoaDon::InputM(QuanLyHang& ql_hh){
             }
         } while (luachon1 != 0 && luachon1 != 1);
     }
-    cout << "\t\t\t\t\t\tNhap so luong can mua: "; this->so_luong = ql_hh.In_double();
+    cout << "\t\t\t\t\t\tNhap so luong can mua: "; this->so_luong = ql_hh.So_nguyen();
     ql_hh.databaseK[n]->setSoLuong(ql_hh.databaseK[n]->getSoLuong() + this->so_luong); // mua: so luong hang trong kho tang len
     don_gia = so_luong * ql_hh.databaseK[n]->getGiaVon(); // mua: don gia = so luong * gia von
 }

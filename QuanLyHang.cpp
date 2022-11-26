@@ -51,7 +51,7 @@ void QuanLyHang::Insert()
             textcolor(12);cout << "\n\t\t\t\t\t\tHang hoa da bi xoa khoi kho. Ban muon khoi phuc lai khong? ";textcolor(7);
             cout << "\n\t\t\t\t\t\t1. Co ";
             cout << "\n\t\t\t\t\t\t0. Khong ";
-            luachon1 = Lua_chon();
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = So_nguyen();
             if (luachon1 == 1){
                 databaseK[n]->setCheckDelete(0);
                 int m = databaseK[n]->getMaHH();
@@ -80,7 +80,7 @@ void QuanLyHang::Insert()
         cout << "\n\t\t\t\t\t\t1. Them phan loai moi/Khoi phuc phan loai";
         cout << "\n\t\t\t\t\t\t2. Nhap lai";
         cout << "\n\t\t\t\t\t\t0. Thoat";
-        luachon2 = Lua_chon();
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon2 = So_nguyen();
         if (luachon2 == 0) return;
         else if(luachon2 == 2){
             cout << "\t\t\t\t\t\tHang hoa thuoc phan loai? ";     maPL = Nhap_ma();
@@ -156,7 +156,7 @@ void QuanLyHang::Readf()
             textcolor(12);cout << "\n\t\t\t\t\t\tMa phan loai " << maPL << " chua ton tai. Ban muon them ma phan loai nay khong?";textcolor(7);
             cout << "\n\t\t\t\t\t\t1. Co";
             cout << "\n\t\t\t\t\t\t0. Khong";
-            opt = Lua_chon();
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; opt = So_nguyen();
 
             if(opt != 1) continue;
             else{
@@ -216,7 +216,7 @@ void QuanLyHang::Remove()
     cout << setw(74) << " " << "2. Xoa theo ten" << endl;
     cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
 
     if (luachon == 1){
         int maHH;
@@ -261,7 +261,7 @@ void QuanLyHang::Find(){
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
     cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     if (luachon == 1){
         cout << "\t\t\t\t\t\tMa can tim: ";    int maHH = Nhap_ma();
         int n = FindIndex(maHH);
@@ -313,7 +313,7 @@ void QuanLyHang::Update(){
     cout << setw(69) << " " << "6. Khoi phuc trang thai" << endl;
     cout << setw(69) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon(); 
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
 
     if (luachon == 0){
         return;
@@ -366,7 +366,7 @@ void QuanLyHang::Update(){
                     textcolor(12);cout << "\t\t\t\t\t\tMa phan loai chua ton tai! Ban muon them ma phan loai moi khong?";textcolor(7);
                     cout << "\n\t\t\t\t\t\t1. Co";
                     cout << "\n\t\t\t\t\t\t0. Khong" << endl;
-                    opt = Lua_chon();
+                    cout << "\n\t\t\t\t\t\tNhap lua chon: "; opt = So_nguyen();
 
                     if(opt == 0) return;
                     else if (opt == 1){
@@ -411,7 +411,7 @@ void QuanLyHang::Update(){
             case 5:
             {
                 int soluong;
-                cout << "\t\t\t\t\t\tNhap so luong moi: "; soluong = In_double();
+                cout << "\t\t\t\t\t\tNhap so luong moi: "; soluong = So_nguyen();
                 databaseK[n]->setSoLuong(soluong);
                 break;
             }
@@ -496,7 +496,7 @@ void QuanLyHang::Sort(){
     cout << setw(62)<< " " << "4. Sap xep theo chieu tang cua gia von" << endl;
     cout << setw(62)<< " " << "0. Thoat" << endl;
     cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     switch(luachon){
         case 0:
         {
@@ -625,7 +625,7 @@ void QuanLyHang::InsertPL(){
             textcolor(12);cout << "\n\t\t\t\t\t\tPhan loai da bi xoa khoi kho. Ban muon khoi phuc lai khong? ";textcolor(7);
             cout << "\n\t\t\t\t\t\t1. Co ";
             cout << "\n\t\t\t\t\t\t0. Khong ";
-            luachon1 = Lua_chon();
+            cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = So_nguyen();
             if (luachon1 == 1){
                 databasePL[n]->setCheckDelete(0);
                 int m = pl->getMaPL();
@@ -694,7 +694,7 @@ void QuanLyHang::FindPL(){
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
     cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
 
     if (luachon == 1){
         cout << "\t\t\t\t\t\tMa can tim:";
@@ -763,7 +763,7 @@ void QuanLyHang::UpdatePL(){
     cout << setw(69) << " " << "2. Khoi phuc trang thai" << endl;
     cout << setw(69) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     
     if (luachon == 0) return;
     if (luachon < 0 || luachon > 2){

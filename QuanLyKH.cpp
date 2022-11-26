@@ -131,7 +131,7 @@ void QuanLyKH::Find()
     cout << setw(74) << " " << "2. Tim theo ten" << endl;
     cout << setw(74) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     if (luachon == 1){
         string sdt = KiemTraSDT();
         int n = FindIndexSDT(sdt);
@@ -214,7 +214,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
     cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
     cout << setw(69) << " " << "0. Thoat" << endl;
     cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    int luachon = Lua_chon(); 
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     if (luachon == 0){
         return;
     }else if (luachon < 0 || luachon > 3){
@@ -313,7 +313,7 @@ void QuanLyKH::Sort()
     cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
     cout << setw(62)<< " " << "0. Thoat" << endl;
     cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    int luachon = Lua_chon();
+    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
     switch(luachon){
         case 0:
         {

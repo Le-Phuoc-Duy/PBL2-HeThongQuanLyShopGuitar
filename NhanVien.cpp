@@ -162,7 +162,8 @@ istream& operator>>(istream& in, NhanVien& nv)
             if (nv.hodem.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
              /// Kiem tra ho co ki tu dac biet khong?
             for (int i = 0; i < nv.hodem.length(); i++){
-                if (!(nv.hodem[0] >= 97 && nv.hodem[0] <= 122) && !(nv.hodem[i] >= 65 && nv.hodem[i] <= 90)) throw "Nhap lai!";
+                if (!(nv.hodem[i] >= 97 && nv.hodem[i] <= 122) && !(nv.hodem[i] >= 65 && nv.hodem[i] <= 90) && nv.hodem[i] != ' ') 
+                throw "\t\t\t\t\t\tNhap lai!";
             }
             break;
         }
@@ -178,7 +179,8 @@ istream& operator>>(istream& in, NhanVien& nv)
             while(nv.tenNV[0] == ' ') nv.tenNV.erase(nv.tenNV.begin() + 0);
             if (nv.tenNV.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
             for (int i = 0; i < nv.tenNV.length(); i++){
-                if (!(nv.tenNV[0] >= 97 && nv.tenNV[0] <= 122) && !(nv.tenNV[i] >= 65 && nv.tenNV[i] <= 90)) throw "Nhap lai!";
+                if (!(nv.tenNV[i] >= 97 && nv.tenNV[i] <= 122) && !(nv.tenNV[i] >= 65 && nv.tenNV[i] <= 90) && nv.tenNV[i] != ' ') 
+                throw "\t\t\t\t\t\tNhap lai!";
             }
             break;
         }
