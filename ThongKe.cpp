@@ -138,6 +138,7 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
     time_t now = time(0);
     tm *ltm = localtime(&now);
     int yy = 1900 + ltm->tm_year;   //nam hien tai
+    int mm = 1+ltm->tm_mon;         //thang hien tai
     if (year > yy){
         cout << "\t\t\t\t\t\tKhong co du lieu" << endl;
         return;
@@ -149,8 +150,10 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
     cout << setw(30) << " "; for(int i = 1; i<=99;i++) cout << "-"; cout << endl;
 
     int month;
-    for (month = 1; month <= 12; month++){
+    for (month = 1; month <= mm; month++){
         Date hientai(1,month,year);
+        double tmpLuong = 0, tmpDoanhThu = 0, tmpVon = 0, tmpLoiNhuan = 0;
+
         for(int j = 0; j < nv.getLengthNV();j++){
             
             int luong_theo_ngay = nv.databaseNV[j]->getLuong()/DemNgay(month,year);
@@ -160,24 +163,30 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
             if (nv.databaseNV[j]->getNgayVao().getNgay() == 1
             &&nv.databaseNV[j]->getNgayVao() == hientai
             && nv.databaseNV[j]->getNgayNghi() != hientai){
+                tmpLuong += nv.databaseNV[j]->getLuong();
                 this->luongNV += nv.databaseNV[j]->getLuong();
             }
             else if (nv.databaseNV[j]->getNgayVao() == hientai 
             && nv.databaseNV[j]->getNgayNghi() != hientai){
                 this->luongNV += luong_theo_ngay * (DemNgay(month,year) - ngayvao + 1);
+                tmpLuong += luong_theo_ngay * (DemNgay(month,year) - ngayvao + 1);
             }else if(nv.databaseNV[j]->getNgayVao() == hientai 
             && nv.databaseNV[j]->getNgayNghi() == hientai){
                 this->luongNV += luong_theo_ngay * (ngaynghi - ngayvao + 1);
+                tmpLuong += luong_theo_ngay * (ngaynghi - ngayvao + 1);
             }else if(nv.databaseNV[j]->getCheckDeleteSo() == 1
             && nv.databaseNV[j]->getNgayNghi() == hientai){
                 this->luongNV += luong_theo_ngay * ngaynghi;
+                tmpLuong += luong_theo_ngay * ngaynghi;
             }else if(nv.databaseNV[j]->getCheckDeleteSo() == 1
             &&  hientai < nv.databaseNV[j]->getNgayNghi()
             && nv.databaseNV[j]->getNgayVao() < hientai){
                 this->luongNV += nv.databaseNV[j]->getLuong();
+                tmpLuong += nv.databaseNV[j]->getLuong();
             }else if(nv.databaseNV[j]->getCheckDeleteSo() == 0
             && nv.databaseNV[j]->getNgayVao() < hientai){
                 this->luongNV += nv.databaseNV[j]->getLuong();
+                tmpLuong += nv.databaseNV[j]->getLuong();
             }
         }
         for (int j = 0; j < hd.getLengthHD(); j++)
@@ -186,6 +195,7 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
             if (hd.databaseHD[j]->getTrangThaiSo() == 2 
             && hd.databaseHD[j]->getNgayLap() == hientai){
                 this->doanh_thu = this->doanh_thu + hd.databaseHD[j]->getThanhTien();
+                tmpDoanhThu = tmpDoanhThu + hd.databaseHD[j]->getThanhTien();
             }
                 
         }
@@ -194,12 +204,19 @@ void ThongKe::ThongKeNam(QuanLyNV& nv, QuanLyHD& hd){
             if (hd.databaseHD[j]->getTrangThaiSo() == 1 
             && hd.databaseHD[j]->getNgayLap() == hientai)
                 this->von = this->von + hd.databaseHD[j]->getThanhTien();
+                tmpLoiNhuan = tmpLoiNhuan + hd.databaseHD[j]->getThanhTien();
         }
-        this->loi_nhuan = this->doanh_thu - this->von - this->luongNV;
-        cout << setw(30) << " " <<"| Thang " << left << setw(3) << month <<"|"<< setw(12) << " "<< left << setw(18) << round((this->luongNV / 1000)*10)/10 << "|"
-        << setw(5) << " "<< left << setw(10) << round((this->von / 1000)*10)/10 << "|"
-        << setw(7) << " "<< left << setw(12) << round((this->doanh_thu / 1000)*10)/10 << "|"
-        << setw(7) << " "<< left << setw(12) << round((this->loi_nhuan / 1000)*10)/10 << "|";
+        tmpLoiNhuan = tmpDoanhThu - tmpLuong - tmpVon;
+        cout << setw(30) << " " <<"| Thang " << left << setw(3) << month <<"|"<< setw(12) << " "<< left << setw(18) << round((tmpLuong / 1000)*10)/10 << "|"
+        << setw(5) << " "<< left << setw(10) << round((tmpVon / 1000)*10)/10 << "|"
+        << setw(7) << " "<< left << setw(12) << round((tmpDoanhThu / 1000)*10)/10 << "|"
+        << setw(7) << " "<< left << setw(12) << round((tmpLoiNhuan / 1000)*10)/10 << "|";
         cout << "\n" << setw(30) << " "; for(int i = 1; i<=99;i++) cout << "-"; cout << endl;
     }
+    this->loi_nhuan = this->doanh_thu - this->von - this->luongNV;
+    cout << setw(30) << " " <<"|   Tong   |" << setw(12) << " "<< left << setw(18) << round((this->luongNV / 1000)*10)/10 << "|"
+    << setw(5) << " "<< left << setw(10) << round((this->von / 1000)*10)/10 << "|"
+    << setw(7) << " "<< left << setw(12) << round((this->doanh_thu / 1000)*10)/10 << "|"
+    << setw(7) << " "<< left << setw(12) << round((this->loi_nhuan / 1000)*10)/10 << "|";
+    cout << "\n" << setw(30) << " "; for(int i = 1; i<=99;i++) cout << "-"; cout << endl;
 }

@@ -11,6 +11,7 @@
         "fstream": "cpp",
         "xstring": "cpp",
         "cmath": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "string": "cpp"
     }
 }

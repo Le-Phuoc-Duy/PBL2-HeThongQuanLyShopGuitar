@@ -669,7 +669,7 @@ int main()
     ql_hd.Readf();
     system("cls");
     //Khoi dong
-    Start();
+    // Start();
     // Menu dang nhap
     int luachon1;
     do
