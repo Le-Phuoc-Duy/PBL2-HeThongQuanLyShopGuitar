@@ -153,13 +153,17 @@ ostream& operator<<(ostream& out, NhanVien& nv)
 }
 istream& operator>>(istream& in, NhanVien& nv)
 {
-     /// Kiem tra ten va ho co rong khong?
     do{
         try{
             fflush(stdin);
             cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(in, nv.hodem);
+             /// Kiem tra ten va ho co rong khong?
             while(nv.hodem[0] == ' ') nv.hodem.erase(nv.hodem.begin() + 0);
             if (nv.hodem.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+             /// Kiem tra ho co ki tu dac biet khong?
+            for (int i = 0; i < nv.hodem.length(); i++){
+                if (!(nv.hodem[0] >= 97 && nv.hodem[0] <= 122) && !(nv.hodem[i] >= 65 && nv.hodem[i] <= 90)) throw "Nhap lai!";
+            }
             break;
         }
         catch(const char* e){
@@ -173,6 +177,9 @@ istream& operator>>(istream& in, NhanVien& nv)
             cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(in, nv.tenNV);
             while(nv.tenNV[0] == ' ') nv.tenNV.erase(nv.tenNV.begin() + 0);
             if (nv.tenNV.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            for (int i = 0; i < nv.tenNV.length(); i++){
+                if (!(nv.tenNV[0] >= 97 && nv.tenNV[0] <= 122) && !(nv.tenNV[i] >= 65 && nv.tenNV[i] <= 90)) throw "Nhap lai!";
+            }
             break;
         }
         catch(const char* e){

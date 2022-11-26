@@ -4,7 +4,10 @@
 
 QuanLy::QuanLy(){}
 QuanLy::~QuanLy(){}
-
+void QuanLy::Insert(){}
+void QuanLy::Show(){}
+void QuanLy::Update(){}
+void QuanLy::Delete(){}
 void QuanLy::HamChuanHoa(string& a){
     // xoa cac ki tu thua ' ' dau va cuoi
     while(a[0] == ' ')
