@@ -2,21 +2,6 @@
 #include "QuanLyNV.h"
 #include "QuanLyHD.h"
 #include "math.h"
-// /// tinh khoang cach 2 ngay
-// int tinhkhoangcach(int d1,int m1,int y1, int d2, int m2, int y2);
-// int tinhsongay(int d,int m,int y);
-// int tinhsongaytudaunam(int d, int m, int y);
-// int tinhsongaycacthang(int i,int y);
-// bool CheckNamNhuan(int y);
-
-// int tinhsongaytudaunam(int d, int m, int y)
-// {
-// 	int songay = d;
-// 	for(int i = 1; i < m;i++)
-// 		songay = songay + tinhsongaycacthang(i,y);
-// 	return songay;
-// }
-
 bool CheckNamNhuan(int y)
 {
     if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)
@@ -24,26 +9,6 @@ bool CheckNamNhuan(int y)
     else
         return false;
 }
-
-// int tinhsongay(int d,int m,int y)
-// {
-// 	int kc=0;
-// 	for(int i = 1900; i < y;i++)
-// 		if(CheckNamNhuan(i)==true)
-// 		kc = kc + 366;
-// 	else
-// 		kc = kc + 365;
-// 	kc = kc + tinhsongaytudaunam(d,m,y);
-// 	return kc;
-//  }
-// int tinhkhoangcach(int d1,int m1,int y1, int d2, int m2, int y2)
-//  {
-//  	int kc1 = tinhsongay(d1,m1,y1);
-// 	int kc2 = tinhsongay(d2,m2,y2);
-// 	int songay = kc1 - kc2;
-// 	return songay;
-//  }
-
 int DemNgayThang(int month, int year)
 {
     if (month == 2)

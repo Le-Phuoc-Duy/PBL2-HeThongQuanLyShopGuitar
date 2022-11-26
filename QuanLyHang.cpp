@@ -55,7 +55,7 @@ void QuanLyHang::Insert()
             if (luachon1 == 1){
                 databaseK[n]->setCheckDelete(0);
                 int m = databaseK[n]->getMaHH();
-                cout << "\t\t\t\t\t\tKhoi phuc hang hoa thanh cong!" << endl;
+                textcolor(6);cout << "\t\t\t\t\t\tKhoi phuc hang hoa thanh cong!" << endl;textcolor(7);
                 throw m; // Nem ma duoc khoi phuc
             }
             else if (luachon1 == 0)
@@ -108,7 +108,7 @@ void QuanLyHang::Insert()
     kho->Input(*this, tenHH, maPL);
     databaseK.push_back(kho);
     this->lengthK++;
-    cout << "\t\t\t\t\t\tThem hang hoa thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tThem hang hoa thanh cong!" << endl;textcolor(7);
 }
 
 void QuanLyHang::Readf()
@@ -174,7 +174,7 @@ void QuanLyHang::Readf()
                 PhanLoai *pl = new PhanLoai(maPL, tenPL);
                 databasePL.push_back(pl);
                 this->lengthPL ++;
-                cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;
+                textcolor(6);cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;textcolor(7);
             }
         }
 
@@ -182,7 +182,7 @@ void QuanLyHang::Readf()
         databaseK.push_back(kho);
         (this->lengthK)++;
     }
-    cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;
+    textcolor(6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;textcolor(7);
     filein.close();
 }
 
@@ -229,7 +229,7 @@ void QuanLyHang::Remove()
         }
         this->databaseK[n]->setCheckDelete(1);
         this->databaseK[n]->setSoLuong(0);
-        cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
+        textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
     } 
     else if (luachon == 2){
         string tenHH;
@@ -244,7 +244,7 @@ void QuanLyHang::Remove()
         }
         this->databaseK[n]->setCheckDelete(1);
         this->databaseK[n]->setSoLuong(0);
-        cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;
+        textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
     }
     else if(luachon == 0){
         return;
@@ -384,7 +384,7 @@ void QuanLyHang::Update(){
                         PhanLoai *pl = new PhanLoai(maPL, tenPL);
                         databasePL.push_back(pl);
                         int n = (this->lengthPL) + 1; this->setLengthPL(n);
-                        cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;
+                        textcolor(6);cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;textcolor(7);
                     }
                     else{
                         textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat";textcolor(7);
@@ -425,7 +425,7 @@ void QuanLyHang::Update(){
                 break;
             } 
         }
-        cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
+        textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
     }
 }
 void QuanLyHang::Show(int trang_thai)
@@ -457,7 +457,7 @@ void QuanLyHang::Writef(){
         << ", " << databaseK[i]->getGiaBan() << ", " << databaseK[i]->getSoLuong() << ", "<< databaseK[i]->getmaPL()<< ", " 
         << databaseK[i]->getCheckDelete();
     }
-    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
     fileout.close();
 }
 bool up(double x, double y)
@@ -608,7 +608,7 @@ void QuanLyHang::ReadfPL(){
         databasePL.push_back(phan_loai);
         this->lengthPL++;
     }
-    cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;
+    textcolor(6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;textcolor(7);
     filein.close();
 }
 
@@ -630,7 +630,7 @@ void QuanLyHang::InsertPL(){
                 databasePL[n]->setCheckDelete(0);
                 int m = pl->getMaPL();
                 delete pl;
-                cout << "\t\t\t\t\t\tKhoi phuc phan loai thanh cong!" << endl;
+                textcolor(6);cout << "\t\t\t\t\t\tKhoi phuc phan loai thanh cong!" << endl;textcolor(7);
                 throw m; // Nem ma duoc khoi phuc
             }
             else if (luachon1 == 0)
@@ -648,7 +648,7 @@ void QuanLyHang::InsertPL(){
     }
     databasePL.push_back(pl);
     this->lengthPL++;
-    cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;textcolor(7);
 }
 void QuanLyHang::RemovePL(){
     int maPL;
@@ -660,10 +660,9 @@ void QuanLyHang::RemovePL(){
         return;
     } else{
         this->databasePL[n]->setCheckDelete(1);
-        cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;
+        textcolor(6);cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;textcolor(7);
     }
 }
-
 void QuanLyHang::WritefPL(){
     ofstream fileout;
     fileout.open("PhanLoai.txt");
@@ -672,7 +671,7 @@ void QuanLyHang::WritefPL(){
         if (i != 0) fileout << endl;
         fileout << databasePL[i]->getMaPL() << ", " << databasePL[i]->getTenPL() << ", " << databasePL[i]->getCheckDelete();
     }
-    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
     fileout.close();
 }
 
@@ -812,5 +811,5 @@ void QuanLyHang::UpdatePL(){
     default:
         break;
     }
-    cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;
+    textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
 }
