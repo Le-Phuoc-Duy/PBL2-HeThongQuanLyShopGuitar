@@ -55,9 +55,14 @@ void QuanLyKH::Insert()
     KhachHang *khachhang = new KhachHang;
     cin >> *khachhang;
     // kiem tra so dien thoai khach hang co trung khong
-    if (FindIndexSDT(khachhang->getSDT()) != -1)
+    int n = FindIndexSDT(khachhang->getSDT());
+    if (n != -1)
     {
-        cout << "\n\t\t\t\t\t\tSo dien thoai da ton tai" << endl;
+        if (databaseKH[n]->getCheckDeleteSo() == 1){
+            textcolor(12);cout << "\t\t\t\t\t\tSo dien thoai da bi xoa. Vao thay doi thong tin khach hang de khoi phuc!" << endl;textcolor(7);
+        }
+        else {textcolor(12);cout << "\t\t\t\t\t\tSo dien thoai da ton tai!" << endl;textcolor(7);}
+        delete khachhang;
         return;
     }
     string ho = khachhang->getHoDemKH();    HamChuanHoa(ho);    khachhang->setHoDemKH(ho);
