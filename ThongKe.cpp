@@ -116,7 +116,7 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
         return;
     }
-
+    ngay_bd.setGio(0); ngay_bd.setPhut(0); ngay_kt.setGio(0); ngay_kt.setPhut(0);
     for (int j = 0; j < hd.getLengthHD(); j++)
     {
 
@@ -271,9 +271,7 @@ void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
     }
     this->loi_nhuan = this->doanh_thu - this->luongNV - this->von;
 
-    cout << "\n"
-         << setw(73) << " "
-         << "BAO CAO THANG " << month << endl;
+    cout << "\n" << setw(69) << " " << "BAO CAO THANG " << month << "/" << year << endl;
     cout << setw(47) << " ";
     for (int i = 1; i <= 67; i++)
         cout << "-";
@@ -306,11 +304,6 @@ void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
 
 void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
 {
-    this->doanh_thu = 0;
-    this->von = 0;
-    this->loi_nhuan = 0;
-    this->luongNV = 0;
-
     int year;
     cout << "\t\t\t\t\t\tNhap nam can thong ke: ";
     year = hd.In_double();
@@ -353,7 +346,6 @@ void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
 
         for (int j = 0; j < nv.getLengthNV(); j++)
         {
-
             int luong_theo_ngay = nv.databaseNV[j]->getLuong() / DemNgayThang(month, year);
             int ngayvao = nv.databaseNV[j]->getNgayVao().getNgay();
             int ngaynghi = nv.databaseNV[j]->getNgayNghi().getNgay();
@@ -399,7 +391,6 @@ void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
         }
         for (int j = 0; j < hd.getLengthHD(); j++)
         {
-
             if (hd.databaseHD[j]->getTrangThaiSo() == 2 && hd.databaseHD[j]->getNgayLap() == hientai)
             {
                 this->doanh_thu = this->doanh_thu + hd.databaseHD[j]->getThanhTien();

@@ -96,7 +96,7 @@ void Date::Input()
                 i--;
             }
             if (HamThoiGian(*this) == false){
-                this->ngay = this->thang = 1;  this->nam = 2000;
+                this->gio = this->phut = 0; this->ngay = this->thang = 1;  this->nam = 2000;
             }
             break;
         }
