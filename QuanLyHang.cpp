@@ -33,10 +33,8 @@ void QuanLyHang::Insert()
     string tenHH;
     do{
         try{
-            fflush(stdin);
-            cout << "\t\t\t\t\t\tNhap ten hang hoa moi: ";  getline(cin, tenHH);
-            while(tenHH[0] == ' ') tenHH.erase(tenHH.begin() + 0);
-            if (tenHH.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+            cout << "\t\t\t\t\t\tNhap ten hang hoa: ";
+            databaseK[0]->try_catchTenHH(tenHH);
             break;
         }
         catch(const char* e){
@@ -178,60 +176,64 @@ int QuanLyHang::FindIndexTen(const string &index)
 
 void QuanLyHang::Remove()
 {
-    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\n";
-    cout << setw(74) << " " << "1. Xoa theo ma" << endl;
-    cout << setw(74) << " " << "2. Xoa theo ten" << endl;
-    cout << setw(74) << " " << "0. Thoat" << endl;
-    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
+    int luachon;
+    do{    
+        system("cls");
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        cout << "\n\n";
+        cout << setw(74) << " " << "1. Xoa theo ma" << endl;
+        cout << setw(74) << " " << "2. Xoa theo ten" << endl;
+        cout << setw(74) << " " << "0. Thoat" << endl;
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
 
-    if (luachon == 1){
-        int maHH;
-        Show(0);
-        cout << "\t\t\t\t\t\tMa can xoa: ";   maHH = Nhap_ma();
-        int n = FindIndex(maHH);
-        if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
-            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
-            return;
+        if (luachon == 1){
+            int maHH;
+            Show(0);
+            cout << "\t\t\t\t\t\tMa can xoa: ";   maHH = Nhap_ma();
+            int n = FindIndex(maHH);
+            if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
+                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
+                cout << "\t\t\t\t\t\t"; system("pause");
+                continue;
+            }
+            this->databaseK[n]->setCheckDelete(1);
+            this->databaseK[n]->setSoLuong(0);
+            textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
+        } 
+        else if (luachon == 2){
+            string tenHH;
+            Show(0);
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten hang hoa: ";  getline(cin,tenHH);
+            HamChuanHoa(tenHH);
+            int n = FindIndexTen(tenHH);
+            if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
+                textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai hoac da bi xoa!" << endl;textcolor(7);
+                cout << "\t\t\t\t\t\t"; system("pause");
+                continue;
+            }
+            this->databaseK[n]->setCheckDelete(1);
+            this->databaseK[n]->setSoLuong(0);
+            textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
         }
-        this->databaseK[n]->setCheckDelete(1);
-        this->databaseK[n]->setSoLuong(0);
-        textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
-    } 
-    else if (luachon == 2){
-        string tenHH;
-        Show(0);
-        fflush(stdin);
-        cout << "\t\t\t\t\t\tNhap ten hang hoa: ";  getline(cin,tenHH);
-        HamChuanHoa(tenHH);
-        int n = FindIndexTen(tenHH);
-        if (n == -1 || databaseK[n]->getCheckDeleteSo() == 1){
-            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai hoac da bi xoa!" << endl;textcolor(7);
-            return;
+        else if (luachon){
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         }
-        this->databaseK[n]->setCheckDelete(1);
-        this->databaseK[n]->setSoLuong(0);
-        textcolor(6);cout << "\t\t\t\t\t\tXoa hang hoa thanh cong!" << endl;textcolor(7);
-    }
-    else if(luachon == 0){
-        return;
-    }
-    else {
-        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
-        return;
-    }
+        else break;
+        cout << "\t\t\t\t\t\t"; system("pause");
+    }while(luachon);
 }
 void QuanLyHang::Find(){
     int luachon;
     do{        
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo ma" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 1){
             cout << "\t\t\t\t\t\tMa can tim: ";    int maHH = Nhap_ma();
@@ -274,7 +276,7 @@ void QuanLyHang::Update(){
     int luachon;
     do{   
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(69) << " " << "1. Cap nhat ten" << endl;
         cout << setw(69) << " " << "2. Cap nhat phan loai" << endl;
@@ -283,7 +285,7 @@ void QuanLyHang::Update(){
         cout << setw(69) << " " << "5. Cap nhat so luong" << endl;
         cout << setw(69) << " " << "6. Khoi phuc trang thai" << endl;
         cout << setw(69) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
 
         if (luachon == 0){
@@ -479,14 +481,14 @@ void QuanLyHang::Sort(){
     int luachon;
     do{
         system("cls");
-        cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(62)<< " " << "1. Sap xep theo chieu giam cua gia ban" << endl;
         cout << setw(62)<< " " << "2. Sap xep theo chieu tang cua gia ban" << endl;
         cout << setw(62)<< " " << "3. Sap xep theo chieu giam cua gia von" << endl;
         cout << setw(62)<< " " << "4. Sap xep theo chieu tang cua gia von" << endl;
         cout << setw(62)<< " " << "0. Thoat" << endl;
-        cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 0) break;
         switch(luachon){
@@ -671,12 +673,12 @@ void QuanLyHang::FindPL(){
     int luachon;
     do{    
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo ma" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
 
         if (luachon == 1){
@@ -739,12 +741,12 @@ void QuanLyHang::UpdatePL(){
     do{    
         system("cls");
         int maPL; 
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(69) << " " << "1. Cap nhat ten" << endl;
         cout << setw(69) << " " << "2. Khoi phuc trang thai" << endl;
         cout << setw(69) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         
         if (luachon == 0) break;
