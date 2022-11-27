@@ -317,7 +317,6 @@ void QuanLyHang::Update(){
                 while (FindIndexTen(tenHH) != -1 || tenHH.empty() == 1){
                     if (FindIndexTen(tenHH) != -1) {textcolor(12);cout << "\t\t\t\t\t\tTen hang hoa da ton tai. Nhap lai!";textcolor(7);}
                     else {textcolor(12);cout << "\t\t\t\t\t\tNhap lai!";textcolor(7);}
-                    cout << "\n\t\t\t\t\t\tNhap ten hang hoa: ";
                     fflush(stdin); getline(cin, tenHH);
                     HamChuanHoa(tenHH);
                 }
@@ -415,7 +414,7 @@ void QuanLyHang::Show(int trang_thai)
             cout << *databaseK[i];
             int n = FindIndexPL(databaseK[i]->getmaPL());
             cout << left << setw(22) << databasePL[n]->getTenPL() << "|";
-        } 
+        }
     }
     cout << "\n" <<setw(26) << " "; for (int i = 1; i <= 110;i++) cout << "-";cout << endl;
 }

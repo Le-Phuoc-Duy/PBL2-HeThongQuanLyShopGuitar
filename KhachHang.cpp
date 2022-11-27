@@ -79,58 +79,41 @@ void KhachHang::setCheckDelete(int check)
     this->check_delete = check;
 }
 
-istream &operator>>(istream &in, KhachHang &khachhang)
+void KhachHang::try_catchHoten(string& ten){
+    fflush(stdin);  getline(cin, ten);
+        /// Kiem tra ten va ho co rong khong?
+    while(ten[0] == ' ') ten.erase(ten.begin() + 0);
+    if (ten.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+        /// Kiem tra ho co ki tu dac biet khong?
+    for (int i = 0; i < ten.length(); i++){
+        if (!(ten[i] >= 97 && ten[i] <= 122) && !(ten[i] >= 65 && ten[i] <= 90) && ten[i] != ' ') 
+        throw "\t\t\t\t\t\tNhap lai!";
+    }
+}
+istream &operator>>(istream &in, KhachHang &kh)
 {
     /// Kiem tra ten va ho co rong khong?
-    do
-    {
-        try
-        {
-            fflush(stdin);
+    do{
+        try{
             cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";
-            getline(in, khachhang.hodem);
-            while (khachhang.hodem[0] == ' ')
-                khachhang.hodem.erase(khachhang.hodem.begin() + 0);
-            if (khachhang.hodem.empty() == 1)
-                throw "\t\t\t\t\t\tNhap lai!";
-            /// Kiem tra ho co ki tu dac biet khong?
-            for (int i = 0; i < khachhang.hodem.length(); i++)
-            {
-                if (!(khachhang.hodem[i] >= 97 && khachhang.hodem[i] <= 122) && !(khachhang.hodem[i] >= 65 && khachhang.hodem[i] <= 90) && khachhang.hodem[i] != ' ')
-                    throw "\t\t\t\t\t\tNhap lai!";
-            }
+            kh.try_catchHoten(kh.hodem);
             break;
         }
-        catch (const char *e)
-        {
+        catch(const char* e){
             cout << e << endl;
         }
-    } while (1);
+    }while(1);
 
-    do
-    {
-        try
-        {
-            fflush(stdin);
+    do{
+        try{
             cout << "\t\t\t\t\t\tNhap ten khach hang: ";
-            getline(in, khachhang.tenKH);
-            while (khachhang.tenKH[0] == ' ')
-                khachhang.tenKH.erase(khachhang.tenKH.begin() + 0);
-            if (khachhang.tenKH.empty() == 1)
-                throw "\t\t\t\t\t\tNhap lai!";
-            /// Kiem tra ten co ki tu dac biet khong?
-            for (int i = 0; i < khachhang.tenKH.length(); i++)
-            {
-                if (!(khachhang.tenKH[i] >= 97 && khachhang.tenKH[i] <= 122) && !(khachhang.tenKH[i] >= 65 && khachhang.tenKH[i] <= 90) && khachhang.tenKH[i] != ' ')
-                    throw "\t\t\t\t\t\tNhap lai!";
-            }
+            kh.try_catchHoten(kh.tenKH);
             break;
         }
-        catch (const char *e)
-        {
+        catch(const char* e){
             cout << e << endl;
         }
-    } while (1);
+    }while(1);
     ///
 
     /// Kiem tra so dien thoai co hop le khong
@@ -139,14 +122,14 @@ istream &operator>>(istream &in, KhachHang &khachhang)
         try
         {
             cout << "\t\t\t\t\t\tNhap so dien thoai: ";
-            in >> khachhang.sdt;
-            if (khachhang.sdt.length() != 10)
+            in >> kh.sdt;
+            if (kh.sdt.length() != 10)
                 throw "";
-            if (khachhang.sdt[0] != '0')
+            if (kh.sdt[0] != '0')
                 throw "";
-            for (int i = 1; i < khachhang.sdt.length(); i++)
+            for (int i = 1; i < kh.sdt.length(); i++)
             {
-                if (khachhang.sdt[i] < 48 || khachhang.sdt[i] > 57)
+                if (kh.sdt[i] < 48 || kh.sdt[i] > 57)
                     throw "";
             }
             break;
@@ -156,7 +139,7 @@ istream &operator>>(istream &in, KhachHang &khachhang)
             cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
         }
     }
-    khachhang.so_diem = 0;
+    kh.so_diem = 0;
     return in;
 }
 

@@ -140,7 +140,7 @@ int QuanLyHD::FindIndexNV(const int &index)
     }
     return -1;
 }
-int QuanLyHD::FindIndex(const string& a)
+int QuanLyHD::FindIndexKH(const string& a)
 {
     for (int i = 0; i < this->lengthHD; i++)
     {

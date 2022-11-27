@@ -55,6 +55,9 @@ class NhanVien
     int getCheckDeleteSo();
     Date getNgayVao();
     Date getNgayNghi();
+
+    void try_catchHoten(string&);
+    void try_catchDiaChi(string&);
     // Ham da nang hoa
     friend ostream& operator<<(ostream&, NhanVien&);
     friend istream& operator>>(istream&, NhanVien&);

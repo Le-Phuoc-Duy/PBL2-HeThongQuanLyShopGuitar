@@ -145,6 +145,29 @@ Date NhanVien::getNgayVao(){
 Date NhanVien::getNgayNghi(){
     return this->ngay_nghi;
 }
+void NhanVien::try_catchHoten(string& ten){
+    fflush(stdin);  getline(cin, ten);
+        /// Kiem tra ten va ho co rong khong?
+    while(ten[0] == ' ') ten.erase(ten.begin() + 0);
+    if (ten.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+        /// Kiem tra ho co ki tu dac biet khong?
+    for (int i = 0; i < ten.length(); i++){
+        if (!(ten[i] >= 97 && ten[i] <= 122) && !(ten[i] >= 65 && ten[i] <= 90) && ten[i] != ' ') 
+        throw "\t\t\t\t\t\tNhap lai!";
+    }
+}
+void NhanVien::try_catchDiaChi(string& diachi){
+    fflush(stdin);  getline(cin, diachi);
+        /// Kiem tra ten va ho co rong khong?
+    while(dia_chi[0] == ' ') dia_chi.erase(dia_chi.begin() + 0);
+    if (dia_chi.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+        /// Kiem tra ho co ki tu dac biet khong?
+    for (int i = 0; i < dia_chi.length(); i++){
+        if (!(dia_chi[i] >= 97 && dia_chi[i] <= 122) && !(dia_chi[i] >= 65 && dia_chi[i] <= 90) 
+        && !(dia_chi[i] >= 48 && dia_chi[i] <= 57) && dia_chi[i] != ' ' && dia_chi[i] != '/') 
+        throw "\t\t\t\t\t\tNhap lai!";
+    }
+}
 /// Da nang hoa toan tu
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
@@ -157,16 +180,8 @@ istream& operator>>(istream& in, NhanVien& nv)
 {
     do{
         try{
-            fflush(stdin);
-            cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(in, nv.hodem);
-             /// Kiem tra ten va ho co rong khong?
-            while(nv.hodem[0] == ' ') nv.hodem.erase(nv.hodem.begin() + 0);
-            if (nv.hodem.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
-             /// Kiem tra ho co ki tu dac biet khong?
-            for (int i = 0; i < nv.hodem.length(); i++){
-                if (!(nv.hodem[i] >= 97 && nv.hodem[i] <= 122) && !(nv.hodem[i] >= 65 && nv.hodem[i] <= 90) && nv.hodem[i] != ' ') 
-                throw "\t\t\t\t\t\tNhap lai!";
-            }
+            cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";
+            nv.try_catchHoten(nv.hodem);
             break;
         }
         catch(const char* e){
@@ -177,14 +192,8 @@ istream& operator>>(istream& in, NhanVien& nv)
 
     do{
         try{
-            fflush(stdin);
-            cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(in, nv.tenNV);
-            while(nv.tenNV[0] == ' ') nv.tenNV.erase(nv.tenNV.begin() + 0);
-            if (nv.tenNV.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
-            for (int i = 0; i < nv.tenNV.length(); i++){
-                if (!(nv.tenNV[i] >= 97 && nv.tenNV[i] <= 122) && !(nv.tenNV[i] >= 65 && nv.tenNV[i] <= 90) && nv.tenNV[i] != ' ') 
-                throw "\t\t\t\t\t\tNhap lai!";
-            }
+            cout << "\t\t\t\t\t\tNhap ten nhan vien: ";
+            nv.try_catchHoten(nv.tenNV);
             break;
         }
         catch(const char* e){
@@ -218,11 +227,20 @@ istream& operator>>(istream& in, NhanVien& nv)
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
-    cout << "\t\t\t\t\t\tNhap dia chi: ";    fflush(stdin); getline(in, nv.dia_chi);
-    string y;
-    cout << "\t\t\t\t\t\tChuc vu:     0. Quan Ly              1. Nhan vien"; 
     do{
-        cout << "\n\t\t\t\t\t\tNhap chuc vu : ";   fflush(stdin); in >> y;
+        try{
+            cout << "\t\t\t\t\t\tNhap dia chi: ";
+            nv.try_catchDiaChi(nv.dia_chi);
+            break;
+        }
+        catch(const char* e){
+            cout << e << endl;
+        }
+    }while(1);
+    string y;
+    cout << "\t\t\t\t\t\tChuc vu:     0. Quan Ly              1. Nhan vien" << endl; 
+    do{
+        cout << "\t\t\t\t\t\tNhap chuc vu : ";   fflush(stdin); getline(cin, y);
     }while(y != "0" && y != "1");
     fflush(stdin);
     nv.chuc_vu = (int)(y[0] - '0');

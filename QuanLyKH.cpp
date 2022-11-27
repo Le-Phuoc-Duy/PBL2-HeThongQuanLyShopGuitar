@@ -124,55 +124,56 @@ void QuanLyKH::Show(int trang_thai)
 }
 void QuanLyKH::Find()
 {
-    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\n";
-    cout << setw(74) << " " << "1. Tim theo SDT" << endl;
-    cout << setw(74) << " " << "2. Tim theo ten" << endl;
-    cout << setw(74) << " " << "0. Thoat" << endl;
-    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
-    if (luachon == 1){
-        string sdt = KiemTraSDT();
-        int n = FindIndexSDT(sdt);
-        if (n == -1)
-        {
-            textcolor(12);cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;textcolor(7);
-            return;
-        }
-        else
-        {
-            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
-            cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
-            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
-            cout << *databaseKH[n] <<" " << left << setw(11) << databaseKH[n]->getCheckDelete() << "|";
-            cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
-        }
-    }else if (luachon == 2)
-    {
-        string tenKH;
-        fflush(stdin);
-        cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenKH);
-        HamChuanHoa(tenKH);
-        if (FindIndexTen(tenKH) == -1){
-            textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
-            return;
-        }else{
-            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
-            cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
-            cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
-            for (int i = 0; i < this->lengthKH; i++)
+    int luachon;
+    do{    
+        system("cls");
+        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        cout << "\n\n";
+        cout << setw(74) << " " << "1. Tim theo SDT" << endl;
+        cout << setw(74) << " " << "2. Tim theo ten" << endl;
+        cout << setw(74) << " " << "0. Thoat" << endl;
+        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
+        if (luachon == 1){
+            string sdt = KiemTraSDT();
+            int n = FindIndexSDT(sdt);
+            if (n == -1)
             {
-                if (databaseKH[i]->getTenKH() == tenKH) cout << *databaseKH[i] <<" " << left << setw(11) << databaseKH[i]->getCheckDelete() << "|";      
+                textcolor(12);cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;textcolor(7);
             }
-            cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
-              
+            else
+            {
+                cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+                cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
+                cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+                cout << *databaseKH[n] <<" " << left << setw(11) << databaseKH[n]->getCheckDelete() << "|";
+                cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
+            }
+        }else if (luachon == 2)
+        {
+            string tenKH;
+            fflush(stdin);
+            cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenKH);
+            HamChuanHoa(tenKH);
+            if (FindIndexTen(tenKH) == -1){
+                textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
+            }else{
+                cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+                cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
+                cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
+                for (int i = 0; i < this->lengthKH; i++)
+                {
+                    if (databaseKH[i]->getTenKH() == tenKH) cout << *databaseKH[i] <<" " << left << setw(11) << databaseKH[i]->getCheckDelete() << "|";      
+                }
+                cout << "\n" <<setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";cout << endl;
+            }
         }
-    }else if (luachon == 0){
-        return;
-    }else{
-        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
-        return;
-    }
+        else if (luachon){
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+        }
+        else break;
+    cout << "\t\t\t\t\t\t"; system("pause");
+    }while(luachon);
 }
 void QuanLyKH::Writef()
 {
@@ -206,80 +207,107 @@ void QuanLyKH::Remove()
 }
 
 void QuanLyKH::Update(QuanLyHD& ql_hd){
-    cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\n";
-    cout << setw(69) << " " << "1. Cap nhat ten" << endl;
-    cout << setw(69) << " " << "2. Cap nhat so dien thoai" << endl;
-    cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
-    cout << setw(69) << " " << "0. Thoat" << endl;
-    cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
-    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
-    if (luachon == 0){
-        return;
-    }else if (luachon < 0 || luachon > 3){
-        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
-        return;
-    }
-    else{
-        if (luachon == 3) Show(1);
-        else Show(0);
-        int ma; 
-        cout << "\n\t\t\t\t\t\tMa so khach hang can cap nhat: ";        ma = Nhap_ma();
-        int n = FindIndex(ma);
-        if (luachon != 3){
-            if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1){
-                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
-                return;
-            }
+    int luachon;
+    do{    
+        system("cls");
+        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        cout << "\n\n";
+        cout << setw(69) << " " << "1. Cap nhat ten" << endl;
+        cout << setw(69) << " " << "2. Cap nhat so dien thoai" << endl;
+        cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
+        cout << setw(69) << " " << "0. Thoat" << endl;
+        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
+        
+        if (luachon < 0 || luachon > 3){
+            textcolor(12);  cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+            cout << "\t\t\t\t\t\t"; system("pause");
+            continue;
         }
-        else{
-            if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 0){
-                textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;textcolor(7);
-                return;
-            }
-        }
-        switch (luachon){
-            case 1:
-            {
-                string ten, hodem;
-                fflush(stdin);
-                cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(cin, hodem);
-                cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(cin, ten);
-                HamChuanHoa(ten);   HamChuanHoa(hodem);
-                databaseKH[n]->setTenKH(ten);
-                databaseKH[n]->setHoDemKH(hodem);
-                break;
-            }
-            case 2:
-            {
-                string sdt = KiemTraSDT();
-                while (FindIndexSDT(sdt) != -1){
-                    cout << "\t\t\t\t\t\tSDT da ton tai. Nhap lai!" << endl;
-                    sdt = KiemTraSDT();
+        else if (luachon){
+            if (luachon == 3) Show(1);
+            else Show(0);
+            int ma; 
+            cout << "\n\t\t\t\t\t\tMa so khach hang can cap nhat: ";        ma = Nhap_ma();
+            int n = FindIndex(ma);
+            if (luachon != 3){
+                if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1){
+                    textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
+                    cout << "\t\t\t\t\t\t"; system("pause");
+                    continue;
                 }
-                // bien SDT luu SDT cu
-                string SDT = databaseKH[FindIndex(ma)]->getSDT();
-                databaseKH[n]->setSDT(sdt);
-                // cap nhat so dien thoai moi trong danh sach hoa don
-                int m = ql_hd.FindIndex(SDT);
-                while (m != -1){
-                    ql_hd.databaseHD[n]->setSDT(sdt);
-                    m = ql_hd.FindIndex(SDT);
+            }
+            else{
+                if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 0){
+                    textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;textcolor(7);
+                    cout << "\t\t\t\t\t\t"; system("pause");
+                    continue;
                 }
-                break;
             }
-            case 3:
-            {
-                databaseKH[n]->setCheckDelete(0);
-                break;
+            switch (luachon){
+                case 1:
+                {
+                    string ten, hodem;
+                    do{
+                        try{
+                            cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";
+                            databaseKH[n]->try_catchHoten(hodem);
+                            break;
+                        }
+                        catch(const char* e){
+                            cout << e << endl;
+                        }
+                    }while(1);
+
+                    do{
+                        try{
+                            cout << "\t\t\t\t\t\tNhap ten nhan vien: ";
+                            databaseKH[n]->try_catchHoten(ten);
+                            break;
+                        }
+                        catch(const char* e){
+                            cout << e << endl;
+                        }
+                    }while(1);
+                    HamChuanHoa(ten);   HamChuanHoa(hodem);
+                    databaseKH[n]->setTenKH(ten);
+                    databaseKH[n]->setHoDemKH(hodem);
+                    break;
+                }
+                case 2:
+                {
+                    string sdt = KiemTraSDT();
+                    if (FindIndexSDT(sdt) != -1){
+                        textcolor(6);cout << "\t\t\t\t\t\tSDT da ton tai. Cap nhat khong thanh cong!" << endl;textcolor(7);
+                        break;
+                    }
+                    // bien SDT luu SDT cu
+                    string SDT = databaseKH[FindIndex(ma)]->getSDT();
+                    databaseKH[n]->setSDT(sdt);
+                    // cap nhat so dien thoai moi trong danh sach hoa don
+                    int m = ql_hd.FindIndexKH(SDT);
+                    while (m != -1){
+                        ql_hd.databaseHD[m]->setSDT(sdt);
+                        m = ql_hd.FindIndexKH(SDT);
+                    }
+                    textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
+                    break;
+                }
+                case 3:
+                {
+                    databaseKH[n]->setCheckDelete(0);
+                    break;
+                }
+                default:
+                {
+                    break;
+                } 
             }
-            default:
-            {
-                break;
-            } 
+            if (luachon != 2) {textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);}
         }
-        textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
-    }
+        else break;
+    cout << "\t\t\t\t\t\t"; system("pause");
+    }while(luachon);
 }
 bool increase(string x, string y)
 {
@@ -306,35 +334,38 @@ void QuanLyKH::selectionsortTen(bool (*cmp)(string,string)){
 }
 void QuanLyKH::Sort()
 {
-    cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    cout << "\n\n";
-    cout << setw(62)<< " " << "1. Sap xep ten khach hang theo chieu giam" << endl;
-    cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
-    cout << setw(62)<< " " << "0. Thoat" << endl;
-    cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
-    switch(luachon){
-        case 0:
-        {
-            break;
-        }
-        case 1:
-        {
-            selectionsortTen(descrease);
-            Show(0);
-            break;
-        }
-        case 2:
-        {
-            selectionsortTen(increase);
-            Show(0);
-            break;
-        }
-        default:
-        {
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
-            break;
+    int luachon;
+    do{ 
+        system("cls");   
+        cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        cout << "\n\n";
+        cout << setw(62)<< " " << "1. Sap xep ten khach hang theo chieu giam" << endl;
+        cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
+        cout << setw(62)<< " " << "0. Thoat" << endl;
+        cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
+        
+        if (luachon == 0) break;
+        switch(luachon){
+            case 1:
+            {
+                selectionsortTen(increase);
+                Show(0);
+                break;
+            }
+            case 2:
+            {
+                selectionsortTen(descrease);
+                Show(0);
+                break;
+            }
+            default:
+            {
+                textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+                break;
 
+            }
         }
-    }
+    cout << "\t\t\t\t\t\t"; system("pause");
+    }while(luachon);
 }

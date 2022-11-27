@@ -28,6 +28,8 @@ class KhachHang{
         void setSDT(string);
         void setSoDiem(int);
         void setCheckDelete(int);
+
+        void try_catchHoten(string&);
     // Ham constructor & destructor
         KhachHang(int = -1, string = "", string = "", string = "", int = 0, int = 0);
         ~KhachHang();

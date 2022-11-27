@@ -14,10 +14,3 @@
 28, Q, 12, 21, 0, 2, Da Xoa
 23, Nose, 12, 21, 0, 4, Ton Tai
 29, 1, 12, 21, 0, 1, Da Xoa
-30, Jbnjn, 12, 21, 0, 1, Ton Tai
-31, Xhb X, 12, 21, 0, 4, Ton Tai
-32, Jnsdj Dsvjn, 12, 21, 0, 3, Ton Tai
-33, Dskvm Ksdnv, 0, 12, 0, 14, Ton Tai
-34, Le Phuoc, 12, 21, 0, 15, Ton Tai
-35, Le Duy, 12, 21, 0, 12, Ton Tai
-36, Dd Dd, 12, 21, 0, 16, Ton Tai

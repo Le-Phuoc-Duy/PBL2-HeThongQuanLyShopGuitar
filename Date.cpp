@@ -61,19 +61,6 @@ Date::Date(int ngay, int thang, int nam, int gio, int phut){
 }
 // Ham destructor
 Date::~Date(){}
-// void Date::Output(){
-//     cout << this->gio << "h" << this->phut << " ";
-//     if (this->ngay < 10){
-//         cout << "0";
-//     }
-//     cout << this->ngay << "/";
-
-//     if (this->thang < 10){
-//         cout << "0";
-//     }
-//     cout << this->thang << "/";
-//     cout << this->nam;
-// }
 void Date::Input()
 {
     while(1){

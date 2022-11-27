@@ -18,7 +18,7 @@ class QuanLyHD : public QuanLy{
         void Insert(QuanLyNV&, QuanLyKH&, QuanLyHang&);
         int FindIndexHD(const int&);
         int FindIndexNV(const int&);
-        int FindIndex(const string&);
+        int FindIndexKH(const string&);
         int FindIndexHH(const int&);
         void Remove();
         void Show(QuanLyHang&);
