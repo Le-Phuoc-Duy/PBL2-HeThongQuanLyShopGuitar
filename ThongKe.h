@@ -6,6 +6,7 @@
 class QuanLyNV;
 class QuanLyHD;
 #include <ctime>
+#include <Windows.h>
 class ThongKe{
     private:
         double luongNV, doanh_thu, loi_nhuan, von;
