@@ -1,6 +1,7 @@
 #include <iostream>
 #include "HoaDon.h"
 #include "QuanLyHang.h"
+#include <windows.h>
 #include <iomanip>
 using namespace std;
 
@@ -97,8 +98,9 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
     Date ngay_lap; setNgayLap(ngay_lap);  //set thoi gian tu dong
 
     cout << "\t\t\t\t\t\tBan muon mua (ban) bao nhieu loai hang? "; this->lengthCTHD = hh.So_nguyen();
-    hh.Show(0);
     for (int i = 0; i < this->lengthCTHD; i++){
+        system("cls");
+        hh.Show(0);
         cout << "\n\t\t\t\t\t\tNhap thong tin chi tiet loai " << i + 1;       
         ChiTietHoaDon *p = new ChiTietHoaDon;
         // trangthai: 1 - Mua, 2 - Ban
@@ -108,7 +110,10 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
         this->thanh_tien += this->cthd[i]->getDonGia();
     }
     if (this->thanh_tien == 0) {
-        cout << "\n\t\t\t\t\t\tTHANH TIEN: 0" << "\n\t\t\t\t\t\tHoa don khong duoc lap!";
+        cout << "\n\t\t\t\t\t\tTHANH TIEN: 0" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+        cout << "\t\t\t\t\t\tHoa don khong duoc lap!" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         return;
     }
     //////// Tinh diem tich luy cho khach hang

@@ -92,8 +92,8 @@ void QuanLyHD::Insert(QuanLyNV& nv, QuanLyKH& kh, QuanLyHang& hh){
         n = nv.FindIndex(maNV);
     }
     int trang_thai; string sdt;
+    cout << "\t\t\t\t\t\tTrang thai hoa don?    1. Mua       2. Ban";
     do{
-        cout << "\t\t\t\t\t\tTrang thai hoa don?    1. Mua       2. Ban";
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; trang_thai = So_nguyen();
         // Neu hoa don ban thi yeu cau nhap sdt khach hang
         if (trang_thai == 2){
@@ -164,44 +164,51 @@ int QuanLyHD::FindIndexHH(const int &index)
 
 void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
 {
-    cout << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    cout << "\n\n";
-    cout << setw(61) << " " << "1. Tim theo ma" << endl;
-    cout << setw(61) << " " << "2. Tim danh sach hoa don theo nhan vien" << endl;
-    cout << setw(61) << " " << "0. Thoat" << endl;
-    cout << "\n" << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
-    cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon = So_nguyen();
-    if (luachon == 1){
-        int maHD;
-        cout << "\t\t\t\t\t\tNhap ma hoa don can tim: ";    maHD = Nhap_ma();
-        int n = FindIndexHD(maHD);
-        if (n == -1){
-            textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
-            return;
-        }else{
-            cout << "\n" <<setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-";
-            databaseHD[n]->Output(hh);
-        }
-    }else if(luachon == 2){
-        int maNV;
-        nv.Show(0); nv.Show(1);
-        cout << "\t\t\t\t\t\tNhap ma nhan vien: ";    maNV = Nhap_ma();
-        int count = 1;
-        for (int i = 0; i < this->lengthHD; i++)
-        {
-            if (databaseHD[i]->getMaNV() == maNV){
-                textcolor(3);cout << "\n\t\t\t\t\t\tHoa don thu " << count;textcolor(7);
-                databaseHD[i]->Output(hh);
-                count++;
+    int luachon;
+    do{    
+        system("cls");
+        cout << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        cout << "\n\n";
+        cout << setw(61) << " " << "1. Tim theo ma" << endl;
+        cout << setw(61) << " " << "2. Tim danh sach hoa don theo nhan vien" << endl;
+        cout << setw(61) << " " << "0. Thoat" << endl;
+        cout << "\n" << setw(55) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
+        if (luachon == 1){
+            int maHD;
+            cout << "\t\t\t\t\t\tNhap ma hoa don can tim: ";    maHD = Nhap_ma();
+            int n = FindIndexHD(maHD);
+            if (n == -1){
+                textcolor(12);cout << "\t\t\t\t\t\tMa hoa don khong ton tai!" << endl;textcolor(7);
+            }else{
+                cout << "\n" <<setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-";
+                databaseHD[n]->Output(hh);
             }
+        }else if(luachon == 2){
+            int maNV;
+            nv.Show(0); nv.Show(1);
+            cout << "\t\t\t\t\t\tNhap ma nhan vien: ";    maNV = Nhap_ma();
+            int count = 1;
+            if (nv.FindIndex(maNV) == -1){
+                textcolor(12);cout << "\t\t\t\t\t\tMa nhan vien khong ton tai!" << endl;textcolor(7);
+            }
+            else for (int i = 0; i < this->lengthHD; i++)
+            {
+                if (databaseHD[i]->getMaNV() == maNV){
+                    textcolor(3);cout << "\n\t\t\t\t\t\tHoa don thu " << count;textcolor(7);
+                    databaseHD[i]->Output(hh);
+                    count++;
+                }
+                if (count == 0){
+                    textcolor(12);cout << "\t\t\t\t\t\tKhong co hoa don nao!" << endl;textcolor(7);
+                }
+            }
+        }else if(luachon == 0) break;
+        else {
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
         }
-    }else if(luachon == 0){
-        return;
-    }
-    else {
-        textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;textcolor(7);
-        return;
-    }
+        cout << "\t\t\t\t\t\t"; system("pause");
+    }while(luachon);
 }
 void QuanLyHD::Remove()
 {

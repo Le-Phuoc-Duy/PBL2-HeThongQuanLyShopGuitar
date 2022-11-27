@@ -50,8 +50,8 @@ void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
         n = ql_hh.FindIndex(maHH);
         if (n == -1 || (n != -1 && ql_hh.databaseK[n]->getCheckDeleteSo() == 1)){
             cout << "\t\t\t\t\t\tMa hang hoa chua ton tai hoac da bi xoa." << endl;
+            cout << "\t\t\t\t\t\tBan muon nhap lai?      1. Co           0. Khong";
             do{
-                cout << "\t\t\t\t\t\tBan muon nhap lai?      1. Co           0. Khong";
                 cout << "\n\t\t\t\t\t\tNhap lua chon: "; int luachon1 = ql_hh.So_nguyen();
                 if (luachon1 == 0){
                     this->so_luong = 0;   
@@ -73,7 +73,7 @@ void ChiTietHoaDon::InputB(QuanLyHang& ql_hh){
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = ql_hh.So_nguyen();
         if (luachon == 0){
             so_luong = 0;   
-            don_gia == 0;
+            this->don_gia = 0;
             return; // Khong thay doi so luong ~ khong mua hang nua
         }
         else if (luachon == 1){

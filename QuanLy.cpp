@@ -58,6 +58,7 @@ int QuanLy::So_nguyen(){
             fflush(stdin);  getline(cin, x);
             int n = x.length();
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
+            if (n == 0) throw "";
             for(int i = n - 1; i >= 0; --i){
                 if (x[i] < 48 || x[i] > 57) throw "";
             }
@@ -83,6 +84,7 @@ int QuanLy::Nhap_ma(){
             fflush(stdin);
             cout << "\n\t\t\t\t\t\tNhap ma: "; getline(cin, x);
             int n = x.length();
+            if (n == 0) throw "";
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
             for(int i = n - 1; i >= 0; --i){
                 if (x[i] < 48 || x[i] > 57) throw "";
