@@ -153,6 +153,8 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
 }
 void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
 {
+    this->luongNV = 0;
+    this->loi_nhuan = 0;
     this->doanh_thu = 0;
     this->von = 0;
 
@@ -304,9 +306,15 @@ void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
 
 void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
 {
+    this->luongNV = 0;
+    this->loi_nhuan = 0;
+    this->doanh_thu = 0;
+    this->von = 0;
+
     int year;
     cout << "\t\t\t\t\t\tNhap nam can thong ke: ";
     year = hd.In_double();
+
     time_t now = time(0);
     tm *ltm = localtime(&now);
     int yy = 1900 + ltm->tm_year; // nam hien tai
@@ -399,9 +407,10 @@ void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
         }
         for (int j = 0; j < hd.getLengthHD(); j++)
         {
-            if (hd.databaseHD[j]->getTrangThaiSo() == 1 && hd.databaseHD[j]->getNgayLap() == hientai)
+            if (hd.databaseHD[j]->getTrangThaiSo() == 1 && hd.databaseHD[j]->getNgayLap() == hientai){
                 this->von = this->von + hd.databaseHD[j]->getThanhTien();
-            tmpVon = tmpVon + hd.databaseHD[j]->getThanhTien();
+                tmpVon = tmpVon + hd.databaseHD[j]->getThanhTien();
+            } 
         }
         tmpLoiNhuan = tmpDoanhThu - tmpLuong - tmpVon;
         cout << setw(30) << " "
