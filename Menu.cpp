@@ -679,7 +679,6 @@ int main()
     ql_hang.ReadfPL();
     ql_hang.Readf();
     ql_hd.Readf();
-    system("cls");
     //Khoi dong
     // Start();
     // Menu dang nhap

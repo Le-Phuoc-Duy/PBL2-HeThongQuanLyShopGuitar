@@ -94,7 +94,7 @@ int QuanLy::Nhap_ma(){
             break;
         }
         catch(...) {
-            textcolor(12);cout << "\t\t\t\t\t\tMa so phai la so tu nhien!" << endl;textcolor(7);
+            cout << "\t\t\t\t\t\tMa so phai la so tu nhien!" << endl;
         }
     }
     return luachon;
@@ -155,7 +155,7 @@ double QuanLy::In_double()
         }
         catch(...)
         {
-            cout << "\t\t\t\t\t\tKieu du lieu khong hop le!"; 
+            textcolor(12);cout << "\t\t\t\t\t\tKieu du lieu khong hop le!";textcolor(7); 
             cout << "\n\t\t\t\t\t\tNhap lai: "; fflush(stdin); getline(cin, data);
         }
     }

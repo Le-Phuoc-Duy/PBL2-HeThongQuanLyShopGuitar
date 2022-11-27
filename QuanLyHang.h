@@ -32,7 +32,6 @@ class QuanLyHang : public QuanLy{
         int FindIndex(const int&);
         int FindIndexTen(const string&);
         int FindIndexDM(const int&);
-        int FindIndexTenDM(const string&);
 
         void ReadfPL();
         void ShowPL(int);

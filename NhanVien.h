@@ -1,6 +1,7 @@
 #include <string>
 #include "Date.h"
 #include <ctime>
+#include <Windows.h>
 using namespace std;
 #pragma once
 

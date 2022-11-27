@@ -60,9 +60,8 @@ void QuanLyKH::Insert()
         cout << "\n\t\t\t\t\t\tSo dien thoai da ton tai" << endl;
         return;
     }
-    string ten = khachhang->getTenKH();
-    HamChuanHoa(ten);
-    khachhang->setTenKH(ten);
+    string ho = khachhang->getHoDemKH();    HamChuanHoa(ho);    khachhang->setHoDemKH(ho);
+    string ten = khachhang->getTenKH();     HamChuanHoa(ten);   khachhang->setTenKH(ten);
 
     databaseKH.push_back(khachhang);
     this->lengthKH++;
@@ -151,7 +150,7 @@ void QuanLyKH::Find()
     }else if (luachon == 2)
     {
         string tenKH;
-        cin.ignore();
+        fflush(stdin);
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenKH);
         HamChuanHoa(tenKH);
         if (FindIndexTen(tenKH) == -1){
@@ -243,7 +242,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
             case 1:
             {
                 string ten, hodem;
-                cin.ignore();
+                fflush(stdin);
                 cout << "\t\t\t\t\t\tNhap ho dem khach hang: ";  getline(cin, hodem);
                 cout << "\t\t\t\t\t\tNhap ten khach hang: ";  getline(cin, ten);
                 HamChuanHoa(ten);   HamChuanHoa(hodem);

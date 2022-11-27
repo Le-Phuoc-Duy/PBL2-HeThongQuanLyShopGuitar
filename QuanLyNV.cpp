@@ -161,7 +161,7 @@ void QuanLyNV::Find()
     }else if (luachon == 2)
     {
         string tenNV;
-        cin.ignore();
+        fflush(stdin);
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenNV);
         HamChuanHoa(tenNV);
         if (FindIndexTen(tenNV) == -1){
@@ -176,7 +176,7 @@ void QuanLyNV::Find()
             for (int i = 0; i < this->lengthNV; i++)
             {
                 if (databaseNV[i]->getTenNV() == tenNV){
-                    if (databaseNV[i]->getCheckDeleteSo() == 0) cout << *databaseNV[i] << "           |";
+                    if (databaseNV[i] == 0) cout << *databaseNV[i] << "           |";
                     else cout << *databaseNV[i] << left << setw(2) << databaseNV[i]->getNgayNghi() << " |";
                 }       
             }
@@ -296,7 +296,7 @@ void QuanLyNV::Update(){
             {
                 string tenNV, hodem;
                 cout << "\t\t\t\t\t\tNhap ho dem nhan vien: ";
-                cin.ignore(); getline(cin, hodem);
+                fflush(stdin); getline(cin, hodem);
                 cout << "\t\t\t\t\t\tNhap ten nhan vien: ";
                 getline(cin, tenNV);
                 HamChuanHoa(tenNV); HamChuanHoa(hodem);
@@ -331,7 +331,7 @@ void QuanLyNV::Update(){
             {
                 string diachi;
                 cout << "\t\t\t\t\t\tNhap dia chi nhan vien: ";
-                cin.ignore(); getline(cin,diachi);
+                fflush(stdin); getline(cin,diachi);
                 databaseNV[n]->setDiaChi(diachi);
                 break;
             }

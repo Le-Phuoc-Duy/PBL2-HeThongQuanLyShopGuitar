@@ -95,8 +95,7 @@ void QuanLyHang::Insert()
                 break;
             }
             if (lengthPL != tmp){
-                PhanLoai pl;
-                maPL = pl.getCountID();
+                maPL = databasePL[0]->getCountID();
                 break;
             }
             else{
@@ -147,37 +146,6 @@ void QuanLyHang::Readf()
         // kiem tra bien check co hop le khong
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
-        else{
-            textcolor(12);cout << "\n\t\t\t\t\t\tTrang thai hang hoa " << maHH << " khong hop le!" << endl;textcolor(7);    
-            continue;
-        }
-        if (FindIndexPL(maPL) == -1 ){
-            int opt;
-            textcolor(12);cout << "\n\t\t\t\t\t\tMa phan loai " << maPL << " chua ton tai. Ban muon them ma phan loai nay khong?";textcolor(7);
-            cout << "\n\t\t\t\t\t\t1. Co";
-            cout << "\n\t\t\t\t\t\t0. Khong";
-            cout << "\n\t\t\t\t\t\tNhap lua chon: "; opt = So_nguyen();
-
-            if(opt != 1) continue;
-            else{
-                string tenPL ;  cin.ignore();
-                cout << "\t\t\t\t\t\tNhap ten phan loai: "; getline(cin, tenPL);
-                HamChuanHoa(tenPL);
-
-                while (FindIndexTenPL(tenPL) != -1){
-                    cout << "\t\t\t\t\t\tTen phan loai da ton tai. Nhap lai!";
-                    cout << "\n\t\t\t\t\t\tNhap ten phan loai: ";
-                    cin.ignore(); getline(cin, tenPL);
-                    HamChuanHoa(tenPL);
-                }
-                
-                PhanLoai *pl = new PhanLoai(maPL, tenPL);
-                databasePL.push_back(pl);
-                this->lengthPL ++;
-                textcolor(6);cout << "\t\t\t\t\t\tThem phan loai thanh cong!" << endl;textcolor(7);
-            }
-        }
-
         Kho *kho = new Kho(maHH, tenHH, gia_von, gia_ban, so_luong, maPL, check_delete);
         databaseK.push_back(kho);
         (this->lengthK)++;
@@ -234,7 +202,7 @@ void QuanLyHang::Remove()
     else if (luachon == 2){
         string tenHH;
         Show(0);
-        cin.ignore(); 
+        fflush(stdin);
         cout << "\t\t\t\t\t\tNhap ten hang hoa: ";  getline(cin,tenHH);
         HamChuanHoa(tenHH);
         int n = FindIndexTen(tenHH);
@@ -344,7 +312,7 @@ void QuanLyHang::Update(){
             {
                 string tenHH;
                 cout << "\t\t\t\t\t\tNhap ten hang hoa moi: ";
-                cin.ignore(); getline(cin, tenHH);
+                fflush(stdin); getline(cin, tenHH);
                 HamChuanHoa(tenHH);
                 while (FindIndexTen(tenHH) != -1 || tenHH.empty() == 1){
                     cout << "\t\t\t\t\t\tTen hang hoa da ton tai. Nhap lai!";
@@ -528,7 +496,7 @@ void QuanLyHang::Sort(){
         }
         default:
         {
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!"<< endl;textcolor(7);
+            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!";textcolor(7);
             break;
 
         }
@@ -539,15 +507,6 @@ int QuanLyHang::FindIndexDM(const int &index)
     for (int i = 0; i < this->lengthK; i++)
     {
         if (databaseK[i]->getmaPL() == index)
-            return i;
-    }
-    return -1;
-}
-int QuanLyHang::FindIndexTenDM(const string &index)
-{
-    for (int i = 0; i < this->lengthK; i++)
-    {
-        if (databaseK[i]->getTenPL() == index)
             return i;
     }
     return -1;
@@ -713,7 +672,7 @@ void QuanLyHang::FindPL(){
     } else if (luachon ==  2)
     {
         string tenPL;
-        cin.ignore();
+        fflush(stdin);
         cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenPL);
         HamChuanHoa(tenPL);
         int n = FindIndexTenPL(tenPL);
@@ -792,7 +751,7 @@ void QuanLyHang::UpdatePL(){
     {
         string tenPL;
         cout << "\t\t\t\t\t\tNhap ten phan loai moi: ";
-        cin.ignore(); getline(cin, tenPL);
+        fflush(stdin); getline(cin, tenPL);
         HamChuanHoa(tenPL);
         while (FindIndexTenPL(tenPL) != -1 || tenPL.empty() == 1){
             cout << "\t\t\t\t\t\tTen phan loai da ton tai. Nhap lai!";

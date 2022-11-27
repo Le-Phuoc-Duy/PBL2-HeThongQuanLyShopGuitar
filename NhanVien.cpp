@@ -23,7 +23,9 @@ NhanVien::NhanVien(int maNV, string hodem, string tenNV, int gioi_tinh, Date nga
     this->ngay_vao = ngay_vao;
     this->ngay_nghi = ngay_nghi;
 }
-NhanVien::~NhanVien(){}
+NhanVien::~NhanVien(){
+    count_id--;
+}
 // Ham Setter
 void NhanVien::setCountID(int count)
 {
@@ -210,10 +212,11 @@ istream& operator>>(istream& in, NhanVien& nv)
         }
         catch(...)
         {
-            cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
-    cout << "\t\t\t\t\t\tNhap dia chi: ";    in.ignore(); getline(in, nv.dia_chi);
+    cout << "\t\t\t\t\t\tNhap dia chi: ";    fflush(stdin); getline(in, nv.dia_chi);
     string y;
     cout << "\t\t\t\t\t\tChuc vu:     0. Quan Ly              1. Nhan vien"; 
     do{

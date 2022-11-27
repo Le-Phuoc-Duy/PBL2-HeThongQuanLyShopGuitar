@@ -13,9 +13,8 @@ string Kho::getTenHH() {
     return this->tenHH;
 }
 int Kho::getmaPL() {
-    return this->phan_loai.getMaPL();
+    return this->maPL = maPL;
 }
-string Kho::getTenPL() { return this->phan_loai.getTenPL();}
 double Kho::getGiaVon() {
     return this->gia_von;
 }
@@ -58,12 +57,12 @@ void Kho::setCheckDelete(int check_delete){
 }
 void Kho::setMaPL(int maPL)
 {
-    this->phan_loai.setMaPL(maPL);
+    this->maPL = maPL;
 }
-void Kho::setTenPL(string tenPL)
-{
-    this->phan_loai.setTenPL(tenPL);
-}
+// void Kho::setTenPL(string tenPL)
+// {
+//     this->phan_loai.setTenPL(tenPL);
+// }
 // Ham constructor
 Kho::Kho(int maHH, string tenHH, double gia_von, double gia_ban, int so_luong, int maPL, int check_delete){
     if (maHH != -1){
@@ -75,16 +74,18 @@ Kho::Kho(int maHH, string tenHH, double gia_von, double gia_ban, int so_luong, i
     this->gia_von = gia_von; 
     this->gia_ban = gia_ban;
     this->so_luong = so_luong;
-    this->phan_loai.setMaPL(maPL);
+    this->maPL = maPL; 
     this->check_delete = check_delete;
 }
 // Ham destructor
-Kho::~Kho(){}
+Kho::~Kho(){
+    count_id--;
+}
 // Da nang hoa toan tu
 ostream& operator<<(ostream& out, Kho& kho)
 {
     out << "\n"<< setw(26) << " " << "|" << left << setw(9) << kho.maHH << "|" << left << setw(30) <<  kho.tenHH << "|" << left << setw(15) << setprecision(10) << kho.gia_von 
-    << "|" << left << setw(15) << kho.gia_ban << "|" << left << setw(12) << kho.so_luong << "|" << left << setw(22) << kho.phan_loai.getMaPL() << "|";
+    << "|" << left << setw(15) << kho.gia_ban << "|" << left << setw(12) << kho.so_luong << "|" << left << setw(22) << kho.maPL << "|";
     return out;
 }
 void Kho::Input(QuanLyHang& ql_hh, string tenHH, int maPL)

@@ -31,10 +31,10 @@ void PhanLoai::setCheckDelete(int check_delete){
     this->check_delete =  check_delete;
 }
 void PhanLoai::setCountID(int count_id){
-    this->count_id =  count_id;
+    this->count_id = count_id;
 }
 // Ham constructor
-PhanLoai::PhanLoai(int  maPL, string tenPL, int check_delete){
+PhanLoai::PhanLoai(int maPL, string tenPL, int check_delete){
     if (maPL != -1){
         this->maPL = maPL;
         if (count_id < maPL) count_id = maPL;
@@ -44,7 +44,9 @@ PhanLoai::PhanLoai(int  maPL, string tenPL, int check_delete){
     this->check_delete = check_delete;
 }
 // Ham destructor
-PhanLoai::~PhanLoai(){}
+PhanLoai::~PhanLoai(){
+    count_id--;
+}
 
 istream& operator>>(istream& in, PhanLoai& pl)
 {
