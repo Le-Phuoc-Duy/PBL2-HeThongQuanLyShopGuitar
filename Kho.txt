@@ -7,7 +7,6 @@
 21, Bose, 210000, 270000, 21, 6, Ton Tai
 20, Marshall, 200000, 260000, 20, 6, Ton Tai
 19, Bao Dan, 190000, 240000, 19, 5, Ton Tai
-22, Abc, 23, 32, 0, 5, Ton Tai
 27, Aaaaa, 21, 12, 0, 3, Da Xoa
 24, A, 12, 21, 0, 5, Da Xoa
 25, B, 12, 21, 3, 2, Ton Tai
@@ -15,3 +14,10 @@
 28, Q, 12, 21, 0, 2, Da Xoa
 23, Nose, 12, 21, 0, 4, Ton Tai
 29, 1, 12, 21, 0, 1, Da Xoa
+30, Jbnjn, 12, 21, 0, 1, Ton Tai
+31, Xhb X, 12, 21, 0, 4, Ton Tai
+32, Jnsdj Dsvjn, 12, 21, 0, 3, Ton Tai
+33, Dskvm Ksdnv, 0, 12, 0, 14, Ton Tai
+34, Le Phuoc, 12, 21, 0, 15, Ton Tai
+35, Le Duy, 12, 21, 0, 12, Ton Tai
+36, Dd Dd, 12, 21, 0, 16, Ton Tai

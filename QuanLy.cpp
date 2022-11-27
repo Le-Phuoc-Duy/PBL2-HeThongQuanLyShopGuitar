@@ -94,7 +94,7 @@ int QuanLy::Nhap_ma(){
             break;
         }
         catch(...) {
-            cout << "\t\t\t\t\t\tMa so phai la so tu nhien!" << endl;
+            textcolor(12);cout << "\t\t\t\t\t\tMa so phai la so tu nhien!" << endl;textcolor(7);
         }
     }
     return luachon;

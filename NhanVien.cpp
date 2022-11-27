@@ -170,7 +170,8 @@ istream& operator>>(istream& in, NhanVien& nv)
             break;
         }
         catch(const char* e){
-            cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }while(1);
 
@@ -187,7 +188,8 @@ istream& operator>>(istream& in, NhanVien& nv)
             break;
         }
         catch(const char* e){
-            cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }while(1);
     ///
