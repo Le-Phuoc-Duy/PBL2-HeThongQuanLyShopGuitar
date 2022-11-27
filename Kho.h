@@ -33,6 +33,8 @@ public:
         void setNgayNhap(Date);
         void setMaPL(int);
         void setCheckDelete(int);
+
+        void try_catchTenHH(string&);
     // Ham constructor
         Kho(int = -1, string = "", double = 0, double = 0, int = 0, int = 0, int = 0);
     // Ham destructor

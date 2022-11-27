@@ -59,10 +59,18 @@ void Kho::setMaPL(int maPL)
 {
     this->maPL = maPL;
 }
-// void Kho::setTenPL(string tenPL)
-// {
-//     this->phan_loai.setTenPL(tenPL);
-// }
+
+void Kho::try_catchTenHH(string& ten){
+    fflush(stdin);  getline(cin, ten);
+        /// Kiem tra ten va ho co rong khong?
+    while(ten[0] == ' ') ten.erase(ten.begin() + 0);
+    if (ten.empty() == 1) throw "\t\t\t\t\t\tNhap lai!";
+        /// Kiem tra ho co ki tu dac biet khong?
+    for (int i = 0; i < ten.length(); i++){
+        if (!(ten[i] >= 97 && ten[i] <= 122) && !(ten[i] >= 65 && ten[i] <= 90) && !(ten[i] >= 48 && ten[i] <= 57) && ten[i] != ' ') 
+        throw "\t\t\t\t\t\tNhap lai!";
+    }
+}
 // Ham constructor
 Kho::Kho(int maHH, string tenHH, double gia_von, double gia_ban, int so_luong, int maPL, int check_delete){
     if (maHH != -1){
