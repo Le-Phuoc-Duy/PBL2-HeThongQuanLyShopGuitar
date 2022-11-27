@@ -702,15 +702,20 @@ int main()
             {
                 textColor(12); cout << "\n\t\t\t\t\t\tSai mat khau. Nhap lai!" << endl;
                 textColor(7); cout << "\t\t\t\t\t\tBan co muon tiep tuc (c/k): ";
-                char x;
-                cin >> x;
-                if (x == 'c'){
+                string x;
+                getline(cin,x);
+                if (x == "c"){
                     count++;
                     input = getPass("\n\t\t\t\t\t\tNhap mat khau: ");
                 }
-                else
+                else if (x == "k")
                 {
                     check = 0;
+                    break;
+                }else{
+                    textColor(12); cout << "\n\t\t\t\t\t\tLua chon khong hop le. Thoat!" << endl;
+                    check = 0;
+                    textColor(7);cout << "\t\t\t\t\t\t"; system("pause");
                     break;
                 }
                 /// Neu mat khau sai 3 lan thi se thoat

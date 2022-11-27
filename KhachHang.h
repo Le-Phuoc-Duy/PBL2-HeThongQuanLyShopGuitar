@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <Windows.h>
 using namespace std;
 class KhachHang{
     private:

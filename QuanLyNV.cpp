@@ -138,12 +138,12 @@ void QuanLyNV::Find()
     int luachon;
     do{
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo ma" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 1){
             cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
@@ -233,12 +233,12 @@ void QuanLyNV::Sort()
     int luachon;
     do{   
         system("cls");
-        cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(62)<< " " << "1. Sap xep ten nhan vien theo chieu giam" << endl;
         cout << setw(62)<< " " << "2. Sap xep ten nhan vien theo chieu tang" << endl;
         cout << setw(62)<< " " << "0. Thoat" << endl;
-        cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 0) break;
         switch(luachon){
@@ -269,7 +269,7 @@ void QuanLyNV::Update(){
     int luachon;
     do{    
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(68) << " " << "1. Cap nhat ten" << endl;
         cout << setw(68) << " " << "2. Cap nhat gioi tinh" << endl;
@@ -278,7 +278,7 @@ void QuanLyNV::Update(){
         cout << setw(68) << " " << "5. Cap nhat dia chi" << endl;
         cout << setw(68) << " " << "6. Cap nhat chuc vu" << endl;
         cout << setw(68) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
 
         if (luachon < 0 || luachon > 6){

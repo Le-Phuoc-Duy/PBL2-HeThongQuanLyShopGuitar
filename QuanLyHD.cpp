@@ -179,7 +179,8 @@ void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
             textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
             return;
         }else{
-                databaseHD[n]->Output(hh);
+            cout << "\n" <<setw(48) << " "; for (int i = 1; i<=45; i++) cout << "-";
+            databaseHD[n]->Output(hh);
         }
     }else if(luachon == 2){
         int maNV;
@@ -188,8 +189,8 @@ void QuanLyHD::Find(QuanLyNV& nv, QuanLyHang& hh)
         int count = 1;
         for (int i = 0; i < this->lengthHD; i++)
         {
-            cout << "\t\t\t\t\t\tHoa don thu " << count;
             if (databaseHD[i]->getMaNV() == maNV){
+                textcolor(3);cout << "\n\t\t\t\t\t\tHoa don thu " << count;textcolor(7);
                 databaseHD[i]->Output(hh);
                 count++;
             }
@@ -251,22 +252,22 @@ void QuanLyHD::Show(QuanLyHang& hh){
         cout << "\t\t\t\t\t\tBan muon in danh sach hoa don?    1. Mua       2. Ban";
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon1 = So_nguyen();
         if (luachon1 == 2){
-            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON BAN" << endl;textcolor(7);
+            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON BAN" << "\n\n";textcolor(7);
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 2){
-                    textcolor(3);cout << "\t\t\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
+                    textcolor(3);cout << setw(60) << " " << "Chi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;
                 }
             }
         }else if (luachon1 == 1){
-            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON MUA" << endl;textcolor(7);
+            textcolor(6);cout << "\n" << setw(60) << " " <<"DANH SACH HOA DON MUA" << "\n\n";textcolor(7);
             int count = 0;
             for (int i = 0; i < this->lengthHD; i++){
                 if (databaseHD[i]->getTrangThaiSo() == 1){
-                    textcolor(3);cout << "\t\t\t\t\t\t\t\tChi tiet hoa don thu " << count + 1;textcolor(7);
+                    textcolor(3);cout << setw(60) << " " << "Chi tiet hoa don thu " << count + 1;textcolor(7);
                     databaseHD[i]->Output(hh);
                     cout << "\n\n";
                     count ++;

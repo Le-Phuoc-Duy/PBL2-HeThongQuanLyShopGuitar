@@ -127,12 +127,12 @@ void QuanLyKH::Find()
     int luachon;
     do{    
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11); 
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo SDT" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 1){
             string sdt = KiemTraSDT();
@@ -210,13 +210,13 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
     int luachon;
     do{    
         system("cls");
-        cout << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(69) << " " << "1. Cap nhat ten" << endl;
         cout << setw(69) << " " << "2. Cap nhat so dien thoai" << endl;
         cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
         cout << setw(69) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(63) << " "; for (int i = 1; i <= 35; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         
         if (luachon < 0 || luachon > 3){
@@ -337,12 +337,12 @@ void QuanLyKH::Sort()
     int luachon;
     do{ 
         system("cls");   
-        cout << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(62)<< " " << "1. Sap xep ten khach hang theo chieu giam" << endl;
         cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
         cout << setw(62)<< " " << "0. Thoat" << endl;
-        cout << "\n" << setw(56) << " "; for (int i = 1; i <= 50; i++) cout << "-";
+        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         
         if (luachon == 0) break;

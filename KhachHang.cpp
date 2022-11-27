@@ -100,7 +100,8 @@ istream &operator>>(istream &in, KhachHang &kh)
             break;
         }
         catch(const char* e){
-            cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }while(1);
 
@@ -111,7 +112,8 @@ istream &operator>>(istream &in, KhachHang &kh)
             break;
         }
         catch(const char* e){
-            cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << e << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }while(1);
     ///
@@ -136,7 +138,8 @@ istream &operator>>(istream &in, KhachHang &kh)
         }
         catch (...)
         {
-            cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << "\t\t\t\t\t\tSo dien thoai khong hop le. Nhap lai!" << endl;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
     kh.so_diem = 0;
