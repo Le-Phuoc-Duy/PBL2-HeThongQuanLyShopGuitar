@@ -132,7 +132,7 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
     }
 
     cout << "\n"
-         << setw(55) << " "
+         << setw(60) << " "
          << "BAO CAO TU NGAY " << ngay_bd << " - " << ngay_kt << endl;
     cout << setw(56) << " ";
     for (int i = 1; i <= 49; i++)
