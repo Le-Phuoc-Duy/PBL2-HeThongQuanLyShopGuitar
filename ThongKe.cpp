@@ -103,7 +103,7 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
     if (ngay_bd > hien_tai)
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-        cout << "\t\t\t\t\t\tKhong co du lieu" << endl;
+        cout << "\t\t\t\t\t\tKhong co du lieu!" << endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         return;
     }
@@ -112,7 +112,7 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
     if (ngay_kt > hien_tai || ngay_bd > ngay_kt)
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-        cout << "\t\t\t\t\t\tKhong co du lieu" << endl;
+        cout << "\t\t\t\t\t\tKhong co du lieu!" << endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
         return;
     }
@@ -165,46 +165,29 @@ void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
         try
         {
             string x;
-            fflush(stdin);
-            getline(cin, x);
+            fflush(stdin);      getline(cin, x);
+
             int n = x.length();
-            month = year = 0;
-            int count = 0, count_pow = 1;
-            int i = n - 1;
-            for (int j = n - 1; j >= 0; --j)
-            {
-                if (x[j] == '/')
-                    count++;
+            if (n != 7) throw "";
+            for(int j = 0; j < n; j++){
+                if (j == 2){
+                    if (x[j] != '/') throw "";
+                }
+                else{
+                    if (x[j] < 48 || x[j] > 57) throw "";
+                }
             }
-            if (count != 1 || x[0] == '/')
-                throw "";
-            while (x[i] != '/' && i >= 0)
-            {
-                if (x[i] < 48 || x[i] > 57)
-                    throw "";
-                else
-                    year += (int)(x[i] - '0') * count_pow;
-                count_pow *= 10;
-                i--;
-            }
-            i--;
-            count_pow = 1;
-            while (i >= 0)
-            {
-                if (x[i] < 48 || x[i] > 57)
-                    throw "";
-                else
-                    month += (int)(x[i] - '0') * count_pow;
-                count_pow *= 10;
-                i--;
-            }
+            
+            month = (int)(x[0] - '0') * 10 + (int)(x[1] - '0');
+            year = (int)(x[3] - '0') * 1000 + (int)(x[4] - '0') * 100 + (int)(x[5] - '0') * 10 + (int)(x[6] - '0');
+
             if (month > 12) throw "";
             break;
         }
         catch (...)
         {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-            cout << "\t\t\t\t\t\tThang nam phai nhap theo dinh dang mm/yyyy. Nhap lai: ";
+            cout << "\t\t\t\t\t\tPhai nhap theo dinh dang mm/yyyy. Nhap lai: ";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
@@ -218,7 +201,7 @@ void ThongKe::ThongKeThang(QuanLyNV &nv, QuanLyHD &hd)
     if (hien_tai < ngay_nhap)
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-        cout << "\t\t\t\t\t\tKhong co du lieu" << endl;
+        cout << "\t\t\t\t\t\tKhong co du lieu!" << endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         return;
     }
@@ -322,7 +305,7 @@ void ThongKe::ThongKeNam(QuanLyNV &nv, QuanLyHD &hd)
     if (year > yy)
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-        cout << "\t\t\t\t\t\tKhong co du lieu" << endl;
+        cout << "\t\t\t\t\t\tKhong co du lieu!" << endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         return;
     }

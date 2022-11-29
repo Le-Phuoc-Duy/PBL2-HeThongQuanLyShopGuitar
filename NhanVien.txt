@@ -1,6 +1,6 @@
 4, Nguyen Thi Tra, My, Nu, 10/10/2005, 0494333821, abc nguyen van linh, Quan ly, 5500000, Ton Tai, 23/11/2022
-2, Tran Van, Duy, Nam, 1/01/2000, 0654846236, 92 Nguyen Lam, Quan ly, 5500000, Da Xoa, 16/03/2022, 23/11/2022
+2, Tran Van, Duy, Nam, 01/01/2000, 0654846236, 92 Nguyen Lam, Quan ly, 5500000, Da Xoa, 16/03/2022, 23/11/2022
 3, Le Phuoc, Duy, Nam, 10/10/2002, 0899352424, 146/22 nguyen tat thanh, Quan ly, 5500000, Ton Tai, 23/11/2022
 1, Tran Van, Duc, Nam, 19/11/2003, 0654846486, 92 Nguyen Lam, Quan ly, 5500000, Ton Tai, 15/07/2019
-5, Nguyen Chi, Bao, Nam, 8/03/2000, 0935410684, Hue, Quan ly, 5500000, Ton Tai, 27/11/2022
+5, Nguyen Chi, Bao, Nam, 08/03/2000, 0935410684, Hue, Quan ly, 5500000, Ton Tai, 27/11/2022
 6, Nguyen Van, N, Nu, 19/11/2003, 0931119111, 34/31 NVL, Quan ly, 5500000, Da Xoa, 27/11/2022, 27/11/2022

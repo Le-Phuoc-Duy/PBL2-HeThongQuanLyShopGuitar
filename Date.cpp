@@ -68,51 +68,38 @@ void Date::Input()
             string x;
             fflush(stdin); getline(cin, x);
             int n = x.length();
-            this->ngay = this->thang = this->nam = 0;
-            int count = 0, count_pow = 1; int i = n - 1;
-            for(int j = n - 1; j >= 0; --j){
-                if (x[j] == '/') count++;
+            if (n != 10) throw "";
+
+            for(int j = 0; j < n; j++){
+                if (j == 2 || j == 5){
+                    if (x[j] != '/') throw "";
+                }
+                else{
+                    if (x[j] < 48 || x[j] > 57) throw "";
+                }
             }
-            if (count != 2) throw "";
-            while (x[i] != '/' && i >= 0){
-                if (x[i] < 48 || x[i] > 57) throw "";
-                else this->nam += (int)(x[i] - '0') * count_pow;
-                count_pow *= 10;
-                i--;
-            }
-            i--;
-            count_pow = 1;
-            while (x[i] != '/' && i >= 0){
-                if (x[i] < 48 || x[i] > 57) throw "";
-                else this->thang += (int)(x[i] - '0') * count_pow;
-                count_pow *= 10;
-                i--;
-            }
-            i--; count_pow = 1;
-            while (i >= 0){
-                if (x[i] < 48 || x[i] > 57) throw "";
-                else this->ngay += (int)(x[i] - '0') * count_pow;
-                count_pow *= 10;
-                i--;
-            }
+
+            this->ngay = (int)(x[0] - '0') * 10 + (int)(x[1] - '0');
+            this->thang = (int)(x[3] - '0') * 10 + (int)(x[4] - '0');
+            this->nam = (int)(x[6] - '0') * 1000 + (int)(x[7] - '0') * 100 + (int)(x[8] - '0') * 10 + (int)(x[9] - '0');
+            
             if (HamThoiGian(*this) == false){
-                this->gio = this->phut = 0; this->ngay = this->thang = 1;  this->nam = 2000;
+                throw "";
             }
             break;
         }
         catch(...) {
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << "\t\t\t\t\t\tNgay thang phai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);cout << "\t\t\t\t\t\tPhai nhap theo dinh dang dd/mm/yyyy. Nhap lai: ";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         }
     }
 }
 ostream& operator<<(ostream& out , const Date& date)
 {
-    if (date.gio != 0 || date.phut != 0) out << date.gio << ":" << date.phut << " ";
+    if (date.gio != 0 || date.phut != 0) {out << date.gio << ":" << date.phut << " ";}
+    if (date.ngay < 10)    out << "0";
     out << date.ngay << "/";
-    if (date.thang < 10){
-        out << "0";
-    }
+    if (date.thang < 10)    out << "0";
     out << date.thang << "/";
     out << date.nam;
     return out;

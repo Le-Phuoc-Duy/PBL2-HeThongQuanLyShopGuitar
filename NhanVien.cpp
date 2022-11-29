@@ -172,7 +172,7 @@ void NhanVien::try_catchDiaChi(string& diachi){
 ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\n" << setw(12) << " " << "|" << left << setw(7)<< nv.maNV << "|" << left << setw(17) << nv.hodem + " " << left << setw(6) << nv.tenNV << "|" << left << setw(11) << nv.getGioiTinh() 
-    << "|" <<left << setw(2) << nv.ngay_sinh << " |" << left << setw(11) << nv.getSDT() << "|" << left << setw(27) << nv.dia_chi << "|" << left <<  setw(11) << nv.getChucVu() 
+    << "|" << setw(1) << nv.ngay_sinh << " |" << left << setw(11) << nv.getSDT() << "|" << left << setw(27) << nv.dia_chi << "|" << left <<  setw(11) << nv.getChucVu() 
     << "|" << left << setw(9) << (size_t)nv.luong << "|" << left << setw(2) << nv.ngay_vao << "  |";
     return out;
 }
