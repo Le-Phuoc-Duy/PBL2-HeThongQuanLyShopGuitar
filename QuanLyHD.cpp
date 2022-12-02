@@ -271,7 +271,7 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
                     if (databaseHD[i]->getMaNV() == maNV)
                     {
                         textcolor(3);
-                        cout << "\n\t\t\t\t\t\tHoa don thu " << count;
+                        cout << "\n\t\t\t\t\t\t\tHoa don thu " << count;
                         textcolor(7);
                         databaseHD[i]->Output(hh);
                         count++;
@@ -321,11 +321,10 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
             int count = 1;
             for (int j = 0; j < getLengthHD(); j++)
             {
-
-                if (!(databaseHD[j]->getNgayLap() > ngay_kt && ngay_bd > databaseHD[j]->getNgayLap()))
+                if (!(databaseHD[j]->getNgayLap() > ngay_kt || ngay_bd > databaseHD[j]->getNgayLap()))
                 {
                     textcolor(3);
-                    cout << "\n\t\t\t\t\t\tHoa don thu " << count;
+                    cout << "\n\t\t\t\t\t\t\tHoa don thu " << count;
                     textcolor(7);
                     databaseHD[j]->Output(hh);
                     count++;

@@ -137,8 +137,10 @@ int Date::operator<(Date b){
     }
 }
 int Date::operator>(Date b){
-    if  (this->getNam() < b.getNam()) return 0;
+    if (this->getNam() < b.getNam()) return 0;
+    else if (this->getNam() > b.getNam()) return 1;
     if(this->getThang() < b.getThang()) return 0;
+    else if(this->getThang() > b.getThang()) return 1;
     if(this->getNgay() <= b.getNgay()) return 0;
     return 1;
 }
