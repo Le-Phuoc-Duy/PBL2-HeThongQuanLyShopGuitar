@@ -23,7 +23,7 @@ class QuanLyHD : public QuanLy{
         void Remove();
         void Show(QuanLyHang&);
         void ShowGeneral(int);
-        void Find(QuanLyNV&, QuanLyHang&);
+        void Find(QuanLyNV&, QuanLyHang&, QuanLyKH&);
         void Readf();
         void Writef();
 

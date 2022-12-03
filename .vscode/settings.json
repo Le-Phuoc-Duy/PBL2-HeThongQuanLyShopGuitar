@@ -12,6 +12,7 @@
         "xstring": "cpp",
         "cmath": "cpp",
         "ios": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "algorithm": "cpp"
     }
 }
