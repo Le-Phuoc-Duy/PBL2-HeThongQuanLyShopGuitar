@@ -325,16 +325,18 @@ bool descrease(string x, string y)
 
 void QuanLyKH::selectionsortTen(bool (*cmp)(string,string)){
     for(int i = 0; i < this->lengthKH - 1; i++){
+        int tmp = i;
         for (int j = i + 1; j < this->lengthKH; j++){
-            if ((*cmp)(databaseKH[i]->getTenKH(), databaseKH[j]->getTenKH())){
-                swap(databaseKH[i], databaseKH[j]);
+            if ((*cmp)(databaseKH[tmp]->getTenKH(), databaseKH[j]->getTenKH())){
+                tmp = j;
             }
-            if (databaseKH[i]->getTenKH() == databaseKH[j]->getTenKH()){
-                if ((*cmp)(databaseKH[i]->getHoDemKH(), databaseKH[j]->getHoDemKH())){
-                swap(databaseKH[i], databaseKH[j]);
-            }
+            if (databaseKH[tmp]->getTenKH() == databaseKH[j]->getTenKH()){
+                if ((*cmp)(databaseKH[tmp]->getHoDemKH(), databaseKH[j]->getHoDemKH())){
+                    tmp = j;
+                }
             }
         }
+        swap(databaseKH[i], databaseKH[tmp]);
     }
 }
 void QuanLyKH::Sort()

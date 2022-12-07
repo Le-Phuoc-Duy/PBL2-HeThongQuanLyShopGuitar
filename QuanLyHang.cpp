@@ -461,20 +461,24 @@ bool down(double x, double y)
 
 void QuanLyHang::selectionsortGiaBan(bool (*cmp)(double,double)){
     for(int i = 0; i< this->lengthK-1;i++){
+        int tmp = i;
         for (int j = i + 1; j < this->lengthK; j++){
-            if (cmp(databaseK[i]->getGiaBan(),databaseK[j]->getGiaBan())){
-                swap(databaseK[i],databaseK[j]);
+            if ((*cmp)(databaseK[tmp]->getGiaBan(),databaseK[j]->getGiaBan())){
+                tmp = j;                
             }
         }
+        swap(databaseK[i],databaseK[tmp]);
     }
 }
 void QuanLyHang::selectionsortGiaVon(bool (*cmp)(double,double)){
     for(int i = 0; i< this->lengthK-1;i++){
+        int tmp = i;
         for (int j = i + 1; j < this->lengthK; j++){
-            if (cmp(databaseK[i]->getGiaVon(),databaseK[j]->getGiaVon())){
-                swap(databaseK[i],databaseK[j]);
+            if ((*cmp)(databaseK[tmp]->getGiaVon(),databaseK[j]->getGiaVon())){
+                tmp = j;
             }
         }
+        swap(databaseK[i],databaseK[tmp]);
     }
 }
 void QuanLyHang::Sort(){
