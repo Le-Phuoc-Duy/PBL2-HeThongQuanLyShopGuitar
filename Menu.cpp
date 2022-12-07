@@ -112,6 +112,7 @@ void load()
 }
 void Start()
 {
+    system("cls");
     textColor(11);
     cout << "   .d88888b.                                 888                   .d8888b.  888                             .d8888b.           d8b 888                    " << endl;
     cout << "  d88P* *Y88b                                888                  d88P  Y88b 888                            d88P  Y88b          Y8P 888                    " << endl;
