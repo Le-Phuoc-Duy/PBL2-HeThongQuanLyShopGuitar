@@ -120,14 +120,14 @@ void ThongKe::ThongKeNgay(QuanLyNV &nv, QuanLyHD &hd)
     for (int j = 0; j < hd.getLengthHD(); j++)
     {
 
-        if (hd.databaseHD[j]->getTrangThaiSo() == 2 && !(hd.databaseHD[j]->getNgayLap() > ngay_kt && ngay_bd > hd.databaseHD[j]->getNgayLap()))
+        if (hd.databaseHD[j]->getTrangThaiSo() == 2 && !(hd.databaseHD[j]->getNgayLap() > ngay_kt || ngay_bd > hd.databaseHD[j]->getNgayLap()))
         {
             this->doanh_thu = this->doanh_thu + hd.databaseHD[j]->getThanhTien();
         }
     }
     for (int j = 0; j < hd.getLengthHD(); j++)
     {
-        if (hd.databaseHD[j]->getTrangThaiSo() == 1 && !(hd.databaseHD[j]->getNgayLap() > ngay_kt && ngay_bd > hd.databaseHD[j]->getNgayLap()))
+        if (hd.databaseHD[j]->getTrangThaiSo() == 1 && !(hd.databaseHD[j]->getNgayLap() > ngay_kt || ngay_bd > hd.databaseHD[j]->getNgayLap()))
             this->von = this->von + hd.databaseHD[j]->getThanhTien();
     }
 

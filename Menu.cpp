@@ -516,11 +516,10 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         system("cls");
         Table(" MENU QUAN LY HOA DON ",
         ">> 1. Them hoa don",
-        ">> 2. Tim thong tin hoa don",
-        ">> 3. Xoa hoa don",
-        ">> 4. Tim danh sach hoa don",
-        ">> 5. In ra danh sach hoa don",
-        ">> 6. Xuat file danh sach hoa don",
+        ">> 2. Xoa hoa don",
+        ">> 3. Tim danh sach hoa don",
+        ">> 4. In ra danh sach hoa don",
+        ">> 5. Xuat file danh sach hoa don",
         ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
 
@@ -538,29 +537,23 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         }
         case 2:
         {
-            cout << endl; ql_hd.Find(ql_nv, ql_hh);
+            cout << endl; ql_hd.Remove();
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 3:
         {
-            cout << endl; ql_hd.Remove();
+            cout << endl; ql_hd.Find(ql_nv, ql_hh, ql_kh);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
         case 4:
         {
-            cout << endl; ql_hd.Find(ql_nv, ql_hh);
-            cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
-            break;
-        }
-        case 5:
-        {
             cout << endl; ql_hd.Show(ql_hh);
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");
             break;
         }
-        case 6:
+        case 5:
         {
             ql_hd.Writef();
             cout << "\t\t\t\t\t\t";         textColor(7);system("pause");

@@ -169,8 +169,7 @@ int QuanLyHD::FindIndexHD(const int &index)
 {
     for (int i = 0; i < this->lengthHD; i++)
     {
-        if (databaseHD[i]->getMaHD() == index)
-            return i;
+        if (databaseHD[i]->getMaHD() == index) return i;
     }
     return -1;
 }
@@ -205,7 +204,7 @@ int QuanLyHD::FindIndexHH(const int &index)
     return -1;
 }
 
-void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
+void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH & kh)
 {
     int luachon;
     do
@@ -220,7 +219,9 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
         cout << setw(61) << " "
              << "2. Tim danh sach hoa don theo nhan vien" << endl;
         cout << setw(61) << " "
-             << "3. Tim danh sach hoa don theo ngay" << endl;
+             << "3. Tim danh sach hoa don theo khach hang" << endl;
+        cout << setw(61) << " "
+             << "4. Tim danh sach hoa don theo ngay" << endl;
         cout << setw(61) << " "
              << "0. Thoat" << endl;
         cout << "\n"
@@ -271,7 +272,7 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
                     if (databaseHD[i]->getMaNV() == maNV)
                     {
                         textcolor(3);
-                        cout << "\n\t\t\t\t\t\tHoa don thu " << count;
+                        cout << "\n\t\t\t\t\t\t\tHoa don thu " << count;
                         textcolor(7);
                         databaseHD[i]->Output(hh);
                         count++;
@@ -286,6 +287,39 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
             }
         }
         else if (luachon == 3)
+        {
+            string sdt;
+            kh.Show(0);
+            kh.Show(1);
+            sdt = KiemTraSDT();
+            int count = 1;
+            if (kh.FindIndexSDT(sdt) == -1)
+            {
+                textcolor(12);
+                cout << "\t\t\t\t\t\tSo dien thoai khong ton tai!" << endl;
+                textcolor(7);
+            }
+            else
+            {
+                for (int i = 0; i < this->lengthHD; i++)
+                {
+                    if (databaseHD[i]->getSDT() == sdt)
+                    {
+                        textcolor(3);
+                        cout << "\n\t\t\t\t\t\t\tHoa don thu " << count;
+                        textcolor(7);
+                        databaseHD[i]->Output(hh);
+                        count++;
+                    }
+                }
+                if (count == 1)
+                {
+                    textcolor(12);
+                    cout << "\t\t\t\t\t\tKhong co hoa don nao!" << endl;
+                    textcolor(7);
+                }
+            }
+        }else if (luachon == 4)
         {
             time_t now = time(0);
             tm *ltm = localtime(&now);
@@ -321,11 +355,10 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh)
             int count = 1;
             for (int j = 0; j < getLengthHD(); j++)
             {
-
-                if (!(databaseHD[j]->getNgayLap() > ngay_kt && ngay_bd > databaseHD[j]->getNgayLap()))
+                if (!(databaseHD[j]->getNgayLap() > ngay_kt || ngay_bd > databaseHD[j]->getNgayLap()))
                 {
                     textcolor(3);
-                    cout << "\n\t\t\t\t\t\tHoa don thu " << count;
+                    cout << "\n\t\t\t\t\t\t\tHoa don thu " << count;
                     textcolor(7);
                     databaseHD[j]->Output(hh);
                     count++;

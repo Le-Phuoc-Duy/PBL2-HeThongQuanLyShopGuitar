@@ -13,6 +13,10 @@
         "cmath": "cpp",
         "ios": "cpp",
         "string": "cpp",
+<<<<<<< HEAD
         "utility": "cpp"
+=======
+        "algorithm": "cpp"
+>>>>>>> 23f3dbbb886aa376858d42359719d7006e01d551
     }
 }
