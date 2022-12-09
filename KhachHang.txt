@@ -1,4 +1,4 @@
-100, Nguyen Duc, Huy, 0321286913, 77, Ton Tai
-101, Huynh Kim, Hoa, 0866926124, 44, Ton Tai
+100, Nguyen Duc, Huy, 0321286913, 0, Ton Tai
+101, Huynh Kim, Hoa, 0866926124, 3, Ton Tai
 102, Le Van, Duc, 0866926125, 69, Ton Tai
 104, Phan Van, Tam, 0983666777, 100, Ton Tai
