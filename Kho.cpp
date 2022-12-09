@@ -99,6 +99,6 @@ ostream& operator<<(ostream& out, Kho& kho)
 void Kho::Input(QuanLyHang& ql_hh, string tenHH, int maPL)
 {
     this->tenHH = tenHH; this->setMaPL(maPL);
-    cout << "\t\t\t\t\t\tNhap gia nhap vao: ";     this->gia_von = ql_hh.In_double();
+    cout << "\n\t\t\t\t\t\tNhap gia nhap vao: ";     this->gia_von = ql_hh.In_double();
     cout << "\t\t\t\t\t\tNhap gia ban ra: ";     this->gia_ban = ql_hh.In_double();
 }

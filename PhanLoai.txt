@@ -3,3 +3,4 @@
 3, Capo, Ton Tai
 4, Day Dan, Ton Tai
 5, Bao Dan, Ton Tai
+6, Dung Cu Luyen Tay, Ton Tai

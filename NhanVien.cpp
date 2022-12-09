@@ -61,8 +61,8 @@ void NhanVien::setDiaChi(string dia_chi)
 }
 void NhanVien::setLuong()
 {
-    if (chuc_vu == 0) luong = 7000000;
-    else luong = 5500000;
+    if (chuc_vu == 0) luong = 6000000;
+    else luong = 4500000;
 }
 void NhanVien::setChucVu(int chuc_vu)
 {
