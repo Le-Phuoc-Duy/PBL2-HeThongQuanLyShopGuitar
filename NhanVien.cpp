@@ -173,7 +173,7 @@ ostream& operator<<(ostream& out, NhanVien& nv)
 {
     out << "\n" << setw(12) << " " << "|" << left << setw(7)<< nv.maNV << "|" << left << setw(17) << nv.hodem + " " << left << setw(6) << nv.tenNV << "|" << left << setw(11) << nv.getGioiTinh() 
     << "|" << setw(1) << nv.ngay_sinh << " |" << left << setw(11) << nv.getSDT() << "|" << left << setw(27) << nv.dia_chi << "|" << left <<  setw(11) << nv.getChucVu() 
-    << "|" << left << setw(9) << (size_t)nv.luong << "|" << right << setw(2) << nv.ngay_vao << " |";
+    << "|" << left << setw(9) << (size_t)nv.luong << "|" << nv.ngay_vao << "  |";
     return out;
 }
 istream& operator>>(istream& in, NhanVien& nv)
