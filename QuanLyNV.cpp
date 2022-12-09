@@ -159,7 +159,7 @@ void QuanLyNV::Find()
                 << "  Ngay Vao  |"<< " Ngay Nghi |" << endl;
                 cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
                 if(databaseNV[n]->getCheckDeleteSo() == 0) cout << *databaseNV[n] << "           |";
-                else cout << *databaseNV[n] << left << setw(2) << databaseNV[n]->getNgayNghi() << " |";
+                else cout << *databaseNV[n] << right << setw(2) << databaseNV[n]->getNgayNghi() << " |";
                 cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
             }
         }else if (luachon == 2)
@@ -180,7 +180,7 @@ void QuanLyNV::Find()
                 {
                     if (databaseNV[i]->getTenNV() == tenNV){
                         if (databaseNV[i]->getCheckDeleteSo() == 0) cout << *databaseNV[i] << "           |";
-                        else cout << *databaseNV[i] << left << setw(2) << databaseNV[i]->getNgayNghi() << " |";
+                        else cout << *databaseNV[i] << right << setw(2) << databaseNV[i]->getNgayNghi() << " |";
                     }       
                 }
                 cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
@@ -217,16 +217,18 @@ bool up(string x, string y)
 
 void QuanLyNV::selectionsortTen(bool (*cmp)(string,string)){
     for(int i = 0; i < this->lengthNV - 1; i++){
+        int tmp = i;
         for (int j = i + 1; j < this->lengthNV; j++){
-            if ((*cmp)(databaseNV[i]->getTenNV(), databaseNV[j]->getTenNV())){
-                swap(databaseNV[i], databaseNV[j]);
+            if ((*cmp)(databaseNV[tmp]->getTenNV(), databaseNV[j]->getTenNV())){
+                tmp = j;
             }
-            if (databaseNV[i]->getTenNV() == databaseNV[j]->getTenNV()){
+            if (databaseNV[tmp]->getTenNV() == databaseNV[j]->getTenNV()){
                 if ((*cmp)(databaseNV[i]->getHoDemNV(), databaseNV[j]->getHoDemNV())){
-                swap(databaseNV[i], databaseNV[j]);
-            }
+                    tmp = j;
+                }
             }
         }
+        swap(databaseNV[i], databaseNV[tmp]);
     }
 }
 

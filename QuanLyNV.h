@@ -1,8 +1,7 @@
+#pragma once
 #include "QuanLy.h"
 #include "NhanVien.h"
 #include "List.h"
-#pragma once
-
 class QuanLyHD;
 class QuanLyNV : public QuanLy
 {

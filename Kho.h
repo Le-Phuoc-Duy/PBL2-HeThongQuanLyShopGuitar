@@ -1,5 +1,5 @@
-#include "Date.h"
 #pragma once
+#include "Date.h"
 #include "PhanLoai.h"
 class QuanLyHang;
 class Kho

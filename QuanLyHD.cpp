@@ -211,8 +211,8 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH & kh)
     {
         system("cls");
         cout << setw(55) << " ";
-        for (int i = 1; i <= 50; i++)
-            cout << "-";
+        textcolor(14);for (int i = 1; i <= 50; i++)
+            cout << "-";textcolor(11);
         cout << "\n\n";
         cout << setw(61) << " "
              << "1. Tim theo ma" << endl;
@@ -226,8 +226,8 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH & kh)
              << "0. Thoat" << endl;
         cout << "\n"
              << setw(55) << " ";
-        for (int i = 1; i <= 50; i++)
-            cout << "-";
+        textcolor(14);for (int i = 1; i <= 50; i++)
+            cout << "-";textcolor(7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: ";
         luachon = So_nguyen();
         if (luachon == 1)

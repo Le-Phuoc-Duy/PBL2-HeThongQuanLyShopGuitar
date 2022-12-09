@@ -125,17 +125,18 @@ void HoaDon::Input(QuanLyKH& kh, QuanLyNV& nv, QuanLyHang& hh){
         {
             if (sd_bd*1000 <= this->thanh_tien) {
                 this->thanh_tien -= sd_bd * 1000; // tien tich duoc <= thanh tien
-                //sd_bd = 0;///////////////////////////////////!!!!!!!!!!!!!!!!!!!!//////////////////
                 cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << sd_bd * 1000 << endl;
+                sd_bd = 0;
             }
             else{// tien tu diem tich duoc > thanh tien
-                this->thanh_tien = 0;
                 sd_bd = (sd_bd * 1000 - thanh_tien)/1000;
-                cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << thanh_tien;
+                cout << "\n\t\t\t\t\t\tKhach hang duoc giam " << thanh_tien << endl;
+                this->thanh_tien = 0;
             }
         }
         double sd_ct = (this->thanh_tien) / 100000; // so diem duoc cong them khi mua: 100k tich 1 diem
         kh.databaseKH[n]->setSoDiem(sd_bd + sd_ct);
+        if (sd_ct > 0) cout << "\n\t\t\t\t\t\tKhach hang duoc cong them " << sd_ct << " diem" << endl;
     }
     cout << "\n\t\t\t\t\t\tTHANH TIEN: " << setprecision(15) << this->thanh_tien << endl;
 }

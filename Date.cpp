@@ -1,4 +1,7 @@
 #include "Date.h"
+#include <string>
+#include <ctime>
+#include <Windows.h>
 // Ham getter
 int Date::getNgay(){
     return this->ngay;
