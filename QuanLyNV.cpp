@@ -69,6 +69,8 @@ void QuanLyNV::Readf()
         
         // HamChuanHoa(check_delete_chuoi);
         // kiem tra bien check co hop le khong
+        if (chuc_vu_chuoi == "Quan ly") chuc_vu = 0;
+        else chuc_vu = 1;
         if (check_delete_chuoi == "Da Xoa"){
             filein.ignore();
             filein >> ngay_nghi;

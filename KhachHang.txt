@@ -1,15 +1,4 @@
-129, Abc, Abc, 0999999999, 0, Da Xoa
-125, Nguyen Van, A, 0853171321, 330, Ton Tai
-126, Huynh The, Anh, 0853215684, 64, Ton Tai
-127, Phuoc Duy, Le, 0833271684, 0, Ton Tai
-123, Le Phuoc, Duy, 0866999222, 0, Ton Tai
-144, Le Van, Duy, 0866432222, 0, Ton Tai
-288, Le Huu, Duy, 0825132222, 0, Ton Tai
-300, Huu, Duy, 0825234222, 0, Ton Tai
-400, Thu, Duy, 0925234222, 0, Ton Tai
-128, Phan Van, Huu, 0123456777, 10, Ton Tai
-124, Nguyen Thi Tra, My, 0853171684, 44, Ton Tai
-131, Phuoc Duy, Le, 0965333777, 0, Da Xoa
-133, Abc, A, 0866565222, 36, Ton Tai
-134, Abc, Abc, 0511232565, 199, Ton Tai
-135, Abc, Acn, 0123555664, 0, Ton Tai
+100, Nguyen Duc, Huy, 0321286913, 100, Ton Tai
+101, Huynh Kim, Hoa, 0866926124, 100, Ton Tai
+102, Le Van, Duc, 0866926125, 100, Ton Tai
+104, Phan Van, Tam, 0983666777, 100, Ton Tai

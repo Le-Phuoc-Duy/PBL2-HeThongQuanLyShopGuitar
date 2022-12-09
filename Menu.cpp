@@ -186,7 +186,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
     {
         system("cls");
         Table(" MENU QUAN LY KHO HANG",
-        ">> 1. Thao tac voi hang hoa",
+        ">> 1. Thao tac voi mat hang",
         ">> 2. Thao tac voi phan loai hang",
         ">> 0. Thoat");
         luachon1 = Lua_chon_hop_le();
