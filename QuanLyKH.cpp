@@ -1,8 +1,5 @@
 #include "QuanLyKH.h"
 #include "QuanLyHD.h"
-#include <fstream>
-#include <iostream>
-#include <iomanip>
 
 QuanLyKH::QuanLyKH()
 {
@@ -59,9 +56,9 @@ void QuanLyKH::Insert()
     if (n != -1)
     {
         if (databaseKH[n]->getCheckDeleteSo() == 1){
-            textcolor(12);cout << "\t\t\t\t\t\tSo dien thoai da bi xoa. Vao thay doi thong tin khach hang de khoi phuc!" << endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tSo dien thoai da bi xoa. Vao thay doi thong tin khach hang de khoi phuc!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         }
-        else {textcolor(12);cout << "\t\t\t\t\t\tSo dien thoai da ton tai!" << endl;textcolor(7);}
+        else {SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tSo dien thoai da ton tai!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);}
         delete khachhang;
         return;
     }
@@ -70,7 +67,7 @@ void QuanLyKH::Insert()
 
     databaseKH.push_back(khachhang);
     this->lengthKH++;
-    textcolor(6);cout << "\t\t\t\t\t\tThem khach hang thanh cong!" << endl;textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\t\t\t\t\t\tThem khach hang thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
 }
 
 void QuanLyKH::Readf()
@@ -80,7 +77,7 @@ void QuanLyKH::Readf()
 
     if (!filein)
     {
-        textcolor(12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         return;
     }
     filein.seekg(0, ios::end);
@@ -93,16 +90,11 @@ void QuanLyKH::Readf()
     while (filein.eof() != true)
     {
         filein >> maKH;
-        filein.ignore(2);
-        getline(filein, hodem, ',');
-        filein.ignore();
-        getline(filein, tenKH, ',');
-        filein.ignore();
-        getline(filein, sdt, ',');
-        filein.ignore();
-        filein >> so_diem;
-        filein.ignore(2);
-        getline(filein, check_delete_chuoi);
+        filein.ignore(2); getline(filein, hodem, ',');
+        filein.ignore(); getline(filein, tenKH, ',');
+        filein.ignore(); getline(filein, sdt, ',');
+        filein.ignore(); filein >> so_diem;
+        filein.ignore(2); getline(filein, check_delete_chuoi);
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;
         HamChuanHoa(tenKH); HamChuanHoa(hodem);
@@ -110,13 +102,17 @@ void QuanLyKH::Readf()
         databaseKH.push_back(khachhang);
         (this->lengthKH)++;
     }
-    textcolor(6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n\t\t\t\t\t\tDoc file thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
     filein.close();
 }
 
 void QuanLyKH::Show(int trang_thai)
 {
-    textcolor(6);cout << "\n"<< setw(71) << " " <<"DANH SACH KHACH HANG"<< endl;textcolor(7);
+    if (trang_thai == 0){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n"<< setw(71) << " " <<"DANH SACH KHACH HANG"<< endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+    }else{
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n"<< setw(67) << " " <<"DANH SACH KHACH HANG DA XOA"<< endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+    }
     cout << setw(52) << " "; for (int i = 1; i <= 58;i++) cout << "-";
     cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << endl;
     cout << setw(52) << " "; for (int i = 1; i <= 58;i++) cout << "-";
@@ -132,19 +128,19 @@ void QuanLyKH::Find()
     int luachon;
     do{    
         system("cls");
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11); 
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11); 
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo SDT" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 1){
             string sdt = KiemTraSDT();
             int n = FindIndexSDT(sdt);
             if (n == -1)
             {
-                textcolor(12);cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tSDT khong ton tai!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             }
             else
             {
@@ -161,7 +157,7 @@ void QuanLyKH::Find()
             cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenKH);
             HamChuanHoa(tenKH);
             if (FindIndexTen(tenKH) == -1){
-                textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             }else{
                 cout << setw(52) << " "; for (int i = 1; i <= 71;i++) cout << "-";
                 cout << "\n" << setw(52) << " " << "| Ma KH |" << "    Ten Khach Hang    |" << "     SDT     |" << "  So Diem  |" << " Trang Thai |"<<endl;
@@ -174,7 +170,7 @@ void QuanLyKH::Find()
             }
         }
         else if (luachon){
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         }
         else break;
     cout << "\t\t\t\t\t\t"; system("pause");
@@ -190,7 +186,7 @@ void QuanLyKH::Writef()
         fileout << databaseKH[i]->getMaKH() << ", " <<  databaseKH[i]->getHoDemKH() << ", "<<  databaseKH[i]->getTenKH() 
         << ", " << databaseKH[i]->getSDT() << ", " <<  databaseKH[i]->getSoDiem() << ", " << databaseKH[i]->getCheckDelete();
     }
-    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
     fileout.close();
 }
 
@@ -202,12 +198,12 @@ void QuanLyKH::Remove()
     int n = FindIndex(ma);
     if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1)
     {
-        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         return;
     }
     else{
         this->databaseKH[n]->setCheckDelete(1);
-        textcolor(6);cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\t\t\t\t\t\tXoa thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
     }
 }
 
@@ -215,17 +211,17 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
     int luachon;
     do{    
         system("cls");
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "\n\n";
         cout << setw(69) << " " << "1. Cap nhat ten" << endl;
         cout << setw(69) << " " << "2. Cap nhat so dien thoai" << endl;
         cout << setw(69) << " " << "3. Khoi phuc trang thai" << endl;
         cout << setw(69) << " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         
         if (luachon < 0 || luachon > 3){
-            textcolor(12);  cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);  cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             cout << "\t\t\t\t\t\t"; system("pause");
             continue;
         }
@@ -237,14 +233,14 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
             int n = FindIndex(ma);
             if (luachon != 3){
                 if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 1){
-                    textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                     cout << "\t\t\t\t\t\t"; system("pause");
                     continue;
                 }
             }
             else{
                 if (n == -1 || databaseKH[n]->getCheckDeleteSo() == 0){
-                    textcolor(12);cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;textcolor(7);
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tKhong ton tai khach hang da xoa nhu tren!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                     cout << "\t\t\t\t\t\t"; system("pause");
                     continue;
                 }
@@ -283,7 +279,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
                 {
                     string sdt = KiemTraSDT();
                     if (FindIndexSDT(sdt) != -1){
-                        textcolor(6);cout << "\t\t\t\t\t\tSDT da ton tai. Cap nhat khong thanh cong!" << endl;textcolor(7);
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\t\t\t\t\t\tSDT da ton tai. Cap nhat khong thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                         break;
                     }
                     // bien SDT luu SDT cu
@@ -295,7 +291,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
                         ql_hd.databaseHD[m]->setSDT(sdt);
                         m = ql_hd.FindIndexKH(SDT);
                     }
-                    textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                     break;
                 }
                 case 3:
@@ -308,7 +304,7 @@ void QuanLyKH::Update(QuanLyHD& ql_hd){
                     break;
                 } 
             }
-            if (luachon != 2) {textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);}
+            if (luachon != 2) {SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);}
         }
         else break;
     cout << "\t\t\t\t\t\t"; system("pause");
@@ -344,12 +340,12 @@ void QuanLyKH::Sort()
     int luachon;
     do{ 
         system("cls");   
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "\n\n";
         cout << setw(62)<< " " << "1. Sap xep ten khach hang theo chieu giam" << endl;
         cout << setw(62)<< " " << "2. Sap xep ten khach hang theo chieu tang" << endl;
         cout << setw(62)<< " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         
         if (luachon == 0) break;
@@ -368,7 +364,7 @@ void QuanLyKH::Sort()
             }
             default:
             {
-                textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                 break;
 
             }

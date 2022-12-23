@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <windows.h>
+#include <iostream>
+#include <math.h>
+#include <fstream>
 using namespace std;
 
 class QuanLy
@@ -17,11 +20,9 @@ public:
     void Update();
     void Delete();
     void Sort();
-    void HamChuanHoa(string&);
-    string& KiemTraSDT();
+    void HamChuanHoa(string &);
+    string &KiemTraSDT();
     int So_nguyen();
     int Nhap_ma();
     double In_double();
-    void textcolor(int);
 };
-

@@ -1,13 +1,12 @@
 #include "QuanLyNV.h"
 #include "QuanLyHD.h"
-#include <fstream>
-#include <iomanip>
 
-QuanLyNV::QuanLyNV(){
+QuanLyNV::QuanLyNV()
+{
     this->lengthNV = 0;
 }
 QuanLyNV::~QuanLyNV(){}
-// Getter Setter
+//Ham getter, setter
 void QuanLyNV::setLengthNV(int lengthNV)
 {
     this->lengthNV = lengthNV;
@@ -23,55 +22,34 @@ void QuanLyNV::Readf()
 
     if (!filein)
     {
-        textcolor(12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\n\t\t\t\t\t\tLoi: File khong mo duoc." << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         return;
     }
     filein.seekg(0, ios::end);
     if (filein.tellg() == 0) return;
     filein.seekg(0, ios::beg);
-        int maNV;
-        string ho_dem_NV;
-        string tenNV;
-        int gioi_tinh;
-        Date ngay_sinh(0,0,0),ngay_vao(0,0,0),ngay_nghi(0,0,0);
-        string sdt;
-        string dia_chi;
-        double luongcoban;
-        int chuc_vu;
-        string gioi_tinh_chuoi;
-        string chuc_vu_chuoi;
-        double luong;
-        string check_delete_chuoi;
-        int check_delete;
+    string ho_dem_NV, tenNV, sdt, dia_chi, gioi_tinh_chuoi, chuc_vu_chuoi, check_delete_chuoi;
+    int maNV, gioi_tinh, chuc_vu, check_delete;
+    Date ngay_sinh(0,0,0),ngay_vao(0,0,0),ngay_nghi(0,0,0);
+    double luongcoban, luong;
     while (filein.eof() != true)
     {
         filein >> maNV;
-        filein.ignore(2);
-        getline(filein, ho_dem_NV, ',');
-        filein.ignore();
-        getline(filein, tenNV, ',');
-        filein.ignore();
-        getline(filein, gioi_tinh_chuoi, ',');
-        filein.ignore();
-        filein >> ngay_sinh;
-        filein.ignore(2);
-        getline(filein, sdt, ',');
-        filein.ignore();
-        getline(filein, dia_chi, ',');
-        filein.ignore();
-        getline(filein, chuc_vu_chuoi, ',');
-        // HamChuanHoa(chuc_vu_chuoi);
+        filein.ignore(2); getline(filein, ho_dem_NV, ',');
+        filein.ignore(); getline(filein, tenNV, ',');
+        filein.ignore(); getline(filein, gioi_tinh_chuoi, ',');
+        filein.ignore(); filein >> ngay_sinh;
+        filein.ignore(2); getline(filein, sdt, ',');
+        filein.ignore(); getline(filein, dia_chi, ',');
+        filein.ignore(); getline(filein, chuc_vu_chuoi, ',');
         filein >> luong;
-        filein.ignore(2);
-        getline(filein, check_delete_chuoi, ',');
-        filein.ignore();
-        filein >> ngay_vao;
-        
-        // HamChuanHoa(check_delete_chuoi);
+        filein.ignore(2); getline(filein, check_delete_chuoi, ',');
+        filein.ignore(); filein >> ngay_vao;
         // kiem tra bien check co hop le khong
         if (chuc_vu_chuoi == "Quan ly") chuc_vu = 0;
         else chuc_vu = 1;
-        if (check_delete_chuoi == "Da Xoa"){
+        if (check_delete_chuoi == "Da Xoa")
+        {
             filein.ignore();
             filein >> ngay_nghi;
             check_delete = 1;
@@ -90,12 +68,18 @@ void QuanLyNV::Readf()
 }
 void QuanLyNV::Show(int trang_thai)
 {
-    if (trang_thai == 0){
-        textcolor(6);cout << "\n"<< setw(67) << " " << "DANH SACH NHAN VIEN HIEN CO" << endl;textcolor(7);
-    } 
-    else{
-        textcolor(6);cout << "\n"<< setw(67) << " " << "DANH SACH NHAN VIEN DA XOA" << endl;textcolor(7);
-    } 
+    if (trang_thai == 0)
+    {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+        cout << "\n" << setw(67) << " " << "DANH SACH NHAN VIEN HIEN CO" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+    }
+    else
+    {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+        cout << "\n" << setw(67) << " " << "DANH SACH NHAN VIEN DA XOA" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+    }
     cout << setw(12) << " "; for (int i = 1; i <= 132;i++) cout << "-";
     cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
          << " Ngay Sinh |"<< "    SDT    |"<< "          Dia Chi          |"<<"  Chuc Vu  |" << "  Luong  |"
@@ -116,7 +100,9 @@ void QuanLyNV::Insert()
     string ten = nv->getTenNV();    HamChuanHoa(ten);   nv->setTenNV(ten);
     databaseNV.push_back(nv);
     this->lengthNV++;
-    textcolor(6);cout << "\t\t\t\t\t\tThem nhan vien thanh cong!" << endl; textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+    cout << "\t\t\t\t\t\tThem nhan vien thanh cong!" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
 void QuanLyNV::Writef()
@@ -132,7 +118,9 @@ void QuanLyNV::Writef()
         << ", " << databaseNV[i]->getCheckDelete() << ", " << databaseNV[i]->getNgayVao();
         if (databaseNV[i]->getCheckDelete() == "Da Xoa") fileout << ", " << databaseNV[i]->getNgayNghi();  
     }
-    textcolor(6);cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+    cout << "\t\t\t\t\t\tGhi vao file thanh cong!" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     fileout.close();
 }
 void QuanLyNV::Find()
@@ -140,18 +128,18 @@ void QuanLyNV::Find()
     int luachon;
     do{
         system("cls");
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "\n\n";
         cout << setw(74) << " " << "1. Tim theo ma" << endl;
         cout << setw(74) << " " << "2. Tim theo ten" << endl;
         cout << setw(74) << " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 1){
             cout << "\t\t\t\t\t\tMa can tim:";      int maNV = Nhap_ma();
             int n = FindIndex(maNV);
             if (n == -1){
-                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tMa khong ton tai!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             }else{
                 cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
                 cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
@@ -169,7 +157,7 @@ void QuanLyNV::Find()
             cout << "\t\t\t\t\t\tNhap ten: ";    getline(cin,tenNV);
             HamChuanHoa(tenNV);
             if (FindIndexTen(tenNV) == -1){
-                textcolor(12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tTen khong ton tai!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             }else{
                 cout << setw(12) << " "; for (int i = 1; i <= 144;i++) cout << "-";
                 cout << "\n" << setw(12) << " " << "| Ma NV |" << "     Ten Nhan Vien     |" << " Gioi Tinh |"
@@ -186,7 +174,7 @@ void QuanLyNV::Find()
                 cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
             }
         } else if (luachon != 0){
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         }
         else break;
         cout << "\t\t\t\t\t\t"; system("pause");
@@ -237,12 +225,12 @@ void QuanLyNV::Sort()
     int luachon;
     do{   
         system("cls");
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "\n\n";
         cout << setw(62)<< " " << "1. Sap xep ten nhan vien theo chieu giam" << endl;
         cout << setw(62)<< " " << "2. Sap xep ten nhan vien theo chieu tang" << endl;
         cout << setw(62)<< " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
         if (luachon == 0) break;
         switch(luachon){
@@ -260,7 +248,9 @@ void QuanLyNV::Sort()
             }
             default:
             {
-                textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+                cout << "\t\t\t\t\t\tLua chon khong hop le!" << endl;
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                 break;
 
             }
@@ -273,7 +263,7 @@ void QuanLyNV::Update(){
     int luachon;
     do{    
         system("cls");
-        textcolor(14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "\n\n";
         cout << setw(68) << " " << "1. Cap nhat ten" << endl;
         cout << setw(68) << " " << "2. Cap nhat gioi tinh" << endl;
@@ -282,11 +272,11 @@ void QuanLyNV::Update(){
         cout << setw(68) << " " << "5. Cap nhat dia chi" << endl;
         cout << setw(68) << " " << "6. Cap nhat chuc vu" << endl;
         cout << setw(68) << " " << "0. Thoat" << endl;
-        textcolor(14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);cout << "\n" << setw(48) << " "; for (int i = 1; i <= 65; i++) cout << "-";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         cout << "\n\t\t\t\t\t\tNhap lua chon: "; luachon = So_nguyen();
 
         if (luachon < 0 || luachon > 6){
-            textcolor(12);cout << "\t\t\t\t\t\tLua chon khong hop le!"<< endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tLua chon khong hop le!"<< endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             cout << "\t\t\t\t\t\t"; system("pause");
             continue;
         }
@@ -297,7 +287,7 @@ void QuanLyNV::Update(){
             int n = FindIndex(nv);
             // Kiem tra xem ma co ton tai khong
             if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
-                textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;textcolor(7);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da xoa!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
                 cout << "\t\t\t\t\t\t"; system("pause");
                 continue;
             }
@@ -386,7 +376,7 @@ void QuanLyNV::Update(){
                     break;
                 } 
             }
-            textcolor(6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;textcolor(7);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\n\t\t\t\t\t\tCap nhat thanh cong!" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
         }else break;
         cout << "\t\t\t\t\t\t"; system("pause");
     }while(luachon);
@@ -398,12 +388,16 @@ void QuanLyNV::Remove()
     cout << "\t\t\t\t\t\tMa can xoa: ";   manv = Nhap_ma();
     int n = FindIndex(manv);
     if (n == -1 || databaseNV[n]->getCheckDeleteSo() == 1){
-        textcolor(12);cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+        cout << "\t\t\t\t\t\tMa khong ton tai hoac da bi xoa!" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         return;
     }
     else{
         this->databaseNV[n]->setNgayNghi();
         this->databaseNV[n]->setCheckDelete(1);
-        textcolor(6);cout << "\t\t\t\t\t\tXoa nhan vien thanh cong!" << endl;textcolor(7);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+        cout << "\t\t\t\t\t\tXoa nhan vien thanh cong!" << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     }
 }

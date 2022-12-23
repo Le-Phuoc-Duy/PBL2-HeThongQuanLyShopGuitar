@@ -1,12 +1,11 @@
 #pragma once
 #include "QuanLy.h"
 #include "List.h"
-#include "HoaDon.h"
-#include "QuanLyHang.h"
+#include "QuanLyNV.h"
+#include "QuanLyHD.h"
+
 class QuanLyNV;
 class QuanLyHD;
-#include <ctime>
-#include <Windows.h>
 class ThongKe{
     private:
         double luongNV, doanh_thu, loi_nhuan, von;

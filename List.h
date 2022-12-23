@@ -75,7 +75,7 @@ const int List<T>::getSize()
 }
 
 template <typename T>
-T& List<T>::operator[](int index)
+T &List<T>::operator[](int index)
 {
     Node *node = this->pHead;
     for (int i = 0; i < index; i++)

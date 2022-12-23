@@ -1,31 +1,29 @@
-#include <string>
-#include "Date.h"
-#include <ctime>
-#include <Windows.h>
-using namespace std;
 #pragma once
+#include "Date.h"
+#include <iomanip>
 
 class QuanLyNV;
 class NhanVien
 {
-    private:
-        int static count_id;
-        int maNV;
-        string hodem;
-        string tenNV;
-        int gioi_tinh;
-        Date ngay_sinh;
-        string sdt;
-        string dia_chi;
-        double luong;
-        int chuc_vu;
-        int check_delete;
-        Date ngay_vao;
-        Date ngay_nghi;
-    public:
-    NhanVien(int = -1, string = "", string = "", int = 0, Date = Date(0, 0, 0),string = "", string = "", int = 0, double = 0, int = 0, Date = Date(0, 0, 0), Date = Date(0, 0, 0));
+private:
+    int static count_id;
+    int maNV;
+    string hodem;
+    string tenNV;
+    int gioi_tinh;
+    Date ngay_sinh;
+    string sdt;
+    string dia_chi;
+    double luong;
+    int chuc_vu;
+    int check_delete;
+    Date ngay_vao;
+    Date ngay_nghi;
+
+public:
+    NhanVien(int = -1, string = "", string = "", int = 0, Date = Date(0, 0, 0), string = "", string = "", int = 0, double = 0, int = 0, Date = Date(0, 0, 0), Date = Date(0, 0, 0));
     ~NhanVien();
-    //Ham Setter
+    // Ham Setter
     void setCountID(int);
     void setMaNV(int);
     void setTenNV(string);
@@ -39,7 +37,7 @@ class NhanVien
     void setCheckDelete(int);
     void setNgayVao();
     void setNgayNghi();
-    //Ham Getter
+    // Ham Getter
     int getCountID();
     int getMaNV();
     string getTenNV();
@@ -56,9 +54,9 @@ class NhanVien
     Date getNgayVao();
     Date getNgayNghi();
 
-    void try_catchHoten(string&);
-    void try_catchDiaChi(string&);
+    void try_catchHoten(string &);
+    void try_catchDiaChi(string &);
     // Ham da nang hoa
-    friend ostream& operator<<(ostream&, NhanVien&);
-    friend istream& operator>>(istream&, NhanVien&);
+    friend ostream &operator<<(ostream &, NhanVien &);
+    friend istream &operator>>(istream &, NhanVien &);
 };

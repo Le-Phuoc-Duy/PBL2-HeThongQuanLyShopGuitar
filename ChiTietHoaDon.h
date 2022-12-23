@@ -1,26 +1,30 @@
 #pragma once
 #include <Windows.h>
+#include <iostream>
+#include <iomanip>
+
 class QuanLyHang;
 class ChiTietHoaDon
 {
-    private:
-        int maHH;
-        double don_gia;
-        int so_luong;
-    public:
-        ChiTietHoaDon();
-        ChiTietHoaDon(int, int, double);
-        ~ChiTietHoaDon();
+private:
+    int maHH;
+    double don_gia;
+    int so_luong;
 
-        void setMaHH(int);
-        void setDonGia(double);
-        void setSoLuong(int);
+public:
+    ChiTietHoaDon();
+    ChiTietHoaDon(int, int, double);
+    ~ChiTietHoaDon();
 
-        int getMaHH();
-        double getDonGia();
-        int getSoLuong();
+    void setMaHH(int);
+    void setDonGia(double);
+    void setSoLuong(int);
 
-        void InputB(QuanLyHang&);
-        void InputM(QuanLyHang&);
-        void Output(QuanLyHang&);
+    int getMaHH();
+    double getDonGia();
+    int getSoLuong();
+
+    void InputB(QuanLyHang &);
+    void InputM(QuanLyHang &);
+    void Output(QuanLyHang &);
 };

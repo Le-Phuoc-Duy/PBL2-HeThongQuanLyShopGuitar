@@ -2,7 +2,6 @@
 #include "QuanLy.h"
 #include "List.h"
 #include "KhachHang.h"
-using namespace std;
 
 class QuanLyHD;
 class QuanLyKH : public QuanLy{
