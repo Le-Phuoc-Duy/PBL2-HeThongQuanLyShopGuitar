@@ -160,6 +160,7 @@ double QuanLy::In_double()
         {
             int a = 0, b = 0;
             int count = 0, n = data.length(), i = n - 1, count_pow = 1;
+            if (n == 0) throw "";
             for (int j = n - 1; j >= 0; --j)
             {
                 if (data[j] == '.') count++;

@@ -137,6 +137,7 @@ int Lua_chon_hop_le(){
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             cout << "\n\t\t\t\t\t\tNhap lua chon: "; getline(cin, x);
             int n = x.length();
+            if (n == 0) throw "";
             // Dung chuoi de kiem tra lua chon co phai la 1 so nguyen lon hon khong ko
             for(int i = n - 1; i >= 0; --i){
                 if (x[i] < 48 || x[i] > 57) throw "";
