@@ -69,20 +69,6 @@ void gotoxy(int x, int y)
     d.Y = y - 1;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),d);
 }
-void load()
-{
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
-    char a = 219;
-    gotoxy(73,34);
-    cout << ("Loading...\n");
-    gotoxy(55,36);
-    for (int r = 1; r<=46; r++)
-    {
-        for (int q = 0; q <= 100000000; q++);
-        cout << a;
-    }
-
-}
 void Start()
 {
     system("cls");
@@ -100,30 +86,53 @@ void Start()
     cout << "                                                      YY88PP                                   888                                                          " << endl;
 
     Sleep(350);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+    gotoxy(95,15); cout << "Sinh vien thuc hien: " << endl;
+    gotoxy(95,16); cout << "-----------------------------------------------" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+    gotoxy(102,17);cout << "Nguyen Thi Tra My         Lop: 21T_DT" << endl;
+    gotoxy(102,18);cout << "Le Phuoc Duy              Lop: 21T_DT" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+    gotoxy(95,20); cout << "Giao vien huong dan: " << endl;
+    gotoxy(95,21); cout << "-----------------------------------------------" << endl;SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+    gotoxy(102,22);cout << "Vo Duc Hoang" << endl;
 
-    int x= 80;
-    cout << "                                                                                                     @ @@@@@ "<< endl;
-    Sleep(x); cout << "                                                                                                     @@@@@@@*"<< endl;
-    Sleep(x); cout << "                                                                                                    @@@@@@   "<< endl;
-    Sleep(x); cout << "                                                                                                 @@@@        "<< endl;
-    Sleep(x); cout << "                                                                                               @@@@          "<< endl;
-    Sleep(x); cout << "                                                                                            @@@@             "<< endl;
-    Sleep(x); cout << "                                                                                         @@@@@               "<< endl;
-    Sleep(x); cout << "                                                                                       @@@@                  "<< endl;
-    Sleep(x); cout << "                                                                           @@@@@@.  @@@@@                    "<< endl;
-    Sleep(x); cout << "                                                                          @@@#(@@@@@@@                       "<< endl;
-    Sleep(x); cout << "                                                                        @@@@@@@@@@@@                         "<< endl;
-    Sleep(x); cout << "                                                               @@@@@@@@@@@@@@//(@@@                          "<< endl;
-    Sleep(x); cout << "                                                             @@@@@@@@@@@@@@@@@@@@@@@@@@                      "<< endl;
-    Sleep(x); cout << "                                                            @@@@@@@@@@@*%(@@@@@@@@&                          "<< endl;
-    Sleep(x); cout << "                                                            @@@@@@@@@@@@@@@@@@@@@                            "<< endl;
-    Sleep(x); cout << "                                                            @@@@@@@@@@@@@@@@@@@@                             "<< endl;
-    Sleep(x); cout << "                                                             @@@@@@@@@@@@@@@@@@@                             "<< endl;
-    Sleep(x); cout << "                                                               %@@@@@@@@@@@@@@#                              "<< endl;
-    Sleep(x); cout << "                                                                   @@@@@@@@@                                 "<< endl;
-
-    load();
-    cout << "\n\n\n";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);system("pause");
+    int x= 60;
+    gotoxy(112,27);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),3);
+    cout << "Loading... 0%";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+for (int i = 1; i<=10; i++){
+    if (i%2 == 0){
+        gotoxy(1,15);
+        cout << "                                                             @ @@@@@ "<< endl;
+        Sleep(x); cout << "                                                            @@@@@@@*"<< endl;
+        Sleep(x); cout << "                                                           @@@@@@   "<< endl;
+        Sleep(x); cout << "                                                        @@@@        "<< endl;
+        Sleep(x); cout << "                                                      @@@@          "<< endl;
+        Sleep(x); cout << "                                                   @@@@             "<< endl;
+        Sleep(x); cout << "                                                @@@@@               "<< endl;
+        Sleep(x); cout << "                                              @@@@                  "<< endl;
+        Sleep(x); cout << "                                  @@@@@@.  @@@@@                    "<< endl;
+        Sleep(x); cout << "                                 @@@#(@@@@@@@                       "<< endl;
+        Sleep(x); cout << "                               @@@@@@@@@@@@                         "<< endl;
+        Sleep(x); cout << "                      @@@@@@@@@@@@@@//(@@@                          "<< endl;
+        Sleep(x); cout << "                    @@@@@@@@@@@@@@@@@@@@@@@@@@                      "<< endl;
+        Sleep(x); cout << "                   @@@@@@@@@@@*%(@@@@@@@@&                          "<< endl;
+        Sleep(x); cout << "                   @@@@@@@@@@@@@@@@@@@@@                            "<< endl;
+        Sleep(x); cout << "                   @@@@@@@@@@@@@@@@@@@@                             "<< endl;
+        Sleep(x); cout << "                    @@@@@@@@@@@@@@@@@@@                             "<< endl;
+        Sleep(x); cout << "                      %@@@@@@@@@@@@@@#                              "<< endl;
+        Sleep(x); cout << "                          @@@@@@@@@                                 "<< endl;
+        gotoxy(112,27);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),3);
+        cout << "Loading... " << i*10 << "%";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+    }
+    else{
+        gotoxy(1,15);
+        for (int j = 1; j <= 19;j++) cout << "                                                                    "<< endl;
+    }
+}
+    cout << "\n\n\n\n\n\n\n\n\n";SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);system("pause");
 }
 // Ham thao tac
 int Lua_chon_hop_le(){
