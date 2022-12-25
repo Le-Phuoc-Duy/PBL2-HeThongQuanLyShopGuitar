@@ -571,7 +571,7 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         case 3:
         {
             cout << endl; ql_hd.Find(ql_nv, ql_hh, ql_kh);
-            cout << "\t\t\t\t\t\t"; SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+            cout << "\t\t\t\t\t\t       "; SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             system("pause");
             break;
         }
@@ -813,7 +813,7 @@ int main()
                     {
                         string newpass;
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);cout << "\n\t\t\t\t\t\tNhap mat khau moi: ";
-                        cin.ignore();
+                        fflush(stdin);
                         getline(cin, PASS);
                         savePass();
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);cout << "\t\t\t\t\t\tDoi mat khau thanh cong!" << endl;

@@ -130,9 +130,7 @@ void QuanLyHang::Readf()
         filein.ignore();
         filein >> maPL;
         filein.ignore(2);
-        // HamChuanHoa(tenHH);
         getline(filein, check_delete_chuoi);
-        // HamChuanHoa(check_delete_chuoi);
         // kiem tra bien check co hop le khong
         if (check_delete_chuoi == "Da Xoa") check_delete = 1;
         else if (check_delete_chuoi == "Ton Tai") check_delete = 0;

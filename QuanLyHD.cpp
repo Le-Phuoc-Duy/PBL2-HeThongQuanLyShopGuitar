@@ -205,7 +205,7 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH &kh)
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
         for (int i = 1; i <= 50; i++) cout << "-";
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
+        cout << "\n\t\t\t\t\t\t       Nhap lua chon: ";
         luachon = So_nguyen();
         if (luachon == 1)
         {
