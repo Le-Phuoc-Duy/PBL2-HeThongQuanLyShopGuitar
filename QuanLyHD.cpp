@@ -190,9 +190,9 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH &kh)
     do
     {
         system("cls");
-        cout << setw(55) << " ";
+        cout << setw(48) << " ";
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-        for (int i = 1; i <= 50; i++)
+        for (int i = 1; i <= 64; i++)
             cout << "-";
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
         cout << "\n\n";
@@ -201,11 +201,11 @@ void QuanLyHD::Find(QuanLyNV &nv, QuanLyHang &hh, QuanLyKH &kh)
         cout << setw(61) << " " << "3. Tim danh sach hoa don theo khach hang" << endl;
         cout << setw(61) << " " << "4. Tim danh sach hoa don theo ngay" << endl;
         cout << setw(61) << " " << "0. Thoat" << endl;
-        cout << "\n" << setw(55) << " ";
+        cout << "\n" << setw(48) << " ";
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-        for (int i = 1; i <= 50; i++) cout << "-";
+        for (int i = 1; i <= 64; i++) cout << "-";
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-        cout << "\n\t\t\t\t\t\t       Nhap lua chon: ";
+        cout << "\n\t\t\t\t\t\tNhap lua chon: ";
         luachon = So_nguyen();
         if (luachon == 1)
         {

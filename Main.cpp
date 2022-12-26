@@ -170,7 +170,7 @@ void Thao_tac_hang_hoa(QuanLyHang &ql_hang, QuanLyHD& ql_hd)
     do
     {
         system("cls");
-        Table(" MENU QUAN LY KHO HANG",
+        Table(" MENU QUAN LY KHO HANG ",
         ">> 1. Thao tac voi mat hang",
         ">> 2. Thao tac voi phan loai hang",
         ">> 0. Thoat");
@@ -571,7 +571,7 @@ void Thao_tac_hoa_don(QuanLyHD &ql_hd, QuanLyNV &ql_nv, QuanLyKH &ql_kh, QuanLyH
         case 3:
         {
             cout << endl; ql_hd.Find(ql_nv, ql_hh, ql_kh);
-            cout << "\t\t\t\t\t\t       "; SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+            cout << "\t\t\t\t\t\t"; SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
             system("pause");
             break;
         }
@@ -767,7 +767,7 @@ int main()
                 do
                 {
                     system("cls");
-                    Table(" MENU QUAN LY CHINH",
+                    Table(" MENU QUAN LY CHINH ",
                     ">> 1. Thao tac voi nhan vien",
                     ">> 2. Thao tac voi kho hang",
                     ">> 3. Thao tac voi khach hang",

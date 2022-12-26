@@ -168,7 +168,7 @@ void QuanLyNV::Find()
                 {
                     if (databaseNV[i]->getTenNV() == tenNV){
                         if (databaseNV[i]->getCheckDeleteSo() == 0) cout << *databaseNV[i] << "           |";
-                        else cout << *databaseNV[i] << right << setw(2) << databaseNV[i]->getNgayNghi() << " |";
+                        else cout << *databaseNV[i] << right << setw(1) << databaseNV[i]->getNgayNghi() << " |";
                     }       
                 }
                 cout << "\n" << setw(12) << " "; for (int i = 1; i <= 144; i++) cout << "-"; cout << endl;
